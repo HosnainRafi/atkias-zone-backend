@@ -15,7 +15,7 @@ app.use(
       'http://localhost:5174',
       'https://outfitro.com',
     ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
   })
 );
