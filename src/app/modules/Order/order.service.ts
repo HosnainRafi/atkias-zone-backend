@@ -115,9 +115,10 @@ const createOrderIntoDB = async (
   };
 
   if (couponCode) {
+    // Pass the cart items array (as TCouponCartItem[]) rather than subtotal number
     couponValidation = await CouponService.validateAndApplyCoupon(
       couponCode,
-      subtotal
+      items
     );
     if (!couponValidation.isValid) {
       // If coupon is invalid, we don't block the order, just throw the error message

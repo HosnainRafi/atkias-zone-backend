@@ -111,12 +111,10 @@ const getSingleProductFromDB = async (
   idOrSlug: string
 ): Promise<TProduct | null> => {
   let product;
-  // Check if the identifier is a valid ObjectId
   if (Types.ObjectId.isValid(idOrSlug)) {
     product = await Product.findById(idOrSlug).populate("category");
   }
 
-  // If not found by ID, try finding by slug
   if (!product) {
     product = await Product.findOne({ slug: idOrSlug }).populate("category");
   }
@@ -124,11 +122,6 @@ const getSingleProductFromDB = async (
   if (!product) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
-
-  // Optional: For public view, only show if active
-  // if (!product.isActive) {
-  //   throw new ApiError(httpStatus.NOT_FOUND, 'Product not found.');
-  // }
 
   return product;
 };
