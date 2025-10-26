@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from 'express';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import mainRouter from './app/routes';
 import httpStatus from 'http-status';
+import path from 'path';
 
 const app: Application = express();
 
@@ -21,6 +22,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));
 
 // Main API Routes
 app.use('/api/v1', mainRouter);
