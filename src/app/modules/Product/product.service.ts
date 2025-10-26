@@ -144,23 +144,18 @@ const updateProductInDB = async (
   return result;
 };
 
-// --- Delete Product (Soft Delete) ---
-// We will set isActive to false instead of hard deleting
 const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
-  const product = await Product.findById(id);
-  if (!product) {
+  const result = await Product.findByIdAndUpdate(
+    id,
+    { isActive: false },
+    { new: true }
+  );
+
+  if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
 
-  // Soft delete by setting isActive to false
-  product.isActive = false;
-  await product.save();
-
-  // Or, for a hard delete:
-  // const result = await Product.findByIdAndDelete(id);
-  // return result;
-
-  return product;
+  return result;
 };
 
 type TDiscountPayload = {
