@@ -85,6 +85,25 @@ const applyCategoryDiscount = catchAsync(
   }
 );
 
+const hardDeleteProduct = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await ProductService.hardDeleteProductFromDB(id);
+
+  // Define the expected structure for clarity (optional but good practice)
+  type HardDeleteResponse = {
+    deleted: boolean;
+    message: string;
+    product: TProduct | null;
+  };
+
+  sendResponse<HardDeleteResponse>(res, {
+    statusCode: httpStatus.OK,
+    success: result.deleted,
+    message: result.message,
+    data: result,
+  });
+});
+
 export const ProductController = {
   createProduct,
   getAllProducts,
@@ -92,4 +111,5 @@ export const ProductController = {
   updateProduct,
   deleteProduct,
   applyCategoryDiscount,
+  hardDeleteProduct,
 };

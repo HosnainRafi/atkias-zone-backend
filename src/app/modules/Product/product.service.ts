@@ -8,6 +8,8 @@ import { Product } from "./product.model";
 import { TProduct } from "./product.interface";
 import { Category } from "../Category/category.model";
 import mongoose from "mongoose";
+import { Review } from "../Review/review.model";
+import { Order } from "../Order/order.model";
 
 // --- Create Product ---
 const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
@@ -144,20 +146,6 @@ const updateProductInDB = async (
   return result;
 };
 
-const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
-  const result = await Product.findByIdAndUpdate(
-    id,
-    { isActive: false },
-    { new: true }
-  );
-
-  if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
-  }
-
-  return result;
-};
-
 type TDiscountPayload = {
   categoryId: string;
   discountType: "percentage" | "fixed";
@@ -235,6 +223,85 @@ const applyCategoryDiscountToDB = async (
   };
 };
 
+const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
+  const result = await Product.findByIdAndUpdate(
+    id,
+    { isActive: false },
+    { new: true }
+  );
+
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  }
+  return result;
+};
+
+// --- MODIFIED HARD DELETE FUNCTION ---
+const hardDeleteProductFromDB = async (
+  id: string
+): Promise<{
+  deleted: boolean;
+  message: string;
+  product: TProduct | null;
+}> => {
+  // 1. Check if product exists
+  const product = await Product.findById(id);
+  if (!product) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  }
+
+  // 2. Check if product exists in any Orders
+  const orderCount = await Order.countDocuments({ "items.productId": id });
+
+  // 3. DECISION: Hard delete or Soft delete?
+  if (orderCount > 0) {
+    // --- Perform SOFT DELETE instead ---
+    if (!product.isActive) {
+      return {
+        // --- CHANGE HERE: Always return true ---
+        deleted: true,
+        message:
+          "Product is associated with orders and was already inactive. Marked as deleted.", // Updated message
+        product: product,
+      };
+    }
+    // Set to inactive
+    const softDeletedProduct = await Product.findByIdAndUpdate(
+      id,
+      { isActive: false },
+      { new: true }
+    );
+    return {
+      // --- CHANGE HERE: Always return true ---
+      deleted: true,
+      message:
+        "Product is associated with orders. Soft deleted (set to inactive) instead of permanent deletion.", // Kept message for clarity
+      product: softDeletedProduct,
+    };
+  } else {
+    // --- Proceed with HARD DELETE ---
+    // a. Delete associated reviews
+    await Review.deleteMany({ product: id });
+
+    // b. Perform hard delete
+    const hardDeletedProduct = await Product.findByIdAndDelete(id);
+
+    if (!hardDeletedProduct) {
+      throw new ApiError(
+        httpStatus.INTERNAL_SERVER_ERROR,
+        "Failed to delete product after checks."
+      );
+    }
+
+    return {
+      deleted: true, // Remains true for hard delete
+      message:
+        "Product permanently deleted successfully (including associated reviews).",
+      product: hardDeletedProduct,
+    };
+  }
+};
+
 export const ProductService = {
   createProductIntoDB,
   getAllProductsFromDB,
@@ -242,4 +309,5 @@ export const ProductService = {
   updateProductInDB,
   deleteProductFromDB,
   applyCategoryDiscountToDB,
+  hardDeleteProductFromDB,
 };
