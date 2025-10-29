@@ -35,21 +35,19 @@ const sizeChartZodSchema = z
 const createCategoryZodSchema = z.object({
   body: z
     .object({
-      //
-      // --- THIS IS THE FIX ---
-      //
       name: z.string().min(1, { message: "Category name is required" }),
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
       sizeChart: sizeChartZodSchema,
+      // --- ADD THIS ---
+      parentCategory: z.string().optional().nullable(), // Allow null or ObjectId string
     })
-    .transform((data) => {
-      // Automatically create the slug from the name
-      return {
-        ...data,
-        slug: createSlug(data.name),
-      };
-    }),
+    .transform((data) => ({
+      ...data,
+      slug: createSlug(data.name),
+      // Ensure empty string becomes null for the DB default
+      parentCategory: data.parentCategory === "" ? null : data.parentCategory,
+    })),
 });
 
 const updateCategoryZodSchema = z.object({
@@ -59,16 +57,23 @@ const updateCategoryZodSchema = z.object({
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
       sizeChart: sizeChartZodSchema.nullable(),
+      // --- ADD THIS ---
+      parentCategory: z.string().optional().nullable(), // Allow null, empty string, or ObjectId string
     })
     .transform((data) => {
-      // If the name is being updated, update the slug as well
+      const transformedData: any = { ...data };
       if (data.name) {
-        return {
-          ...data,
-          slug: createSlug(data.name),
-        };
+        transformedData.slug = createSlug(data.name);
       }
-      return data;
+      // Handle parentCategory update explicitly
+      if (data.parentCategory !== undefined) {
+        transformedData.parentCategory =
+          data.parentCategory === "" || data.parentCategory === null
+            ? null
+            : data.parentCategory;
+      }
+
+      return transformedData;
     }),
 });
 

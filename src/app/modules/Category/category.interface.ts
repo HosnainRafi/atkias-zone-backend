@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 // src/app/modules/Category/category.interface.ts
 export type TCategory = {
   name: string;
@@ -8,4 +10,5 @@ export type TCategory = {
     headers: string[];
     rows: string[][];
   };
+  parentCategory?: Types.ObjectId | null;
 };
