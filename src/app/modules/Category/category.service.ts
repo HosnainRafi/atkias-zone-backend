@@ -4,7 +4,7 @@ import ApiError from "../../../errors/ApiError";
 import { Category } from "./category.model";
 import { TCategory } from "./category.interface";
 import { Product } from "../Product/product.model";
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Types } from "mongoose";
 
 const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
   // Slug check remains
@@ -121,6 +121,25 @@ const updateCategoryInDB = async (
   return result;
 };
 
+const getSubcategoriesByParentId = async (
+  parentId: string
+): Promise<TCategory[]> => {
+  // Validate if the provided ID is a valid ObjectId
+  if (!Types.ObjectId.isValid(parentId)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Invalid parent category ID.");
+  }
+
+  // Find categories where parentCategory matches the provided ID
+  const subcategories = await Category.find({ parentCategory: parentId }).sort({
+    name: "asc",
+  }); // Sort alphabetically
+
+  // You could optionally check if the parent category itself exists first,
+  // but finding an empty array is also a valid response if the parent has no children or doesn't exist.
+
+  return subcategories;
+};
+
 // --- MODIFIED FUNCTION ---
 const deleteCategoryFromDB = async (id: string): Promise<TCategory | null> => {
   const category = await Category.findById(id);
@@ -156,5 +175,6 @@ export const CategoryService = {
   getAllCategoriesFromDB,
   getSingleCategoryFromDB,
   updateCategoryInDB,
+  getSubcategoriesByParentId,
   deleteCategoryFromDB,
 };
