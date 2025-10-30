@@ -24,4 +24,5 @@ export type TProduct = {
   isActive: boolean;
   averageRating: number;
   reviewCount: number;
+  deleted?: boolean;
 };

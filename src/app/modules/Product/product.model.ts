@@ -80,6 +80,11 @@ const productSchema = new Schema<TProduct>(
       sparse: true, // Allows multiple null/undefined values, but unique if set
       trim: true,
     },
+    deleted: {
+      // Marks intentional deletion by admin
+      type: Boolean,
+      default: false,
+    },
     isActive: {
       type: Boolean,
       default: true,
@@ -103,7 +108,7 @@ const productSchema = new Schema<TProduct>(
     },
   }
 );
-
+productSchema.index({ isActive: 1, deleted: 1 });
 // Pre-save hook to validate category and slug
 productSchema.pre("save", async function (next) {
   // 1. Validate Category ID
@@ -114,18 +119,26 @@ productSchema.pre("save", async function (next) {
 
   // 2. Validate Slug uniqueness (on create or if slug changed)
   if (this.isModified("slug")) {
-    const existing = await Product.findOne({ slug: this.slug });
-    if (existing && existing._id.toString() !== this._id.toString()) {
+    const ProductModel = model<TProduct>("Product"); // Get model reference
+    const existing = await ProductModel.findOne({
+      slug: this.slug,
+      _id: { $ne: this._id },
+    });
+    if (existing) {
       return next(
         new Error(`A product with the slug '${this.slug}' already exists.`)
       );
     }
   }
 
-  // 3. (Optional) Validate SKU uniqueness if set
+  // 3. Validate SKU uniqueness
   if (this.sku && (this.isNew || this.isModified("sku"))) {
-    const existingSku = await Product.findOne({ sku: this.sku });
-    if (existingSku && existingSku._id.toString() !== this._id.toString()) {
+    const ProductModel = model<TProduct>("Product"); // Get model reference
+    const existingSku = await ProductModel.findOne({
+      sku: this.sku,
+      _id: { $ne: this._id },
+    });
+    if (existingSku) {
       return next(
         new Error(`A product with the SKU '${this.sku}' already exists.`)
       );

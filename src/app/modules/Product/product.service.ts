@@ -253,29 +253,28 @@ const hardDeleteProductFromDB = async (
   // 2. Check if product exists in any Orders
   const orderCount = await Order.countDocuments({ "items.productId": id });
 
-  // 3. DECISION: Hard delete or Soft delete?
+  // 3. DECISION: Hard delete or Soft delete with 'deleted' flag?
   if (orderCount > 0) {
-    // --- Perform SOFT DELETE instead ---
-    if (!product.isActive) {
+    // --- Perform SOFT DELETE with DELETED flag ---
+    // Check if it's already marked
+    if (!product.isActive && product.deleted) {
       return {
-        // --- CHANGE HERE: Always return true ---
-        deleted: true,
+        deleted: true, // Report as deleted
         message:
-          "Product is associated with orders and was already inactive. Marked as deleted.", // Updated message
+          "Product is associated with orders and was already marked as deleted (inactive). No action taken.",
         product: product,
       };
     }
-    // Set to inactive
+    // Set inactive AND deleted: true
     const softDeletedProduct = await Product.findByIdAndUpdate(
       id,
-      { isActive: false },
+      { isActive: false, deleted: true }, // <-- SET BOTH FLAGS
       { new: true }
     );
     return {
-      // --- CHANGE HERE: Always return true ---
-      deleted: true,
+      deleted: true, // Report as deleted
       message:
-        "Product is associated with orders. Soft deleted (set to inactive) instead of permanent deletion.", // Kept message for clarity
+        "Product is associated with orders. Marked as deleted (set inactive and deleted flag) instead of permanent deletion.",
       product: softDeletedProduct,
     };
   } else {
@@ -294,7 +293,7 @@ const hardDeleteProductFromDB = async (
     }
 
     return {
-      deleted: true, // Remains true for hard delete
+      deleted: true, // Report as deleted
       message:
         "Product permanently deleted successfully (including associated reviews).",
       product: hardDeletedProduct,
