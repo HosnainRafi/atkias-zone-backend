@@ -20,6 +20,7 @@ router.get("/parent/:parentId", CategoryController.getSubcategoriesByParent); //
 
 router.get("/:id", CategoryController.getSingleCategory); // Anyone can view one
 
+router.get("/subcategories/all", CategoryController.getAllSubcategories);
 router.patch(
   "/:id",
   auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin), // Only admins can update

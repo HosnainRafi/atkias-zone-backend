@@ -121,6 +121,16 @@ const updateCategoryInDB = async (
   return result;
 };
 
+const getAllSubcategoriesFromDB = async (): Promise<TCategory[]> => {
+  const subcategories = await Category.find({
+    parentCategory: { $ne: null },
+  })
+    .populate("parentCategory", "name slug") // Populate parent's name for context
+    .sort({ name: "asc" });
+
+  return subcategories;
+};
+
 const getSubcategoriesByParentId = async (
   parentId: string
 ): Promise<TCategory[]> => {
@@ -177,4 +187,5 @@ export const CategoryService = {
   updateCategoryInDB,
   getSubcategoriesByParentId,
   deleteCategoryFromDB,
+  getAllSubcategoriesFromDB,
 };
