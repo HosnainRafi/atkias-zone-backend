@@ -9,6 +9,7 @@ export type TShippingAddress = {
   customerName: string;
   mobile: string;
   district: string;
+  upazila: string;
   addressLine: string;
   postalCode?: string;
 };

@@ -7,6 +7,7 @@ const shippingAddressZodSchema = z.object({
   customerName: z.string().min(1, { message: "Customer name is required" }),
   mobile: z.string().min(1, { message: "Mobile number is required" }),
   district: z.string().min(1, { message: "District is required" }),
+  upazila: z.string().min(1, { message: "Upazila is required" }),
   addressLine: z.string().min(1, { message: "Address is required" }),
   postalCode: z.string().optional(),
 });
