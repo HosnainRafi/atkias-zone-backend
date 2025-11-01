@@ -20,7 +20,7 @@ const couponBaseFields = z.object({
     .positive({ message: "Usage limit must be a positive integer" }),
   validFrom: z.coerce.date({ message: 'Invalid "valid from" date' }),
   validUntil: z.coerce.date({ message: 'Invalid "valid until" date' }),
-  isActive: z.boolean().default(true).optional(), // Optional for updates
+  isActive: z.boolean().default(true).optional(),
   appliesToAllProducts: z.boolean().default(true).optional(),
   appliesToCategories: z.array(z.string()).optional(),
   appliesToProducts: z.array(z.string()).optional(),
@@ -32,11 +32,16 @@ const percentageCouponSchema = couponBaseFields.extend({
   value: couponBaseFields.shape.value.max(100, {
     message: "Percentage value cannot exceed 100",
   }),
-  maxDiscountAmount: z.coerce
-    // --- FIX 1: Use 'message' instead of 'invalid_type_error' ---
-    .number({ message: "Max discount must be a number" })
-    .positive({ message: "Max discount must be positive" })
-    .optional(),
+  maxDiscountAmount: z.preprocess(
+    // --- THIS IS THE FIX ---
+    // If value is "", convert to null BEFORE coercion
+    (val) => (val === "" ? null : val),
+    z.coerce
+      .number({ message: "Max discount must be a number" })
+      .positive({ message: "Max discount must be positive" })
+      .optional()
+      .nullable() // Allow null
+  ),
 });
 
 // --- Schema specific to 'fixed' coupons ---
@@ -51,8 +56,8 @@ const couponBodyUnionSchema = z.discriminatedUnion("type", [
   fixedCouponSchema,
 ]);
 
-// --- Combined Schema for CREATE with final refinements ---
-const couponBodyBaseSchema = couponBodyUnionSchema
+// --- Refinements for CREATE ---
+const createCouponBodyBaseSchema = couponBodyUnionSchema
   .refine((data) => data.validUntil > data.validFrom, {
     message: '"Valid until" date must be after "valid from" date',
     path: ["validUntil"],
@@ -96,7 +101,7 @@ const couponBodyBaseSchema = couponBodyUnionSchema
 // --- Create Schema ---
 const createCouponZodSchema = z
   .object({
-    body: couponBodyBaseSchema,
+    body: createCouponBodyBaseSchema,
   })
   .transform((data) => ({
     body: {
@@ -105,51 +110,72 @@ const createCouponZodSchema = z
     },
   }));
 
-// --- UPDATE SCHEMA LOGIC ---
+// --- UPDATE SCHEMA (NEW LOGIC) ---
 
-// --- FIX 2: Create partial versions of individual schemas ---
-const partialPercentageCouponSchema = percentageCouponSchema.partial();
-const partialFixedCouponSchema = fixedCouponSchema.partial();
+// 1. Define a schema that includes ALL possible fields
+const updateCouponAllFields = couponBaseFields.extend({
+  type: z.enum([...CouponType] as [string, ...string[]]).optional(),
+  maxDiscountAmount: z.preprocess(
+    // --- APPLY THE SAME FIX HERE ---
+    (val) => (val === "" ? null : val),
+    z.coerce
+      .number({ message: "Max discount must be a number" })
+      .positive({ message: "Max discount must be positive" })
+      .optional()
+      .nullable()
+  ),
+});
 
-// --- FIX 3: Create a NEW discriminated union using the partial schemas ---
-const updateCouponBodyUnionSchema = z.discriminatedUnion("type", [
-  partialPercentageCouponSchema,
-  partialFixedCouponSchema,
-]);
-
-// --- FIX 4: Define the Update Schema using the partial union ---
+// 2. Create the update schema
 const updateCouponZodSchema = z
   .object({
-    body: updateCouponBodyUnionSchema, // Use the union of partial schemas
+    body: updateCouponAllFields.partial(), // Make all fields optional
   })
-  // Refine dates on the outer object (applies after union)
+  // 3. Add refinements
   .refine(
     (data) => {
-      // Check only if both dates are present in the partial update
+      // Date check
       if (data.body?.validFrom && data.body?.validUntil) {
         return data.body.validUntil > data.body.validFrom;
       }
-      return true; // Skip validation if one or both dates are absent
+      return true;
     },
     {
       message: '"Valid until" date must be after "valid from" date',
-      path: ["body", "validUntil"], // Point error to the relevant field
+      path: ["body", "validUntil"],
     }
   )
-  // Optional: Add other refinements specific to updates if needed
-  // Transform code if present in the update
+  .refine(
+    (data) => {
+      // Logic: IF type is "fixed", maxDiscountAmount must NOT be a positive number.
+      if (data.body?.type === "fixed") {
+        return !data.body.maxDiscountAmount || data.body.maxDiscountAmount <= 0;
+      }
+      return true;
+    },
+    {
+      message: 'Fixed coupons cannot have a "max discount amount".',
+      path: ["body", "maxDiscountAmount"],
+    }
+  )
+  .refine(
+    (data) => {
+      // IF type is 'percentage' and value is provided, check it
+      if (data.body?.type === "percentage" && data.body.value) {
+        return data.body.value <= 100;
+      }
+      return true;
+    },
+    {
+      message: "Percentage value cannot exceed 100.",
+      path: ["body", "value"],
+    }
+  )
+  // 4. Add transform (the comparison error is now gone)
   .transform((data) => {
     if (data.body?.code) {
       data.body.code = data.body.code.toUpperCase().trim();
     }
-    // Ensure arrays are handled correctly even in partial updates
-    if (data.body?.appliesToCategories === undefined)
-      delete data.body.appliesToCategories;
-    else data.body.appliesToCategories = data.body.appliesToCategories ?? [];
-    if (data.body?.appliesToProducts === undefined)
-      delete data.body.appliesToProducts;
-    else data.body.appliesToProducts = data.body.appliesToProducts ?? [];
-
     return data;
   });
 
