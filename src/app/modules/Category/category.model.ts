@@ -4,19 +4,19 @@ import { TCategory } from "./category.interface";
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 
-const sizeChartSchema = new Schema(
-  {
-    headers: {
-      type: [String],
-      required: true,
-    },
-    rows: {
-      type: [[String]], // Array of string arrays
-      required: true,
-    },
-  },
-  { _id: false } // Don't create a separate _id for the chart object
-);
+// const sizeChartSchema = new Schema(
+//   {
+//     headers: {
+//       type: [String],
+//       required: true,
+//     },
+//     rows: {
+//       type: [[String]], // Array of string arrays
+//       required: true,
+//     },
+//   },
+//   { _id: false } // Don't create a separate _id for the chart object
+// );
 
 const categorySchema = new Schema<TCategory>(
   {
@@ -38,8 +38,12 @@ const categorySchema = new Schema<TCategory>(
       type: String,
     },
     sizeChart: {
-      type: sizeChartSchema,
+      type: String, // Was previously 'sizeChartSchema'
       optional: true,
+    },
+    order: {
+      type: Number,
+      default: 0, // Default to 0, so new categories appear last
     },
     parentCategory: {
       type: Schema.Types.ObjectId,
@@ -60,7 +64,7 @@ const categorySchema = new Schema<TCategory>(
     },
   }
 );
-
+categorySchema.index({ order: 1, name: 1 }); // Sort by order, then name
 // Pre-save hook to ensure slug uniqueness on update
 categorySchema.pre("save", async function (next) {
   // Slug uniqueness check (remains the same)

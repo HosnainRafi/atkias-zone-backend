@@ -10,27 +10,33 @@ const createSlug = (name: string): string => {
     .replace(/-+/g, "-"); // Remove consecutive hyphens
 };
 
+// const sizeChartZodSchema = z
+//   .object({
+//     headers: z
+//       .array(z.string().min(1))
+//       .min(1, { message: "Size chart must have at least one header." }),
+//     rows: z
+//       .array(z.array(z.string()))
+//       .min(1, { message: "Size chart must have at least one row." }),
+//   })
+//   .refine(
+//     (data) => {
+//       // Ensure all rows have the same number of columns as the headers
+//       return data.rows.every((row) => row.length === data.headers.length);
+//     },
+//     {
+//       message:
+//         "All size chart rows must have the same number of entries as the headers.",
+//       path: ["rows"],
+//     }
+//   )
+//   .optional();
+
 const sizeChartZodSchema = z
-  .object({
-    headers: z
-      .array(z.string().min(1))
-      .min(1, { message: "Size chart must have at least one header." }),
-    rows: z
-      .array(z.array(z.string()))
-      .min(1, { message: "Size chart must have at least one row." }),
-  })
-  .refine(
-    (data) => {
-      // Ensure all rows have the same number of columns as the headers
-      return data.rows.every((row) => row.length === data.headers.length);
-    },
-    {
-      message:
-        "All size chart rows must have the same number of entries as the headers.",
-      path: ["rows"],
-    }
-  )
-  .optional();
+  .string()
+  .url({ message: "Size chart must be a valid URL" })
+  .optional()
+  .nullable();
 
 const createCategoryZodSchema = z.object({
   body: z
@@ -39,8 +45,8 @@ const createCategoryZodSchema = z.object({
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
       sizeChart: sizeChartZodSchema,
-      // --- ADD THIS ---
-      parentCategory: z.string().optional().nullable(), // Allow null or ObjectId string
+      parentCategory: z.string().optional().nullable(),
+      order: z.coerce.number().int().optional().default(0),
     })
     .transform((data) => ({
       ...data,
@@ -56,9 +62,9 @@ const updateCategoryZodSchema = z.object({
       name: z.string().optional(),
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
-      sizeChart: sizeChartZodSchema.nullable(),
-      // --- ADD THIS ---
-      parentCategory: z.string().optional().nullable(), // Allow null, empty string, or ObjectId string
+      sizeChart: sizeChartZodSchema,
+      parentCategory: z.string().optional().nullable(),
+      order: z.coerce.number().int().optional(),
     })
     .transform((data) => {
       const transformedData: any = { ...data };

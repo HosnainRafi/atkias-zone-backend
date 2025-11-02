@@ -85,6 +85,14 @@ const productSchema = new Schema<TProduct>(
       type: Boolean,
       default: false,
     },
+    newArrival: {
+      type: Boolean,
+      default: false,
+    },
+    productOrder: {
+      type: Number,
+      default: 0, // Default to 0
+    },
     isActive: {
       type: Boolean,
       default: true,
@@ -109,6 +117,8 @@ const productSchema = new Schema<TProduct>(
   }
 );
 productSchema.index({ isActive: 1, deleted: 1 });
+productSchema.index({ newArrival: 1, isActive: 1, deleted: 1 });
+productSchema.index({ productOrder: 1, createdAt: -1 });
 // Pre-save hook to validate category and slug
 productSchema.pre("save", async function (next) {
   // 1. Validate Category ID

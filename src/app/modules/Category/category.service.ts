@@ -80,7 +80,7 @@ const buildCategoryTree = (
 };
 
 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
-  const allCategories = await Category.find().sort({ name: "asc" });
+  const allCategories = await Category.find().sort({ order: 1, name: 1 });
   const categoryTree = buildCategoryTree(allCategories);
   return categoryTree;
 };
@@ -126,7 +126,7 @@ const getAllSubcategoriesFromDB = async (): Promise<TCategory[]> => {
     parentCategory: { $ne: null },
   })
     .populate("parentCategory", "name slug") // Populate parent's name for context
-    .sort({ name: "asc" });
+    .sort({ order: 1, name: "asc" });
 
   return subcategories;
 };
@@ -139,10 +139,10 @@ const getSubcategoriesByParentId = async (
     throw new ApiError(httpStatus.BAD_REQUEST, "Invalid parent category ID.");
   }
 
-  // Find categories where parentCategory matches the provided ID
   const subcategories = await Category.find({ parentCategory: parentId }).sort({
+    order: 1,
     name: "asc",
-  }); // Sort alphabetically
+  });
 
   // You could optionally check if the parent category itself exists first,
   // but finding an empty array is also a valid response if the parent has no children or doesn't exist.

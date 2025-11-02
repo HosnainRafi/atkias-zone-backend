@@ -26,6 +26,7 @@ type TProductFilters = {
   minPrice?: string;
   maxPrice?: string;
   isActive?: string;
+  newArrival?: string;
 };
 
 const getAllProductsFromDB = async (
@@ -37,7 +38,15 @@ const getAllProductsFromDB = async (
     sortOrder?: SortOrder;
   }
 ): Promise<IGenericResponse<TProduct[]>> => {
-  const { searchTerm, category, size, minPrice, maxPrice, isActive } = filters;
+  const {
+    searchTerm,
+    category,
+    size,
+    minPrice,
+    maxPrice,
+    isActive,
+    newArrival,
+  } = filters;
   const { page, limit, skip, sortBy, sortOrder } = calculatePagination(options);
 
   const andConditions = [];
@@ -88,6 +97,10 @@ const getAllProductsFromDB = async (
     isActive: isActive === "false" ? false : true,
     deleted: { $ne: true }, // Always hide 'deleted' products
   });
+
+  if (newArrival === "true") {
+    andConditions.push({ newArrival: true });
+  }
 
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
