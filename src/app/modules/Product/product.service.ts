@@ -21,7 +21,7 @@ const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
 // --- Get All Products (with Pagination, Filtering, Sorting) ---
 type TProductFilters = {
   searchTerm?: string;
-  category?: string; // This will be a category *slug*
+  category?: string;
   size?: string;
   minPrice?: string;
   maxPrice?: string;
@@ -47,7 +47,6 @@ const getAllProductsFromDB = async (
     andConditions.push({
       $or: [
         { title: { $regex: searchTerm, $options: "i" } },
-        { description: { $regex: searchTerm, $options: "i" } },
         { sku: { $regex: searchTerm, $options: "i" } },
       ],
     });
@@ -57,41 +56,44 @@ const getAllProductsFromDB = async (
   if (category) {
     const categoryDoc = await Category.findOne({ slug: category });
     if (categoryDoc) {
-      andConditions.push({ category: categoryDoc._id });
+      // Find products in this category OR any of its subcategories
+      const categoriesToSearch = [categoryDoc._id];
+      const subcategories = await Category.find({
+        parentCategory: categoryDoc._id,
+      });
+      subcategories.forEach((sub) => categoriesToSearch.push(sub._id));
+
+      andConditions.push({ category: { $in: categoriesToSearch } });
     } else {
-      // If category slug is invalid, return no results
-      return { meta: { page, limit, total: 0 }, data: [] };
+      // Category slug is invalid, return no products
+      return { meta: { page: 1, limit, total: 0 }, data: [] };
     }
   }
 
   // Size filter
   if (size) {
-    andConditions.push({
-      "sizes.size": { $regex: `^${size}$`, $options: "i" },
-    });
+    andConditions.push({ "sizes.size": size, "sizes.stock": { $gt: 0 } });
   }
 
   // Price filter
-  if (minPrice || maxPrice) {
-    const priceFilter: { $gte?: number; $lte?: number } = {};
-    if (minPrice) priceFilter.$gte = Number(minPrice);
-    if (maxPrice) priceFilter.$lte = Number(maxPrice);
-    andConditions.push({ basePrice: priceFilter });
+  if (minPrice) {
+    andConditions.push({ basePrice: { $gte: Number(minPrice) } });
+  }
+  if (maxPrice) {
+    andConditions.push({ basePrice: { $lte: Number(maxPrice) } });
   }
 
-  // Status filter (only show active by default for customers)
-  if (isActive === "true" || isActive === "false") {
-    andConditions.push({ isActive: isActive === "true" });
-  } else {
-    // Default for public view: only show active products
-    andConditions.push({ isActive: true });
-  }
+  // Activity filter
+  andConditions.push({
+    isActive: isActive === "false" ? false : true,
+    deleted: { $ne: true }, // Always hide 'deleted' products
+  });
 
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await Product.find(whereConditions)
-    .populate("category") // Populate the category details
+    .populate("category") // <-- MODIFICATION: Populate the category
     .sort({ [sortBy]: sortOrder })
     .skip(skip)
     .limit(limit);
@@ -99,32 +101,29 @@ const getAllProductsFromDB = async (
   const total = await Product.countDocuments(whereConditions);
 
   return {
-    meta: {
-      page,
-      limit,
-      total,
-    },
+    meta: { page, limit, total },
     data: result,
   };
 };
 
-// --- Get Single Product (by Slug or ID) ---
 const getSingleProductFromDB = async (
   idOrSlug: string
 ): Promise<TProduct | null> => {
   let product;
   if (Types.ObjectId.isValid(idOrSlug)) {
-    product = await Product.findById(idOrSlug).populate("category");
+    product = await Product.findById(idOrSlug).populate("category"); // <-- MODIFICATION
   }
 
   if (!product) {
-    product = await Product.findOne({ slug: idOrSlug }).populate("category");
+    product = await Product.findOne({ slug: idOrSlug }).populate("category"); // <-- MODIFICATION
   }
 
-  if (!product) {
+  if (!product || product.deleted) {
+    // Hide if deleted
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
 
+  // Now, product.category will be an object, not just an ID
   return product;
 };
 
