@@ -1,5 +1,6 @@
 // src/app/modules/Category/category.validation.ts
 import { z } from "zod";
+import { CategoryGender } from "./category.model";
 
 // Helper to generate a URL-friendly slug
 const createSlug = (name: string): string => {
@@ -47,6 +48,7 @@ const createCategoryZodSchema = z.object({
       sizeChart: sizeChartZodSchema,
       parentCategory: z.string().optional().nullable(),
       order: z.coerce.number().int().optional().default(0),
+      gender: z.enum([...CategoryGender] as [string, ...string[]]).optional(),
     })
     .transform((data) => ({
       ...data,
@@ -65,6 +67,10 @@ const updateCategoryZodSchema = z.object({
       sizeChart: sizeChartZodSchema,
       parentCategory: z.string().optional().nullable(),
       order: z.coerce.number().int().optional(),
+      gender: z
+        .enum([...CategoryGender] as [string, ...string[]])
+        .optional()
+        .nullable(),
     })
     .transform((data) => {
       const transformedData: any = { ...data };
@@ -77,6 +83,9 @@ const updateCategoryZodSchema = z.object({
           data.parentCategory === "" || data.parentCategory === null
             ? null
             : data.parentCategory;
+      }
+      if (data.gender !== undefined) {
+        transformedData.gender = data.gender === "" ? null : data.gender;
       }
 
       return transformedData;

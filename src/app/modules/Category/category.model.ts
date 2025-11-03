@@ -1,6 +1,6 @@
 // src/app/modules/Category/category.model.ts
 import { Schema, model } from "mongoose";
-import { TCategory } from "./category.interface";
+import { TCategory, TCategoryGender } from "./category.interface";
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 
@@ -17,6 +17,8 @@ import httpStatus from "http-status";
 //   },
 //   { _id: false } // Don't create a separate _id for the chart object
 // );
+
+export const CategoryGender: TCategoryGender[] = ["Men", "Women", "Unisex"];
 
 const categorySchema = new Schema<TCategory>(
   {
@@ -50,6 +52,11 @@ const categorySchema = new Schema<TCategory>(
       ref: "Category", // Self-reference
       default: null, // Top-level categories have null parent
     },
+    gender: {
+      type: String,
+      enum: CategoryGender,
+      optional: true,
+    },
   },
   {
     timestamps: true,
@@ -64,7 +71,9 @@ const categorySchema = new Schema<TCategory>(
     },
   }
 );
-categorySchema.index({ order: 1, name: 1 }); // Sort by order, then name
+categorySchema.index({ order: 1, name: 1 });
+categorySchema.index({ gender: 1 });
+
 // Pre-save hook to ensure slug uniqueness on update
 categorySchema.pre("save", async function (next) {
   // Slug uniqueness check (remains the same)

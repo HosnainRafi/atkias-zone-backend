@@ -10,6 +10,7 @@ import { Category } from "../Category/category.model";
 import mongoose from "mongoose";
 import { Review } from "../Review/review.model";
 import { Order } from "../Order/order.model";
+import { TCategoryGender } from "../Category/category.interface";
 
 // --- Create Product ---
 const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
@@ -27,6 +28,7 @@ type TProductFilters = {
   maxPrice?: string;
   isActive?: string;
   newArrival?: string;
+  gender?: TCategoryGender;
 };
 
 const getAllProductsFromDB = async (
@@ -46,6 +48,7 @@ const getAllProductsFromDB = async (
     maxPrice,
     isActive,
     newArrival,
+    gender,
   } = filters;
   const { page, limit, skip, sortBy, sortOrder } = calculatePagination(options);
 
@@ -62,22 +65,70 @@ const getAllProductsFromDB = async (
   }
 
   // Category filter (by slug)
+  // if (category) {
+  //   const categoryDoc = await Category.findOne({ slug: category });
+  //   if (categoryDoc) {
+  //     // Find products in this category OR any of its subcategories
+  //     const categoriesToSearch = [categoryDoc._id];
+  //     const subcategories = await Category.find({
+  //       parentCategory: categoryDoc._id,
+  //     });
+  //     subcategories.forEach((sub) => categoriesToSearch.push(sub._id));
+
+  //     andConditions.push({ category: { $in: categoriesToSearch } });
+  //   } else {
+  //     // Category slug is invalid, return no products
+  //     return { meta: { page: 1, limit, total: 0 }, data: [] };
+  //   }
+  // }
+
+  //new update
+
+  let categoryIdsToSearch: Types.ObjectId[] = [];
+  // Filter 1: By Category Slug (e.g., /products?category=t-shirts)
   if (category) {
     const categoryDoc = await Category.findOne({ slug: category });
     if (categoryDoc) {
-      // Find products in this category OR any of its subcategories
-      const categoriesToSearch = [categoryDoc._id];
+      categoryIdsToSearch.push(categoryDoc._id);
       const subcategories = await Category.find({
         parentCategory: categoryDoc._id,
       });
-      subcategories.forEach((sub) => categoriesToSearch.push(sub._id));
+      subcategories.forEach((sub) => categoryIdsToSearch.push(sub._id));
+    }
+  }
 
-      andConditions.push({ category: { $in: categoriesToSearch } });
+  // Filter 2: By Gender (e.g., /products?gender=Men)
+  if (gender) {
+    // Find all categories matching that gender
+    const genderCategories = await Category.find(
+      { gender: gender },
+      { _id: 1 }
+    );
+    const genderCategoryIds = genderCategories.map((cat) => cat._id);
+
+    if (categoryIdsToSearch.length > 0) {
+      // INTERSECTION: User wants products from a specific category AND gender
+      // We only keep IDs that are in *both* lists
+      categoryIdsToSearch = categoryIdsToSearch.filter((id) =>
+        genderCategoryIds.some((genderId) => genderId.equals(id))
+      );
     } else {
-      // Category slug is invalid, return no products
+      // User is *only* filtering by gender
+      categoryIdsToSearch = genderCategoryIds;
+    }
+
+    // If no categories match the gender, return empty
+    if (categoryIdsToSearch.length === 0 && !category) {
       return { meta: { page: 1, limit, total: 0 }, data: [] };
     }
   }
+
+  // Add the final category filter condition
+  if (categoryIdsToSearch.length > 0) {
+    andConditions.push({ category: { $in: categoryIdsToSearch } });
+  }
+
+  //end updated category filter
 
   // Size filter
   if (size) {

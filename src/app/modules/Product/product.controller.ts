@@ -26,7 +26,8 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
     "minPrice",
     "maxPrice",
     "newArrival",
-    "isActive", // Admins might want to see inactive products
+    "isActive",
+    "gender",
   ]);
   const options = pick(req.query, ["page", "limit", "sortBy", "sortOrder"]);
 
