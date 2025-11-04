@@ -57,6 +57,20 @@ export type TOrderInputItem = {
   quantity: number;
 };
 
+export type TPublicOrderTracking = {
+  trackingNumber: string;
+  status: (typeof OrderStatus)[number];
+  paymentStatus: (typeof PaymentStatus)[number];
+  statusHistory: TOrderStatusHistory[];
+  createdAt: Date;
+  items: {
+    title: string;
+    size: string;
+    quantity: number;
+    image: string;
+  }[];
+};
+
 export type TCreateOrderPayload = {
   shippingAddress: TShippingAddress;
   items: TOrderInputItem[];

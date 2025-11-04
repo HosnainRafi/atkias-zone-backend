@@ -10,7 +10,12 @@ import {
   TCouponValidationResponse,
 } from "../Coupon/coupon.service";
 import { Product } from "../Product/product.model";
-import { TCreateOrderPayload, TOrder, TOrderItem } from "./order.interface";
+import {
+  TCreateOrderPayload,
+  TOrder,
+  TOrderItem,
+  TPublicOrderTracking,
+} from "./order.interface";
 import { Order } from "./order.model";
 import { generateTrackingNumber } from "./order.utils";
 import { PaymentStatus, OrderStatus } from "./order.constants";
@@ -356,9 +361,55 @@ const updateOrderStatusInDB = async (
   return updatedOrder;
 };
 
+const trackOrderPublicly = async (
+  trackingNumber?: string,
+  mobile?: string
+): Promise<TPublicOrderTracking[]> => {
+  // <-- Returns an array
+
+  const orConditions = [];
+  if (trackingNumber) {
+    orConditions.push({ trackingNumber: trackingNumber });
+  }
+  if (mobile) {
+    orConditions.push({ "shippingAddress.mobile": mobile });
+  }
+
+  // Zod ensures at least one condition is present
+  const query = { $or: orConditions };
+
+  // Find all matching orders, sort by newest first
+  const orders = await Order.find(query).sort({ createdAt: -1 });
+
+  if (orders.length === 0) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      "No orders found matching your details."
+    );
+  }
+
+  // Map to the safe public-facing type
+  const publicOrdersData: TPublicOrderTracking[] = orders.map((order) => ({
+    trackingNumber: order.trackingNumber,
+    status: order.status,
+    paymentStatus: order.paymentStatus,
+    statusHistory: order.statusHistory,
+    createdAt: (order as any).createdAt, // Mongoose doc has this
+    items: order.items.map((item) => ({
+      title: item.title,
+      size: item.size,
+      quantity: item.quantity,
+      image: item.image,
+    })),
+  }));
+
+  return publicOrdersData;
+};
+
 export const OrderService = {
   createOrderIntoDB,
   getAllOrdersFromDB,
   getSingleOrderFromDB,
   updateOrderStatusInDB,
+  trackOrderPublicly,
 };

@@ -57,7 +57,20 @@ const updateOrderStatusZodSchema = z.object({
   }),
 });
 
+const trackOrderZodSchema = z.object({
+  body: z
+    .object({
+      trackingNumber: z.string().optional(),
+      mobile: z.string().optional(),
+    })
+    .refine((data) => data.trackingNumber || data.mobile, {
+      message: "Either tracking number or mobile number is required",
+      path: ["trackingNumber"], // Can point to either field
+    }),
+});
+
 export const OrderValidation = {
   createOrderZodSchema,
   updateOrderStatusZodSchema,
+  trackOrderZodSchema,
 };
