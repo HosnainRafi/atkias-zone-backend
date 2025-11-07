@@ -6,10 +6,14 @@ import sendResponse from "../../../shared/sendResponse";
 import { TOrder, TPublicOrderTracking } from "./order.interface";
 import { OrderService } from "./order.service";
 import pick from "../../../shared/pick";
+import { sendOrderNotificationEmail } from "../../../shared/emailService";
 
 // --- Public Controller ---
 const createOrder = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderService.createOrderIntoDB(req.body);
+  sendOrderNotificationEmail(result)
+    .then(() => console.log("Admin notified via email"))
+    .catch((err) => console.error("Email notification failed:", err));
   sendResponse<TOrder>(res, {
     statusCode: httpStatus.CREATED,
     success: true,

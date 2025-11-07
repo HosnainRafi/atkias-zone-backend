@@ -32,7 +32,7 @@ app.use('/api/v1', mainRouter);
 app.get('/', (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: 'Welcome to Believers E-Commerce API!',
+    message: 'Welcome to Outfitro API!',
   });
 });
 
