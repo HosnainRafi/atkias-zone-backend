@@ -54,39 +54,39 @@ const getAllProductsFromDB = async (
 
   const andConditions = [];
 
-  // Search filter
+  // --- MODIFIED SEARCH LOGIC ---
   if (searchTerm) {
-    andConditions.push({
-      $or: [
-        { title: { $regex: searchTerm, $options: "i" } },
-        { sku: { $regex: searchTerm, $options: "i" } },
-      ],
-    });
+    // 1. Find category IDs that match the search term
+    const matchingCategories = await Category.find(
+      { name: { $regex: searchTerm, $options: "i" } },
+      { _id: 1 } // Only select the IDs
+    );
+    const matchingCategoryIds = matchingCategories.map((cat) => cat._id);
+
+    // 2. Build the $or query
+    // --- THIS IS THE FIX: Added 'any[]' type ---
+    const searchOrConditions: any[] = [
+      { title: { $regex: searchTerm, $options: "i" } },
+      { sku: { $regex: searchTerm, $options: "i" } },
+    ];
+    // --- END OF FIX ---
+
+    // 3. If matching categories were found, add them to the search
+    if (matchingCategoryIds.length > 0) {
+      searchOrConditions.push({ category: { $in: matchingCategoryIds } });
+    }
+
+    // 4. Add the combined search logic to the main query
+    andConditions.push({ $or: searchOrConditions });
   }
+  // --- END OF MODIFIED SEARCH LOGIC ---
 
-  // Category filter (by slug)
-  // if (category) {
-  //   const categoryDoc = await Category.findOne({ slug: category });
-  //   if (categoryDoc) {
-  //     // Find products in this category OR any of its subcategories
-  //     const categoriesToSearch = [categoryDoc._id];
-  //     const subcategories = await Category.find({
-  //       parentCategory: categoryDoc._id,
-  //     });
-  //     subcategories.forEach((sub) => categoriesToSearch.push(sub._id));
-
-  //     andConditions.push({ category: { $in: categoriesToSearch } });
-  //   } else {
-  //     // Category slug is invalid, return no products
-  //     return { meta: { page: 1, limit, total: 0 }, data: [] };
-  //   }
-  // }
-
-  //new update
-
+  // --- Category & Gender Filters ---
   let categoryIdsToSearch: Types.ObjectId[] = [];
-  // Filter 1: By Category Slug (e.g., /products?category=t-shirts)
+  let hasCategoryFilter = false;
+
   if (category) {
+    hasCategoryFilter = true;
     const categoryDoc = await Category.findOne({ slug: category });
     if (categoryDoc) {
       categoryIdsToSearch.push(categoryDoc._id);
@@ -97,38 +97,30 @@ const getAllProductsFromDB = async (
     }
   }
 
-  // Filter 2: By Gender (e.g., /products?gender=Men)
   if (gender) {
-    // Find all categories matching that gender
+    hasCategoryFilter = true;
     const genderCategories = await Category.find(
       { gender: gender },
       { _id: 1 }
     );
     const genderCategoryIds = genderCategories.map((cat) => cat._id);
 
-    if (categoryIdsToSearch.length > 0) {
-      // INTERSECTION: User wants products from a specific category AND gender
-      // We only keep IDs that are in *both* lists
+    if (category) {
       categoryIdsToSearch = categoryIdsToSearch.filter((id) =>
         genderCategoryIds.some((genderId) => genderId.equals(id))
       );
     } else {
-      // User is *only* filtering by gender
       categoryIdsToSearch = genderCategoryIds;
     }
+  }
 
-    // If no categories match the gender, return empty
-    if (categoryIdsToSearch.length === 0 && !category) {
+  if (hasCategoryFilter) {
+    if (categoryIdsToSearch.length > 0) {
+      andConditions.push({ category: { $in: categoryIdsToSearch } });
+    } else {
       return { meta: { page: 1, limit, total: 0 }, data: [] };
     }
   }
-
-  // Add the final category filter condition
-  if (categoryIdsToSearch.length > 0) {
-    andConditions.push({ category: { $in: categoryIdsToSearch } });
-  }
-
-  //end updated category filter
 
   // Size filter
   if (size) {
