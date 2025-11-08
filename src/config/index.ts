@@ -13,4 +13,11 @@ export default {
     secret: process.env.JWT_SECRET,
     expires_in: process.env.JWT_EXPIRES_IN,
   },
+  smtp: {
+    host: process.env.SMTP_HOST || 'mail.outfitro.com',
+    port: Number(process.env.SMTP_PORT) || 465,
+    user: process.env.SMTP_USER || 'order@outfitro.com',
+    pass: process.env.SMTP_PASS,
+    adminEmail: process.env.ADMIN_EMAIL,
+  },
 };

@@ -5,6 +5,7 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import mainRouter from './app/routes';
 import httpStatus from 'http-status';
 import path from 'path';
+import { cleanupTempFiles } from './config/multer.config';
 
 const app: Application = express();
 
@@ -31,12 +32,15 @@ app.use('/api/v1', mainRouter);
 app.get('/', (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: 'Welcome to Believers E-Commerce API!',
+    message: 'Welcome to Outfitro API!',
   });
 });
 
 // Global Error Handler
 app.use(globalErrorHandler);
+// Periodic cleanup of temporary files every hour
+setInterval(cleanupTempFiles, 60 * 60 * 1000);
+cleanupTempFiles();
 
 // Not Found Handler
 app.use((req: Request, res: Response) => {
