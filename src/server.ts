@@ -38,8 +38,10 @@ let server: Server;
 
 async function bootstrap() {
   // Start server immediately to satisfy deployment health checks
-  server = app.listen(config.port, () => {
-    console.log(`🚀 Application listening on port ${config.port}`);
+
+  const PORT = process.env.PORT || config.port || 5000;
+  server = app.listen(PORT, () => {
+    console.log(`🚀 Application listening on port ${PORT}`);
   });
 
   try {
