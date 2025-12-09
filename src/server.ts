@@ -17,6 +17,7 @@ const logFile = fs.createWriteStream(path.join(logDir, "app.log"), {
   flags: "a",
 });
 const logStdout = process.stdout;
+const logStderr = process.stderr;
 
 console.log = function (...args) {
   const timestamp = new Date().toISOString();
@@ -29,7 +30,7 @@ console.error = function (...args) {
   const timestamp = new Date().toISOString();
   const msg = util.format(...args);
   logFile.write(`[${timestamp}] [ERROR] ${msg}\n`);
-  logStdout.write(`[${timestamp}] [ERROR] ${msg}\n`);
+  logStderr.write(`[${timestamp}] [ERROR] ${msg}\n`);
 };
 // ---------------------
 
@@ -43,6 +44,9 @@ async function bootstrap() {
 
   try {
     console.log("⏳ Connecting to database...");
+    // Increase global buffer timeout to match connection timeout
+    mongoose.set("bufferTimeoutMS", 30000);
+
     await mongoose.connect(config.database_url as string, {
       serverSelectionTimeoutMS: 30000, // Allow more time for initial connection
       socketTimeoutMS: 45000,
