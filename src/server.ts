@@ -8,7 +8,10 @@ let server: Server;
 
 async function bootstrap() {
   try {
-    await mongoose.connect(config.database_url as string);
+    await mongoose.connect(config.database_url as string, {
+      serverSelectionTimeoutMS: 10000, // Timeout after 10s instead of 30s
+      socketTimeoutMS: 45000,
+    });
     console.log(`🛢️  Database connected successfully`);
 
     server = app.listen(config.port, () => {
@@ -16,6 +19,7 @@ async function bootstrap() {
     });
   } catch (err) {
     console.error("Failed to connect to database", err);
+    process.exit(1); // Exit on connection failure
   }
 
   process.on("unhandledRejection", (reason, promise) => {
