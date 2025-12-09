@@ -45,22 +45,31 @@ app.get("/", (req: Request, res: Response) => {
 // DIAGNOSTIC ROUTE - REMOVE AFTER FIXING
 import config from "./config";
 app.get("/test-db", async (req: Request, res: Response) => {
-  const statusMap = {
+  // Use explicit Record typing and numeric index to satisfy TS
+  const statusMap: Record<number, string> = {
     0: "disconnected",
     1: "connected",
     2: "connecting",
     3: "disconnecting",
   };
-  const currentStatus = statusMap[mongoose.connection.readyState] || "unknown";
+  const currentStatus =
+    statusMap[Number(mongoose.connection.readyState)] || "unknown";
 
   let connectionError = null;
   try {
-    // Try a simple operation
-    if (mongoose.connection.readyState === 1) {
+    // Try a simple operation when connected and db is available
+    if (mongoose.connection.readyState === 1 && mongoose.connection.db) {
       await mongoose.connection.db.admin().ping();
+    } else if (
+      mongoose.connection.readyState === 1 &&
+      !mongoose.connection.db
+    ) {
+      connectionError = new Error(
+        "Mongoose connected but 'connection.db' is undefined."
+      );
     }
   } catch (err) {
-    connectionError = err;
+    connectionError = err as Error;
   }
 
   res.status(200).json({
