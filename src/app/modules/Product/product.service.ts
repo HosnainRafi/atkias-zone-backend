@@ -1,22 +1,46 @@
 // src/app/modules/Product/product.service.ts
 import httpStatus from "http-status";
-import { SortOrder, Types } from "mongoose";
 import ApiError from "../../../errors/ApiError";
 import { IGenericResponse } from "../../../interfaces/common";
 import calculatePagination from "../../../shared/calculatePagination";
-import { Product } from "./product.model";
+import prisma from "../../../shared/prisma";
 import { TProduct } from "./product.interface";
-import { Category } from "../Category/category.model";
-import mongoose from "mongoose";
-import { Review } from "../Review/review.model";
-import { Order } from "../Order/order.model";
 import { TCategoryGender } from "../Category/category.interface";
+import { Prisma } from "@prisma/client";
 
 // --- Create Product ---
 const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
-  // The pre-save hook in the model handles slug and category validation
-  const result = await Product.create(payload);
-  return result;
+  const { sizes, ...rest } = payload;
+
+  // Check slug uniqueness
+  const existingProduct = await prisma.product.findUnique({
+    where: { slug: payload.slug },
+  });
+  if (existingProduct) {
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      "Product with this slug already exists."
+    );
+  }
+
+  const result = await prisma.product.create({
+    data: {
+      ...rest,
+      sizes: {
+        create: sizes?.map((size) => ({
+          size: size.size,
+          stock: size.stock,
+          priceOverride: size.priceOverride,
+          sku: size.sku,
+        })),
+      },
+    },
+    include: {
+      sizes: true,
+      category: true,
+    },
+  });
+  return result as unknown as TProduct;
 };
 
 // --- Get All Products (with Pagination, Filtering, Sorting) ---
@@ -37,7 +61,7 @@ const getAllProductsFromDB = async (
     page?: number;
     limit?: number;
     sortBy?: string;
-    sortOrder?: SortOrder;
+    sortOrder?: "asc" | "desc";
   }
 ): Promise<IGenericResponse<TProduct[]>> => {
   const {
@@ -52,135 +76,128 @@ const getAllProductsFromDB = async (
   } = filters;
   const { page, limit, skip, sortBy, sortOrder } = calculatePagination(options);
 
-  const andConditions = [];
+  const andConditions: Prisma.ProductWhereInput[] = [];
 
-  // --- MODIFIED SEARCH LOGIC ---
+  // --- Search Logic ---
   if (searchTerm) {
-    // 1. Find category IDs that match the search term
-    const matchingCategories = await Category.find(
-      { name: { $regex: searchTerm, $options: "i" } },
-      { _id: 1 } // Only select the IDs
-    );
-    const matchingCategoryIds = matchingCategories.map((cat) => cat._id);
-
-    // 2. Build the $or query
-    // --- THIS IS THE FIX: Added 'any[]' type ---
-    const searchOrConditions: any[] = [
-      { title: { $regex: searchTerm, $options: "i" } },
-      { sku: { $regex: searchTerm, $options: "i" } },
-    ];
-    // --- END OF FIX ---
-
-    // 3. If matching categories were found, add them to the search
-    if (matchingCategoryIds.length > 0) {
-      searchOrConditions.push({ category: { $in: matchingCategoryIds } });
-    }
-
-    // 4. Add the combined search logic to the main query
-    andConditions.push({ $or: searchOrConditions });
+    andConditions.push({
+      OR: [
+        { title: { contains: searchTerm, mode: "insensitive" } },
+        { sku: { contains: searchTerm, mode: "insensitive" } },
+        {
+          category: {
+            name: { contains: searchTerm, mode: "insensitive" },
+          },
+        },
+      ],
+    });
   }
-  // --- END OF MODIFIED SEARCH LOGIC ---
 
   // --- Category & Gender Filters ---
-  let categoryIdsToSearch: Types.ObjectId[] = [];
-  let hasCategoryFilter = false;
-
   if (category) {
-    hasCategoryFilter = true;
-    const categoryDoc = await Category.findOne({ slug: category });
+    // Find category by slug to get ID
+    const categoryDoc = await prisma.category.findUnique({
+      where: { slug: category },
+    });
+
     if (categoryDoc) {
-      categoryIdsToSearch.push(categoryDoc._id);
-      const subcategories = await Category.find({
-        parentCategory: categoryDoc._id,
+      // Find subcategories
+      const subcategories = await prisma.category.findMany({
+        where: { parentId: categoryDoc.id },
       });
-      subcategories.forEach((sub) => categoryIdsToSearch.push(sub._id));
+      const categoryIds = [categoryDoc.id, ...subcategories.map((c) => c.id)];
+      andConditions.push({ categoryId: { in: categoryIds } });
+    } else {
+      // If category not found, return empty
+      andConditions.push({ categoryId: "invalid_id" });
     }
   }
 
   if (gender) {
-    hasCategoryFilter = true;
-    const genderCategories = await Category.find(
-      { gender: gender },
-      { _id: 1 }
-    );
-    const genderCategoryIds = genderCategories.map((cat) => cat._id);
-
-    if (category) {
-      categoryIdsToSearch = categoryIdsToSearch.filter((id) =>
-        genderCategoryIds.some((genderId) => genderId.equals(id))
-      );
-    } else {
-      categoryIdsToSearch = genderCategoryIds;
-    }
-  }
-
-  if (hasCategoryFilter) {
-    if (categoryIdsToSearch.length > 0) {
-      andConditions.push({ category: { $in: categoryIdsToSearch } });
-    } else {
-      return { meta: { page: 1, limit, total: 0 }, data: [] };
-    }
+    // Find categories with this gender
+    const genderCategories = await prisma.category.findMany({
+      where: { gender: gender },
+    });
+    const genderCategoryIds = genderCategories.map((c) => c.id);
+    andConditions.push({ categoryId: { in: genderCategoryIds } });
   }
 
   // Size filter
   if (size) {
-    andConditions.push({ "sizes.size": size, "sizes.stock": { $gt: 0 } });
+    andConditions.push({
+      sizes: {
+        some: {
+          size: size,
+          stock: { gt: 0 },
+        },
+      },
+    });
   }
 
   // Price filter
   if (minPrice) {
-    andConditions.push({ basePrice: { $gte: Number(minPrice) } });
+    andConditions.push({ basePrice: { gte: Number(minPrice) } });
   }
   if (maxPrice) {
-    andConditions.push({ basePrice: { $lte: Number(maxPrice) } });
+    andConditions.push({ basePrice: { lte: Number(maxPrice) } });
   }
 
   // Activity filter
-  andConditions.push({
-    isActive: isActive === "false" ? false : true,
-    deleted: { $ne: true }, // Always hide 'deleted' products
-  });
+  if (isActive !== undefined) {
+    andConditions.push({ isActive: isActive === "true" });
+  }
+
+  // Always hide deleted products
+  andConditions.push({ deleted: false });
 
   if (newArrival === "true") {
     andConditions.push({ newArrival: true });
   }
 
-  const whereConditions =
-    andConditions.length > 0 ? { $and: andConditions } : {};
+  const whereConditions: Prisma.ProductWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
 
-  const result = await Product.find(whereConditions)
-    .populate("category") // <-- MODIFICATION: Populate the category
-    .sort({ [sortBy]: sortOrder })
-    .skip(skip)
-    .limit(limit);
+  const result = await prisma.product.findMany({
+    where: whereConditions,
+    include: {
+      category: true,
+      sizes: true,
+    },
+    orderBy: sortBy ? { [sortBy]: sortOrder || "asc" } : undefined,
+    skip,
+    take: limit,
+  });
 
-  const total = await Product.countDocuments(whereConditions);
+  const total = await prisma.product.count({ where: whereConditions });
 
   return {
     meta: { page, limit, total },
-    data: result,
+    data: result as unknown as TProduct[],
   };
 };
 
 const getSingleProductFromDB = async (
   idOrSlug: string
 ): Promise<TProduct | null> => {
-  let product;
-  if (Types.ObjectId.isValid(idOrSlug)) {
-    product = await Product.findById(idOrSlug).populate("category"); // <-- MODIFICATION
-  }
+  // Check if it's a valid UUID (Prisma uses UUIDs usually, or CUIDs)
+  // Simple check: if it looks like a UUID or we try both
+  let product = await prisma.product.findUnique({
+    where: { id: idOrSlug },
+    include: { category: true, sizes: true },
+  });
 
   if (!product) {
-    product = await Product.findOne({ slug: idOrSlug }).populate("category"); // <-- MODIFICATION
+    product = await prisma.product.findUnique({
+      where: { slug: idOrSlug },
+      include: { category: true, sizes: true },
+    });
   }
 
   if (!product || product.deleted) {
-    // Hide if deleted
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
 
-  // Now, product.category will be an object, not just an ID
-  return product;
+  return product as unknown as TProduct;
 };
 
 // --- Update Product ---
@@ -188,17 +205,41 @@ const updateProductInDB = async (
   id: string,
   payload: Partial<TProduct>
 ): Promise<TProduct | null> => {
-  const product = await Product.findById(id);
+  const { sizes, ...rest } = payload;
+
+  const product = await prisma.product.findUnique({ where: { id } });
   if (!product) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
 
-  const result = await Product.findByIdAndUpdate(id, payload, {
-    new: true,
-    runValidators: true,
-  }).populate("category");
+  // Handle sizes update: Delete all and recreate (simplest strategy for now)
+  // Or update if IDs are provided. For simplicity, let's assume full replacement if sizes are provided.
+  if (sizes) {
+    await prisma.productSize.deleteMany({ where: { productId: id } });
+  }
 
-  return result;
+  const result = await prisma.product.update({
+    where: { id },
+    data: {
+      ...rest,
+      sizes: sizes
+        ? {
+            create: sizes.map((size) => ({
+              size: size.size,
+              stock: size.stock,
+              priceOverride: size.priceOverride,
+              sku: size.sku,
+            })),
+          }
+        : undefined,
+    },
+    include: {
+      category: true,
+      sizes: true,
+    },
+  });
+
+  return result as unknown as TProduct;
 };
 
 type TDiscountPayload = {
@@ -213,15 +254,19 @@ const applyCategoryDiscountToDB = async (
   const { categoryId, discountType, discountValue } = payload;
 
   // 1. Check if category exists
-  const category = await Category.findById(categoryId);
+  const category = await prisma.category.findUnique({
+    where: { id: categoryId },
+  });
   if (!category) {
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
   }
 
   // 2. Find all active products in this category
-  const products = await Product.find({
-    category: new mongoose.Types.ObjectId(categoryId),
-    isActive: true,
+  const products = await prisma.product.findMany({
+    where: {
+      categoryId: categoryId,
+      isActive: true,
+    },
   });
 
   if (products.length === 0) {
@@ -231,64 +276,53 @@ const applyCategoryDiscountToDB = async (
     );
   }
 
-  // 3. Prepare bulk update operations
-  const bulkOps = products.map((product) => {
-    // Set the current price as the "compare at" price
-    // Note: If a compareAtPrice already exists, this will overwrite it.
-    // An alternative is to use `product.compareAtPrice || product.basePrice`
-    const oldPrice = product.basePrice;
-    let newPrice = 0;
+  // 3. Update products one by one (Prisma doesn't support calculated updates in updateMany)
+  let modifiedCount = 0;
 
-    if (discountType === "percentage") {
-      if (discountValue >= 100) {
-        throw new ApiError(
-          httpStatus.BAD_REQUEST,
-          "Percentage discount must be less than 100."
-        );
+  await prisma.$transaction(
+    products.map((product) => {
+      const oldPrice = product.basePrice;
+      let newPrice = 0;
+
+      if (discountType === "percentage") {
+        if (discountValue >= 100) {
+          throw new Error("Percentage discount must be less than 100.");
+        }
+        newPrice = oldPrice * (1 - discountValue / 100);
+      } else {
+        newPrice = oldPrice - discountValue;
       }
-      newPrice = oldPrice * (1 - discountValue / 100);
-    } else {
-      // Fixed discount
-      newPrice = oldPrice - discountValue;
-    }
 
-    // Ensure price doesn't go below 0
-    newPrice = Math.max(0, newPrice);
-    // Round to 2 decimal places (or 0 for whole currency)
-    newPrice = parseFloat(newPrice.toFixed(2));
+      newPrice = Math.max(0, newPrice);
+      newPrice = parseFloat(newPrice.toFixed(2));
 
-    return {
-      updateOne: {
-        filter: { _id: product._id },
-        update: {
-          $set: {
-            basePrice: newPrice,
-            compareAtPrice: oldPrice,
-          },
+      modifiedCount++;
+
+      return prisma.product.update({
+        where: { id: product.id },
+        data: {
+          basePrice: newPrice,
+          compareAtPrice: oldPrice,
         },
-      },
-    };
-  });
-
-  // 4. Execute the bulk write
-  const result = await Product.bulkWrite(bulkOps);
+      });
+    })
+  );
 
   return {
-    modifiedCount: result.modifiedCount,
+    modifiedCount,
   };
 };
 
 const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
-  const result = await Product.findByIdAndUpdate(
-    id,
-    { isActive: false },
-    { new: true }
-  );
+  const result = await prisma.product.update({
+    where: { id },
+    data: { isActive: false },
+  });
 
   if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
-  return result;
+  return result as unknown as TProduct;
 };
 
 // --- MODIFIED HARD DELETE FUNCTION ---
@@ -300,58 +334,57 @@ const hardDeleteProductFromDB = async (
   product: TProduct | null;
 }> => {
   // 1. Check if product exists
-  const product = await Product.findById(id);
+  const product = await prisma.product.findUnique({ where: { id } });
   if (!product) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
   }
 
   // 2. Check if product exists in any Orders
-  const orderCount = await Order.countDocuments({ "items.productId": id });
+  // Note: OrderItem table links to Product
+  const orderCount = await prisma.orderItem.count({
+    where: { productId: id },
+  });
 
   // 3. DECISION: Hard delete or Soft delete with 'deleted' flag?
   if (orderCount > 0) {
     // --- Perform SOFT DELETE with DELETED flag ---
-    // Check if it's already marked
     if (!product.isActive && product.deleted) {
       return {
-        deleted: true, // Report as deleted
+        deleted: true,
         message:
           "Product is associated with orders and was already marked as deleted (inactive). No action taken.",
-        product: product,
+        product: product as unknown as TProduct,
       };
     }
     // Set inactive AND deleted: true
-    const softDeletedProduct = await Product.findByIdAndUpdate(
-      id,
-      { isActive: false, deleted: true }, // <-- SET BOTH FLAGS
-      { new: true }
-    );
+    const softDeletedProduct = await prisma.product.update({
+      where: { id },
+      data: { isActive: false, deleted: true },
+    });
     return {
-      deleted: true, // Report as deleted
+      deleted: true,
       message:
         "Product is associated with orders. Marked as deleted (set inactive and deleted flag) instead of permanent deletion.",
-      product: softDeletedProduct,
+      product: softDeletedProduct as unknown as TProduct,
     };
   } else {
     // --- Proceed with HARD DELETE ---
     // a. Delete associated reviews
-    await Review.deleteMany({ product: id });
+    await prisma.review.deleteMany({ where: { productId: id } });
 
-    // b. Perform hard delete
-    const hardDeletedProduct = await Product.findByIdAndDelete(id);
+    // b. Delete associated sizes
+    await prisma.productSize.deleteMany({ where: { productId: id } });
 
-    if (!hardDeletedProduct) {
-      throw new ApiError(
-        httpStatus.INTERNAL_SERVER_ERROR,
-        "Failed to delete product after checks."
-      );
-    }
+    // c. Perform hard delete
+    const hardDeletedProduct = await prisma.product.delete({
+      where: { id },
+    });
 
     return {
-      deleted: true, // Report as deleted
+      deleted: true,
       message:
         "Product permanently deleted successfully (including associated reviews).",
-      product: hardDeletedProduct,
+      product: hardDeletedProduct as unknown as TProduct,
     };
   }
 };

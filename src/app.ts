@@ -1,7 +1,6 @@
 // src/app.ts
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
-import mongoose from "mongoose";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import mainRouter from "./app/routes";
 import httpStatus from "http-status";
@@ -40,68 +39,6 @@ app.get("/", (req: Request, res: Response) => {
     success: true,
     message: "Welcome to Outfitro API!",
   });
-});
-
-// DIAGNOSTIC ROUTE - REMOVE AFTER FIXING
-import config from "./config";
-app.get("/test-db", async (req: Request, res: Response) => {
-  // Use explicit Record typing and numeric index to satisfy TS
-  const statusMap: Record<number, string> = {
-    0: "disconnected",
-    1: "connected",
-    2: "connecting",
-    3: "disconnecting",
-  };
-  const currentStatus =
-    statusMap[Number(mongoose.connection.readyState)] || "unknown";
-
-  let connectionError = null;
-  try {
-    // Try a simple operation when connected and db is available
-    if (mongoose.connection.readyState === 1 && mongoose.connection.db) {
-      await mongoose.connection.db.admin().ping();
-    } else if (
-      mongoose.connection.readyState === 1 &&
-      !mongoose.connection.db
-    ) {
-      connectionError = new Error(
-        "Mongoose connected but 'connection.db' is undefined."
-      );
-    }
-  } catch (err) {
-    connectionError = err as Error;
-  }
-
-  res.status(200).json({
-    status: "Diagnostic Report",
-    timestamp: new Date().toISOString(),
-    mongooseState: currentStatus,
-    env: {
-      nodeEnv: process.env.NODE_ENV,
-      port: process.env.PORT,
-      // Show first 15 chars of DB URL to verify protocol/user, hide password
-      dbUrlPartial: config.database_url
-        ? config.database_url.substring(0, 25) + "..."
-        : "UNDEFINED",
-    },
-    connectionError: connectionError
-      ? JSON.stringify(
-          connectionError,
-          Object.getOwnPropertyNames(connectionError)
-        )
-      : "None (if connected)",
-  });
-});
-
-// DB Connection Check Middleware
-app.use((req: Request, res: Response, next) => {
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(httpStatus.SERVICE_UNAVAILABLE).json({
-      success: false,
-      message: "Database is connecting, please try again in a moment.",
-    });
-  }
-  next();
 });
 
 // Main API Routes

@@ -23,20 +23,20 @@ router.get(
 // --- Admin Routes ---
 router.get(
   "/",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   ReviewController.getAllReviews
 );
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(ReviewValidation.updateReviewZodSchema),
   ReviewController.updateReview
 );
 
 router.delete(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   ReviewController.deleteReview
 );
 

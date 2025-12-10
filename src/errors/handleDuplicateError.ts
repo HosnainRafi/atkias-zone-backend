@@ -5,12 +5,16 @@ import { IGenericErrorMessage } from "../interfaces/common";
 const handleDuplicateError = (err: any) => {
   const errors: IGenericErrorMessage[] = [];
 
-  if (err.code === 11000) {
-    const field = Object.keys(err.keyValue)[0];
-    const value = err.keyValue[field];
+  // Prisma P2002 error
+  if (err.code === "P2002") {
+    const target = err.meta?.target;
+    const message = target
+      ? `Duplicate value error. The field '${target}' already exists.`
+      : "Duplicate value error.";
+
     errors.push({
-      path: field,
-      message: `Duplicate value error. ${field} '${value}' already exists.`,
+      path: target ? String(target) : "",
+      message: message,
     });
   }
 

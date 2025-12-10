@@ -1,24 +1,21 @@
 // src/app/modules/Order/order.service.ts
 import httpStatus from "http-status";
-import mongoose, { SortOrder } from "mongoose";
 import ApiError from "../../../errors/ApiError";
 import { IGenericResponse } from "../../../interfaces/common";
 import calculatePagination from "../../../shared/calculatePagination";
-import { Coupon } from "../Coupon/coupon.model";
+import prisma from "../../../shared/prisma";
 import {
   CouponService,
   TCouponValidationResponse,
 } from "../Coupon/coupon.service";
-import { Product } from "../Product/product.model";
 import {
   TCreateOrderPayload,
   TOrder,
   TOrderItem,
   TPublicOrderTracking,
 } from "./order.interface";
-import { Order } from "./order.model";
 import { generateTrackingNumber } from "./order.utils";
-import { PaymentStatus, OrderStatus } from "./order.constants";
+import { PaymentStatus, OrderStatus } from "@prisma/client";
 
 // --- Create Order (Public) ---
 const createOrderIntoDB = async (
@@ -34,12 +31,14 @@ const createOrderIntoDB = async (
 
   // 1. Prepare product validation
   const productIds = items.map((item) => item.productId);
-  const productsFromDB = await Product.find({ _id: { $in: productIds } });
+  const productsFromDB = await prisma.product.findMany({
+    where: { id: { in: productIds } },
+    include: { sizes: true },
+  });
 
   let subtotal = 0;
   const processedItems: TOrderItem[] = [];
   const stockUpdates: {
-    productId: string;
     sizeId: string;
     quantity: number;
     title: string;
@@ -48,9 +47,7 @@ const createOrderIntoDB = async (
 
   // 2. Validate items, calculate subtotal, prepare stock updates
   for (const item of items) {
-    const product = productsFromDB.find(
-      (p) => p._id.toString() === item.productId
-    );
+    const product = productsFromDB.find((p) => p.id === item.productId);
 
     if (!product) {
       throw new ApiError(
@@ -65,9 +62,7 @@ const createOrderIntoDB = async (
       );
     }
 
-    const size = product.sizes.find(
-      (s) => s._id?.toString() === item.productSizeId
-    );
+    const size = product.sizes.find((s) => s.id === item.productSizeId);
 
     if (!size) {
       throw new ApiError(
@@ -88,8 +83,8 @@ const createOrderIntoDB = async (
     subtotal += totalPrice;
 
     processedItems.push({
-      productId: product._id,
-      productSizeId: size._id!,
+      productId: product.id,
+      productSizeId: size.id,
       title: product.title,
       size: size.size,
       image: product.images[0],
@@ -99,130 +94,104 @@ const createOrderIntoDB = async (
     });
 
     stockUpdates.push({
-      productId: product._id.toString(),
-      sizeId: size._id!.toString(),
+      sizeId: size.id,
       quantity: item.quantity,
       title: product.title,
       size: size.size,
     });
   }
 
-  // 3. Validate and apply coupon
-  let couponValidation: TCouponValidationResponse = {
-    isValid: false,
-    discountAmount: 0,
-    message: "",
-  };
+  // 3. Apply Coupon (if provided)
+  let discountAmount = 0;
+  let couponId: string | undefined;
+
   if (couponCode) {
-    couponValidation = await CouponService.validateAndApplyCoupon(
-      couponCode,
-      items
-    );
-    if (!couponValidation.isValid) {
-      throw new ApiError(httpStatus.BAD_REQUEST, couponValidation.message);
+    const couponResult: TCouponValidationResponse =
+      await CouponService.validateAndApplyCoupon(couponCode, items);
+
+    if (!couponResult.isValid) {
+      throw new ApiError(httpStatus.BAD_REQUEST, couponResult.message);
     }
+
+    discountAmount = couponResult.discountAmount;
+    couponId = couponResult.coupon?.id;
   }
 
-  // 4. Calculate final totals
-  const discountAmount = couponValidation.discountAmount;
+  // 4. Calculate Total
   const totalAmount = subtotal + shipping - discountAmount;
 
-  // 5. Create the order AND DECREMENT STOCK (Reservation)
-  const session = await mongoose.startSession();
-  let newOrder: TOrder | null = null;
-  try {
-    session.startTransaction();
+  // 5. Generate Tracking Number
+  const trackingNumber = generateTrackingNumber();
 
-    // 5a. Decrement product stock
-    for (const update of stockUpdates) {
-      // --- THIS IS THE FIX ---
-      // We use $elemMatch to check stock atomically
-      // and arrayFilters to update the specific size
-      const updateResult = await Product.updateOne(
-        {
-          _id: update.productId,
-          sizes: {
-            $elemMatch: {
-              _id: new mongoose.Types.ObjectId(update.sizeId),
-              stock: { $gte: update.quantity },
-            },
+  // 6. Transaction: Create Order, Update Stock, Update Coupon Usage
+  const result = await prisma.$transaction(async (tx) => {
+    // a. Create Order
+    const newOrder = await tx.order.create({
+      data: {
+        trackingNumber,
+        customerName: shippingAddress.customerName,
+        mobile: shippingAddress.mobile,
+        district: shippingAddress.district,
+        upazila: shippingAddress.upazila,
+        addressLine: shippingAddress.addressLine,
+        postalCode: shippingAddress.postalCode,
+        orderNote,
+        subtotal,
+        shipping,
+        couponId,
+        discountAmount,
+        totalAmount,
+        paymentStatus: PaymentStatus.pending,
+        status: OrderStatus.pending,
+        items: {
+          create: processedItems.map((item) => ({
+            productId: item.productId,
+            productSizeId: item.productSizeId,
+            title: item.title,
+            size: item.size,
+            image: item.image,
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+            totalPrice: item.totalPrice,
+          })),
+        },
+        statusHistory: {
+          create: {
+            status: OrderStatus.pending,
+            note: "Order placed",
           },
         },
-        { $inc: { "sizes.$[elem].stock": -update.quantity } }, // Use $[elem]
-        {
-          session,
-          // Explicitly define 'elem' to match the sizeId
-          arrayFilters: [
-            { "elem._id": new mongoose.Types.ObjectId(update.sizeId) },
-          ],
-        }
-      );
-      // --- END OF FIX ---
+      },
+      include: {
+        items: true,
+        statusHistory: true,
+      },
+    });
 
-      if (updateResult.modifiedCount === 0) {
-        throw new ApiError(
-          httpStatus.CONFLICT,
-          `Stock changed for ${update.title} (Size: ${update.size}) just before order completion. Please try again.`
-        );
-      }
-    }
-
-    // 5b. Increment coupon usage
-    if (couponValidation.isValid && couponValidation.coupon) {
-      await Coupon.updateOne(
-        { _id: couponValidation.coupon._id },
-        { $inc: { usedCount: 1 } },
-        { session }
-      );
-    }
-
-    // 5c. Create the order document
-    const createdOrder = await Order.create(
-      [
-        {
-          trackingNumber: generateTrackingNumber(),
-          shippingAddress: shippingAddress,
-          items: processedItems,
-          orderNote: orderNote,
-          subtotal: subtotal,
-          shipping: shipping,
-          couponId: couponValidation.coupon?._id,
-          discountAmount: discountAmount,
-          totalAmount: totalAmount,
-          paymentStatus: "pending",
-          status: "pending",
-          statusHistory: [],
+    // b. Update Stock
+    for (const update of stockUpdates) {
+      await tx.productSize.update({
+        where: { id: update.sizeId },
+        data: {
+          stock: { decrement: update.quantity },
         },
-      ],
-      { session }
-    );
-    newOrder = createdOrder[0];
+      });
+    }
 
-    await session.commitTransaction();
-  } catch (error) {
-    await session.abortTransaction();
-    const message =
-      error instanceof ApiError
-        ? error.message
-        : "Failed to create order. Please try again.";
-    const statusCode =
-      error instanceof ApiError
-        ? error.statusCode
-        : httpStatus.INTERNAL_SERVER_ERROR;
-    const stack = error instanceof Error ? error.stack : undefined;
-    throw new ApiError(statusCode, message, stack);
-  } finally {
-    session.endSession();
-  }
+    // c. Update Coupon Usage
+    if (couponId) {
+      await tx.coupon.update({
+        where: { id: couponId },
+        data: {
+          usedCount: { increment: 1 },
+        },
+      });
+    }
 
-  if (!newOrder) {
-    throw new ApiError(
-      httpStatus.INTERNAL_SERVER_ERROR,
-      "Failed to create order after transaction."
-    );
-  }
+    return newOrder;
+  });
 
-  return newOrder;
+  return result as unknown as TOrder;
 };
 
 // --- Get All Orders (Admin) ---
@@ -230,171 +199,112 @@ const getAllOrdersFromDB = async (options: {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: SortOrder;
+  sortOrder?: "asc" | "desc";
 }): Promise<IGenericResponse<TOrder[]>> => {
   const { page, limit, skip, sortBy, sortOrder } = calculatePagination(options);
-  const result = await Order.find()
-    .sort({ [sortBy]: sortOrder })
-    .skip(skip)
-    .limit(limit);
-  const total = await Order.countDocuments();
-  return { meta: { page, limit, total }, data: result };
+
+  const result = await prisma.order.findMany({
+    include: {
+      items: true,
+      statusHistory: true,
+    },
+    orderBy: sortBy ? { [sortBy]: sortOrder || "desc" } : { createdAt: "desc" },
+    skip,
+    take: limit,
+  });
+
+  const total = await prisma.order.count();
+
+  return {
+    meta: { page, limit, total },
+    data: result as unknown as TOrder[],
+  };
 };
 
 // --- Get Single Order (Admin) ---
-const getSingleOrderFromDB = async (
-  orderId: string
-): Promise<TOrder | null> => {
-  const result = await Order.findById(orderId).populate(
-    "couponId",
-    "code type value"
-  );
+const getSingleOrderFromDB = async (id: string): Promise<TOrder | null> => {
+  const result = await prisma.order.findUnique({
+    where: { id },
+    include: {
+      items: true,
+      statusHistory: true,
+    },
+  });
+
   if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
   }
-  return result;
+  return result as unknown as TOrder;
 };
 
 // --- Update Order Status (Admin) ---
 const updateOrderStatusInDB = async (
-  orderId: string,
+  id: string,
   adminId: string,
-  payload: {
-    status: (typeof OrderStatus)[number];
-    paymentStatus?: (typeof PaymentStatus)[number];
-    note?: string;
-  }
+  payload: { status: string; note?: string }
 ): Promise<TOrder | null> => {
-  const session = await mongoose.startSession();
-  let updatedOrder: TOrder | null = null;
+  const { status, note } = payload;
 
-  try {
-    session.startTransaction();
-    const order = await Order.findById(orderId).session(session);
-    if (!order) {
-      throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
-    }
-
-    const { status, paymentStatus, note } = payload;
-    const previousStatus = order.status;
-
-    if (status === previousStatus) {
-      let changed = false;
-      if (paymentStatus && order.paymentStatus !== paymentStatus) {
-        order.paymentStatus = paymentStatus;
-        changed = true;
-      }
-      if (note) {
-        order.statusHistory.push({
-          status: previousStatus,
-          note: `Note added: ${note}`,
-          changedBy: new mongoose.Types.ObjectId(adminId),
-          changedAt: new Date(),
-        });
-        changed = true;
-      }
-      if (changed) {
-        updatedOrder = await order.save({ session });
-      } else {
-        updatedOrder = order;
-      }
-      await session.commitTransaction();
-      session.endSession();
-      return updatedOrder;
-    }
-
-    // --- REVERT STOCK ON CANCELLATION (using arrayFilters) ---
-    if (
-      status === "cancelled" &&
-      (previousStatus === "pending" ||
-        previousStatus === "confirmed" ||
-        previousStatus === "shipped")
-    ) {
-      for (const item of order.items) {
-        // --- THIS IS THE FIX ---
-        await Product.updateOne(
-          { _id: item.productId },
-          { $inc: { "sizes.$[elem].stock": item.quantity } }, // Add back
-          {
-            session,
-            arrayFilters: [
-              { "elem._id": new mongoose.Types.ObjectId(item.productSizeId) },
-            ],
-          }
-        );
-        // --- END OF FIX ---
-      }
-    }
-
-    // Update the order document status
-    order.statusHistory.push({
-      status: status,
-      note: note || `Status changed from ${previousStatus} to ${status}`,
-      changedBy: new mongoose.Types.ObjectId(adminId),
-      changedAt: new Date(),
-    });
-    order.status = status;
-    if (paymentStatus) {
-      order.paymentStatus = paymentStatus;
-    }
-
-    updatedOrder = await order.save({ session });
-    await session.commitTransaction();
-  } catch (error) {
-    await session.abortTransaction();
-    const message =
-      error instanceof ApiError
-        ? error.message
-        : "Failed to update order status or stock.";
-    const stack = error instanceof Error ? error.stack : undefined;
-    throw new ApiError(
-      error instanceof ApiError
-        ? error.statusCode
-        : httpStatus.INTERNAL_SERVER_ERROR,
-      message,
-      stack
-    );
-  } finally {
-    session.endSession();
+  const order = await prisma.order.findUnique({ where: { id } });
+  if (!order) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
   }
 
-  return updatedOrder;
+  const result = await prisma.order.update({
+    where: { id },
+    data: {
+      status: status as any,
+      statusHistory: {
+        create: {
+          status: status as any,
+          note,
+          changedById: adminId,
+        },
+      },
+    },
+    include: {
+      items: true,
+      statusHistory: true,
+    },
+  });
+
+  return result as unknown as TOrder;
 };
 
+// --- Track Order (Public) ---
 const trackOrderPublicly = async (
-  trackingNumber?: string,
-  mobile?: string
+  trackingNumber: string,
+  mobile: string
 ): Promise<TPublicOrderTracking[]> => {
-  // <-- Returns an array
+  const orders = await prisma.order.findMany({
+    where: {
+      trackingNumber,
+      mobile,
+    },
+    include: {
+      items: true,
+      statusHistory: true,
+    },
+  });
 
-  const orConditions = [];
-  if (trackingNumber) {
-    orConditions.push({ trackingNumber: trackingNumber });
-  }
-  if (mobile) {
-    orConditions.push({ "shippingAddress.mobile": mobile });
-  }
-
-  // Zod ensures at least one condition is present
-  const query = { $or: orConditions };
-
-  // Find all matching orders, sort by newest first
-  const orders = await Order.find(query).sort({ createdAt: -1 });
-
-  if (orders.length === 0) {
+  if (!orders || orders.length === 0) {
     throw new ApiError(
       httpStatus.NOT_FOUND,
-      "No orders found matching your details."
+      "Order not found with the provided tracking number and mobile."
     );
   }
 
-  // Map to the safe public-facing type
-  const publicOrdersData: TPublicOrderTracking[] = orders.map((order) => ({
+  // Map to public format
+  return orders.map((order) => ({
     trackingNumber: order.trackingNumber,
-    status: order.status,
-    paymentStatus: order.paymentStatus,
-    statusHistory: order.statusHistory,
-    createdAt: (order as any).createdAt, // Mongoose doc has this
+    status: order.status as any,
+    paymentStatus: order.paymentStatus as any,
+    statusHistory: order.statusHistory.map((h) => ({
+      status: h.status as any,
+      note: h.note,
+      changedAt: h.changedAt,
+    })),
+    createdAt: order.createdAt,
     items: order.items.map((item) => ({
       title: item.title,
       size: item.size,
@@ -402,8 +312,6 @@ const trackOrderPublicly = async (
       image: item.image,
     })),
   }));
-
-  return publicOrdersData;
 };
 
 export const OrderService = {

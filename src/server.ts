@@ -1,11 +1,11 @@
 // src/server.ts
-import mongoose from "mongoose";
 import app from "./app";
 import config from "./config";
 import { Server } from "http";
 import fs from "fs";
 import path from "path";
 import util from "util";
+import prisma from "./shared/prisma";
 
 // --- LOGGING SETUP ---
 const logDir = path.join(process.cwd(), "logs");
@@ -46,14 +46,7 @@ async function bootstrap() {
 
   try {
     console.log("⏳ Connecting to database...");
-    // Increase global buffer timeout to match connection timeout
-    mongoose.set("bufferTimeoutMS", 30000);
-
-    await mongoose.connect(config.database_url as string, {
-      serverSelectionTimeoutMS: 30000, // Allow more time for initial connection
-      socketTimeoutMS: 45000,
-      family: 4, // Force IPv4 to avoid potential IPv6 resolution delays
-    });
+    await prisma.$connect();
     console.log(`🛢️  Database connected successfully`);
   } catch (err) {
     console.error("❌ Failed to connect to database", err);

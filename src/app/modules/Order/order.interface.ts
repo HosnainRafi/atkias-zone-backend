@@ -1,5 +1,4 @@
 // src/app/modules/Order/order.interface.ts
-import { Types } from "mongoose";
 import { OrderStatus, PaymentStatus } from "./order.constants";
 
 // --- Embedded Documents ---
@@ -11,13 +10,14 @@ export type TShippingAddress = {
   district: string;
   upazila: string;
   addressLine: string;
-  postalCode?: string;
+  postalCode?: string | null;
 };
 
 // Snapshot of the item ordered (embedded in the order)
 export type TOrderItem = {
-  productId: Types.ObjectId;
-  productSizeId: Types.ObjectId; // ID of the specific size from product.sizes array
+  id?: string;
+  productId: string;
+  productSizeId: string; // ID of the specific size from product.sizes array
   title: string; // Snapshot of product title
   size: string; // Snapshot of product size
   image: string; // Snapshot of product image
@@ -28,26 +28,37 @@ export type TOrderItem = {
 
 // For tracking order status changes (embedded in the order)
 export type TOrderStatusHistory = {
+  id?: string;
   status: (typeof OrderStatus)[number];
-  note?: string;
-  changedBy?: Types.ObjectId; // Ref to Admin
+  note?: string | null;
+  changedById?: string | null; // Ref to Admin
   changedAt: Date;
 };
 
 // --- Main Order Interface ---
 export type TOrder = {
+  id?: string;
   trackingNumber: string;
-  shippingAddress: TShippingAddress;
+  // Flattened Shipping Address
+  customerName: string;
+  mobile: string;
+  district: string;
+  upazila: string;
+  addressLine: string;
+  postalCode?: string | null;
+
   items: TOrderItem[];
-  orderNote?: string;
+  orderNote?: string | null;
   subtotal: number;
   shipping: number; // Shipping cost (can be 0)
-  couponId?: Types.ObjectId; // Ref to Coupon
+  couponId?: string | null; // Ref to Coupon
   discountAmount: number;
   totalAmount: number; // subtotal + shipping - discount
   paymentStatus: (typeof PaymentStatus)[number];
   status: (typeof OrderStatus)[number];
   statusHistory: TOrderStatusHistory[];
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 // --- For Zod Validation ---

@@ -1,26 +1,26 @@
 // src/app/modules/Coupon/coupon.interface.ts
-import { Types } from "mongoose";
 
 export type TCouponType = "percentage" | "fixed";
 
 export type TCoupon = {
-  _id?: Types.ObjectId;
+  id?: string;
   code: string;
-  description?: string;
+  description?: string | null;
   type: TCouponType;
   value: number;
-  minOrderAmount?: number;
-  maxDiscountAmount?: number;
+  minOrderAmount?: number | null;
+  maxDiscountAmount?: number | null;
   usageLimit: number;
   usedCount: number;
   validFrom: Date;
   validUntil: Date;
   isActive: boolean;
-  createdBy: Types.ObjectId; // Ref to Admin
-
+  createdById: string;
   appliesToAllProducts: boolean;
-  appliesToCategories: Types.ObjectId[]; // Ref to 'Category'
-  appliesToProducts: Types.ObjectId[]; // Ref to 'Product'
+  appliesToCategories?: string[]; // Array of Category IDs
+  appliesToProducts?: string[]; // Array of Product IDs
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 // This represents the items sent from the client's cart

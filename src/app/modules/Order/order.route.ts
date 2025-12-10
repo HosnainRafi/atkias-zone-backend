@@ -25,20 +25,20 @@ router.post(
 
 router.get(
   "/",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   OrderController.getAllOrders
 );
 
 router.get(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   OrderController.getSingleOrder
 );
 
 // Route for admin to update order status
 router.patch(
   "/:id/status",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(OrderValidation.updateOrderStatusZodSchema),
   OrderController.updateOrderStatus
 );

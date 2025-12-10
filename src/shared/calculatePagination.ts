@@ -1,11 +1,10 @@
 // src/shared/calculatePagination.ts
-import { SortOrder } from "mongoose";
 
 type IOptions = {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: SortOrder;
+  sortOrder?: "asc" | "desc";
 };
 
 type IOptionsResult = {
@@ -13,7 +12,7 @@ type IOptionsResult = {
   limit: number;
   skip: number;
   sortBy: string;
-  sortOrder: SortOrder;
+  sortOrder: "asc" | "desc";
 };
 
 const calculatePagination = (options: IOptions): IOptionsResult => {
@@ -22,7 +21,7 @@ const calculatePagination = (options: IOptions): IOptionsResult => {
   const skip = (page - 1) * limit;
 
   const sortBy = options.sortBy || "createdAt";
-  const sortOrder = options.sortOrder || "desc";
+  const sortOrder = (options.sortOrder as "asc" | "desc") || "desc";
 
   return {
     page,

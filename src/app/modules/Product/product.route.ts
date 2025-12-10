@@ -10,14 +10,14 @@ const router = express.Router();
 
 router.post(
   "/apply-category-discount",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(ProductValidation.applyCategoryDiscountZodSchema),
   ProductController.applyCategoryDiscount
 );
 
 router.post(
   "/",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin), // Only admins can create
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can create
   validateRequest(ProductValidation.createProductZodSchema),
   ProductController.createProduct
 );
@@ -28,20 +28,20 @@ router.get("/:id", ProductController.getSingleProduct); // Anyone can view one (
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin), // Only admins can update
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can update
   validateRequest(ProductValidation.updateProductZodSchema),
   ProductController.updateProduct
 );
 
 router.delete(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin), // Only admins can delete
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can delete
   ProductController.deleteProduct
 );
 
 router.delete(
   "/:id/force", // Use a distinct path like '/force' or '/permanent'
-  auth(ADMIN_ROLE.super_admin), // Maybe restrict to super_admin only?
+  auth(ADMIN_ROLE.SUPER_ADMIN), // Maybe restrict to super_admin only?
   ProductController.hardDeleteProduct // Calls hard delete controller
 );
 

@@ -1,14 +1,14 @@
 // src/app/modules/Category/category.service.ts
 import httpStatus from "http-status";
 import ApiError from "../../../errors/ApiError";
-import { Category } from "./category.model";
+import prisma from "../../../shared/prisma";
 import { TCategory } from "./category.interface";
-import { Product } from "../Product/product.model";
-import mongoose, { Document, Types } from "mongoose";
 
 const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
-  // Slug check remains
-  const existingCategory = await Category.findOne({ slug: payload.slug });
+  // Slug check
+  const existingCategory = await prisma.category.findUnique({
+    where: { slug: payload.slug },
+  });
   if (existingCategory) {
     throw new ApiError(
       httpStatus.CONFLICT,
@@ -16,47 +16,58 @@ const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
     );
   }
 
-  const result = await Category.create(payload);
-  return result;
+  // Parent check
+  if (payload.parentId) {
+    const parent = await prisma.category.findUnique({
+      where: { id: payload.parentId },
+    });
+    if (!parent) {
+      throw new ApiError(httpStatus.BAD_REQUEST, "Parent category not found.");
+    }
+  }
+
+  const result = await prisma.category.create({
+    data: {
+      name: payload.name,
+      slug: payload.slug,
+      description: payload.description,
+      image: payload.image,
+      order: payload.order,
+      sizeChart: payload.sizeChart,
+      parentId: payload.parentId,
+      gender: payload.gender,
+    },
+  });
+  return result as unknown as TCategory;
 };
 
 type TCategoryNode = TCategory & {
-  _id: mongoose.Types.ObjectId; // Ensure _id is present
   children?: TCategoryNode[];
 };
 
-const buildCategoryTree = (
-  categories: (Document<unknown, {}, TCategory> & TCategory)[]
-): TCategoryNode[] => {
+const buildCategoryTree = (categories: TCategory[]): TCategoryNode[] => {
   const categoryMap: { [key: string]: TCategoryNode } = {};
   const rootCategories: TCategoryNode[] = [];
 
   // First pass: Create map and identify root categories
   categories.forEach((category) => {
-    // --- FIX 2: Call .toObject() on the Mongoose document ---
-    const catPlainObject = category.toObject();
-    const catWithChildren: TCategoryNode = { ...catPlainObject, children: [] };
-    // Ensure _id is treated as a mongoose ObjectId before calling toString()
-    const id = (category._id as mongoose.Types.ObjectId).toString();
-    categoryMap[id] = catWithChildren;
+    const catWithChildren: TCategoryNode = { ...category, children: [] };
+    if (category.id) {
+      categoryMap[category.id] = catWithChildren;
+    }
 
-    if (!category.parentCategory) {
+    if (!category.parentId) {
       rootCategories.push(catWithChildren);
     }
   });
 
   // Second pass: Link children to their parents
   categories.forEach((category) => {
-    if (category.parentCategory) {
-      const parentId = (
-        category.parentCategory as mongoose.Types.ObjectId
-      ).toString();
-      const parent = categoryMap[parentId];
+    if (category.parentId && category.id) {
+      const parent = categoryMap[category.parentId];
       if (parent) {
         parent.children = parent.children || [];
-        // Use a typed _id here as well
-        const currentCategoryMapped =
-          categoryMap[(category._id as mongoose.Types.ObjectId).toString()];
+        const currentCategoryMapped = categoryMap[category.id];
         if (currentCategoryMapped) {
           parent.children.push(currentCategoryMapped);
         }
@@ -80,85 +91,95 @@ const buildCategoryTree = (
 };
 
 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
-  const allCategories = await Category.find().sort({ order: 1, name: 1 });
-  const categoryTree = buildCategoryTree(allCategories);
+  const allCategories = await prisma.category.findMany({
+    orderBy: [{ order: "asc" }, { name: "asc" }],
+  });
+  const categoryTree = buildCategoryTree(
+    allCategories as unknown as TCategory[]
+  );
   return categoryTree;
 };
 
 const getSingleCategoryFromDB = async (
   id: string
 ): Promise<TCategory | null> => {
-  // Populate parent category for context when viewing a single category
-  const result = await Category.findById(id).populate("parentCategory");
+  const result = await prisma.category.findUnique({
+    where: { id },
+    include: { parent: true },
+  });
   if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
   }
-  return result;
+  return result as unknown as TCategory;
 };
 
 const updateCategoryInDB = async (
   id: string,
   payload: Partial<TCategory>
 ): Promise<TCategory | null> => {
-  const category = await Category.findById(id);
+  const category = await prisma.category.findUnique({ where: { id } });
   if (!category) {
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
   }
 
-  // Parent validation will be handled by the pre-save hook if parentCategory is in payload
+  // Parent validation
+  if (payload.parentId) {
+    const parent = await prisma.category.findUnique({
+      where: { id: payload.parentId },
+    });
+    if (!parent) {
+      throw new ApiError(httpStatus.BAD_REQUEST, "Parent category not found.");
+    }
+  }
 
-  // Use findByIdAndUpdate, hooks won't run by default.
-  // If you need hooks (like parent validation), fetch, update, and save:
-  // Object.assign(category, payload);
-  // await category.save(); // This will trigger the pre-save hook
-  // return category;
-
-  // OR trust validation layer and update directly:
-  const result = await Category.findByIdAndUpdate(id, payload, {
-    new: true,
-    runValidators: true, // Runs basic schema validators, but not pre('save') hooks
-  }).populate("parentCategory"); // Populate parent after update
-  return result;
+  const result = await prisma.category.update({
+    where: { id },
+    data: payload,
+    include: { parent: true },
+  });
+  return result as unknown as TCategory;
 };
 
 const getAllSubcategoriesFromDB = async (): Promise<TCategory[]> => {
-  const subcategories = await Category.find({
-    parentCategory: { $ne: null },
-  })
-    .populate("parentCategory", "name slug") // Populate parent's name for context
-    .sort({ order: 1, name: "asc" });
+  const subcategories = await prisma.category.findMany({
+    where: {
+      parentId: { not: null },
+    },
+    include: {
+      parent: {
+        select: {
+          name: true,
+          slug: true,
+        },
+      },
+    },
+    orderBy: [{ order: "asc" }, { name: "asc" }],
+  });
 
-  return subcategories;
+  return subcategories as unknown as TCategory[];
 };
 
 const getSubcategoriesByParentId = async (
   parentId: string
 ): Promise<TCategory[]> => {
-  // Validate if the provided ID is a valid ObjectId
-  if (!Types.ObjectId.isValid(parentId)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Invalid parent category ID.");
-  }
-
-  const subcategories = await Category.find({ parentCategory: parentId }).sort({
-    order: 1,
-    name: "asc",
+  const subcategories = await prisma.category.findMany({
+    where: { parentId },
+    orderBy: [{ order: "asc" }, { name: "asc" }],
   });
 
-  // You could optionally check if the parent category itself exists first,
-  // but finding an empty array is also a valid response if the parent has no children or doesn't exist.
-
-  return subcategories;
+  return subcategories as unknown as TCategory[];
 };
 
-// --- MODIFIED FUNCTION ---
 const deleteCategoryFromDB = async (id: string): Promise<TCategory | null> => {
-  const category = await Category.findById(id);
+  const category = await prisma.category.findUnique({ where: { id } });
   if (!category) {
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
   }
 
   // 1. Check if any products use this category
-  const productCount = await Product.countDocuments({ category: id });
+  const productCount = await prisma.product.count({
+    where: { categoryId: id },
+  });
   if (productCount > 0) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
@@ -167,7 +188,9 @@ const deleteCategoryFromDB = async (id: string): Promise<TCategory | null> => {
   }
 
   // 2. Check if this category is a parent to any other categories
-  const childCount = await Category.countDocuments({ parentCategory: id });
+  const childCount = await prisma.category.count({
+    where: { parentId: id },
+  });
   if (childCount > 0) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
@@ -176,8 +199,10 @@ const deleteCategoryFromDB = async (id: string): Promise<TCategory | null> => {
   }
 
   // If checks pass, proceed with deletion
-  const result = await Category.findByIdAndDelete(id);
-  return result;
+  const result = await prisma.category.delete({
+    where: { id },
+  });
+  return result as unknown as TCategory;
 };
 
 export const CategoryService = {

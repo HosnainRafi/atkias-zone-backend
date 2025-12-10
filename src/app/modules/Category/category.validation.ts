@@ -1,6 +1,7 @@
 // src/app/modules/Category/category.validation.ts
 import { z } from "zod";
-import { CategoryGender } from "./category.model";
+
+const CategoryGender = ["Men", "Women", "Unisex"];
 
 // Helper to generate a URL-friendly slug
 const createSlug = (name: string): string => {

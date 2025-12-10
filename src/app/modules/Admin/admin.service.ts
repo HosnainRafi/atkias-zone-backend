@@ -1,16 +1,42 @@
 // src/app/modules/Admin/admin.service.ts
 import httpStatus from "http-status";
 import { Secret } from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import config from "../../../config";
 import ApiError from "../../../errors/ApiError";
 import { jwtHelpers } from "../../../helpers/jwtHelpers";
-import { Admin } from "./admin.model";
+import prisma from "../../../shared/prisma";
 import { TAdmin, TLoginAdmin, TLoginAdminResponse } from "./admin.interface";
 
 const createAdminIntoDB = async (payload: TAdmin): Promise<TAdmin> => {
-  // The pre-save hook in the model will handle hashing and duplicate checks
-  const result = await Admin.create(payload);
-  return result;
+  // Check if admin already exists
+  const existingAdmin = await prisma.admin.findUnique({
+    where: {
+      email: payload.email,
+    },
+  });
+
+  if (existingAdmin) {
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      "Admin with this email already exists."
+    );
+  }
+
+  // Hash password
+  const hashedPassword = await bcrypt.hash(
+    payload.password,
+    Number(config.bcrypt_salt_rounds)
+  );
+
+  const result = await prisma.admin.create({
+    data: {
+      ...payload,
+      password: hashedPassword,
+    },
+  });
+
+  return result as unknown as TAdmin;
 };
 
 const loginAdmin = async (
@@ -19,17 +45,18 @@ const loginAdmin = async (
   const { email, password } = payload;
 
   // 1. Check if admin exists
-  // We must use .select('+password') to retrieve the password
-  const admin = await Admin.findOne({ email }).select("+password");
+  const admin = await prisma.admin.findUnique({
+    where: {
+      email,
+    },
+  });
+
   if (!admin) {
     throw new ApiError(httpStatus.NOT_FOUND, "Admin account not found.");
   }
 
   // 2. Check if password is correct
-  const isPasswordMatched = await Admin.isUserPasswordMatched(
-    password,
-    admin.password
-  );
+  const isPasswordMatched = await bcrypt.compare(password, admin.password);
 
   if (!isPasswordMatched) {
     throw new ApiError(httpStatus.UNAUTHORIZED, "Incorrect email or password.");
@@ -37,7 +64,7 @@ const loginAdmin = async (
 
   // 3. Create JWT payload
   const jwtPayload = {
-    userId: admin._id,
+    userId: admin.id,
     role: admin.role,
   };
 
@@ -50,10 +77,10 @@ const loginAdmin = async (
 
   // 5. Format admin data to return (excluding password)
   const adminData = {
-    _id: admin._id.toString(),
+    id: admin.id,
     name: admin.name,
     email: admin.email,
-    role: admin.role,
+    role: admin.role as any,
   };
 
   return {

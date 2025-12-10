@@ -19,7 +19,7 @@ router.post(
 
 router.post(
   "/",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(CouponValidation.createCouponZodSchema),
   CouponController.createCoupon
 );
@@ -28,20 +28,20 @@ router.get("/", CouponController.getAllCoupons);
 
 router.get(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   CouponController.getSingleCoupon
 );
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(CouponValidation.updateCouponZodSchema),
   CouponController.updateCoupon
 );
 
 router.delete(
   "/:id",
-  auth(ADMIN_ROLE.manager, ADMIN_ROLE.super_admin),
+  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
   CouponController.deleteCoupon
 );
 
