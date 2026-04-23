@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
-import path from "path";
 import { MongoClient } from "mongodb";
+import path from "path";
 
 dotenv.config({ path: path.join(process.cwd(), ".env") });
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI as string;
 
 if (!uri) {
   throw new Error("MONGODB_URI environment variable is not set");
@@ -20,7 +20,7 @@ async function inspect() {
     const dbs = await admin.listDatabases();
     console.log(
       "Databases:",
-      dbs.databases.map((d) => d.name)
+      dbs.databases.map((d) => d.name),
     );
 
     // Assuming the main db is one of them, let's pick the most likely one or list all non-system ones
@@ -32,7 +32,7 @@ async function inspect() {
       const collections = await db.listCollections().toArray();
       console.log(
         "Collections:",
-        collections.map((c) => c.name)
+        collections.map((c) => c.name),
       );
 
       // Sample a product to see structure

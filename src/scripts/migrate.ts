@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-import path from "path";
 import {
   AdminRole,
   // CategoryGender removed - using CategoryType now
@@ -8,11 +6,13 @@ import {
   PaymentStatus,
   PrismaClient,
 } from "@prisma/client";
+import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
+import path from "path";
 
 dotenv.config({ path: path.join(process.cwd(), ".env") });
 
-const mongoUri = process.env.MONGODB_URI;
+const mongoUri = process.env.MONGODB_URI as string;
 const dbName = process.env.MONGODB_DB_NAME || "test";
 
 if (!mongoUri) {
