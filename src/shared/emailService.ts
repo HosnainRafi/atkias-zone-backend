@@ -66,7 +66,7 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
                         <tr>
                           <td width="50%" style="background: #f8f9fa; border-left: 3px solid #667eea; padding: 12px;">
                             <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 5px;">Order ID</div>
-                            <div style="font-size: 14px; color: #333; font-weight: 600;">#${orderData._id.toString().substring(0, 8)}</div>
+                            <div style="font-size: 14px; color: #333; font-weight: 600;">#${(orderData.id || orderData._id || "").toString().substring(0, 8)}</div>
                           </td>
                           <td width="50%" style="background: #f8f9fa; border-left: 3px solid #667eea; padding: 12px;">
                             <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 5px;">Order Date</div>
@@ -138,7 +138,9 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
                           </tr>
                         </thead>
                         <tbody>
-                          ${orderData.items.map((item: any) => `
+                          ${orderData.items
+                            .map(
+                              (item: any) => `
                             <tr style="border-bottom: 1px solid #e0e0e0;">
                               <td style="padding: 10px;">
                                 <img src="${item.image}" alt="${item.title}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px; display: block;">
@@ -149,13 +151,17 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
                               <td style="padding: 10px; font-size: 13px; color: #333;">৳${item.unitPrice}</td>
                               <td style="padding: 10px; font-size: 13px; color: #333; font-weight: 600;">৳${item.totalPrice}</td>
                             </tr>
-                          `).join("")}
+                          `,
+                            )
+                            .join("")}
                         </tbody>
                       </table>
                     </td>
                   </tr>
 
-                  ${orderData.orderNote ? `
+                  ${
+                    orderData.orderNote
+                      ? `
                   <!-- Order Note -->
                   <tr>
                     <td style="padding: 0 20px 30px 20px;">
@@ -169,7 +175,9 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
                       </table>
                     </td>
                   </tr>
-                  ` : ""}
+                  `
+                      : ""
+                  }
 
                   <!-- Total Section -->
                   <tr>
@@ -183,12 +191,16 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
                           <td style="font-size: 15px; color: #333;">Shipping Charge:</td>
                           <td align="right" style="font-size: 15px; color: #333;">৳${orderData.shipping}</td>
                         </tr>
-                        ${orderData.discountAmount > 0 ? `
+                        ${
+                          orderData.discountAmount > 0
+                            ? `
                         <tr>
                           <td style="font-size: 15px; color: #28a745;">Discount:</td>
                           <td align="right" style="font-size: 15px; color: #28a745;">-৳${orderData.discountAmount}</td>
                         </tr>
-                        ` : ""}
+                        `
+                            : ""
+                        }
                         <tr style="border-top: 2px solid #667eea;">
                           <td style="font-size: 18px; font-weight: bold; color: #667eea; padding-top: 15px;">Total Amount:</td>
                           <td align="right" style="font-size: 18px; font-weight: bold; color: #667eea; padding-top: 15px;">৳${orderData.totalAmount}</td>
@@ -216,7 +228,10 @@ export const sendOrderNotificationEmail = async (orderData: any) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("✅ Order notification email sent successfully:", info.messageId);
+    console.log(
+      "✅ Order notification email sent successfully:",
+      info.messageId,
+    );
     return info;
   } catch (error) {
     console.error("❌ Failed to send order notification email:", error);

@@ -5,18 +5,16 @@ import prisma from "../../../shared/prisma";
 import { TCategory } from "./category.interface";
 
 const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
-  // Slug check
   const existingCategory = await prisma.category.findUnique({
     where: { slug: payload.slug },
   });
   if (existingCategory) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      `A category with the name '${payload.name}' (slug: '${payload.slug}') already exists.`
+      `A category with slug '${payload.slug}' already exists.`,
     );
   }
 
-  // Parent check
   if (payload.parentId) {
     const parent = await prisma.category.findUnique({
       where: { id: payload.parentId },
@@ -32,104 +30,76 @@ const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
       slug: payload.slug,
       description: payload.description,
       image: payload.image,
-      order: payload.order,
+      order: payload.order ?? 0,
       sizeChart: payload.sizeChart,
       parentId: payload.parentId,
-      gender: payload.gender,
+      type: payload.type ?? "PRODUCT",
+      isActive: payload.isActive ?? true,
     },
   });
   return result as unknown as TCategory;
 };
 
-type TCategoryNode = TCategory & {
-  children?: TCategoryNode[];
-};
+type TCategoryNode = TCategory & { children?: TCategoryNode[] };
 
 const buildCategoryTree = (categories: TCategory[]): TCategoryNode[] => {
-  const categoryMap: { [key: string]: TCategoryNode } = {};
-  const rootCategories: TCategoryNode[] = [];
+  const map: Record<string, TCategoryNode> = {};
+  const roots: TCategoryNode[] = [];
 
-  // First pass: Create map and identify root categories
-  categories.forEach((category) => {
-    const catWithChildren: TCategoryNode = { ...category, children: [] };
-    if (category.id) {
-      categoryMap[category.id] = catWithChildren;
-    }
+  categories.forEach((c) => {
+    map[c.id!] = { ...c, children: [] };
+    if (!c.parentId) roots.push(map[c.id!]);
+  });
 
-    if (!category.parentId) {
-      rootCategories.push(catWithChildren);
+  categories.forEach((c) => {
+    if (c.parentId && c.id && map[c.parentId]) {
+      map[c.parentId].children!.push(map[c.id]);
     }
   });
 
-  // Second pass: Link children to their parents
-  categories.forEach((category) => {
-    if (category.parentId && category.id) {
-      const parent = categoryMap[category.parentId];
-      if (parent) {
-        parent.children = parent.children || [];
-        const currentCategoryMapped = categoryMap[category.id];
-        if (currentCategoryMapped) {
-          parent.children.push(currentCategoryMapped);
-        }
-      }
-    }
-  });
-
-  const pruneEmptyChildren = (nodes: TCategoryNode[]) => {
-    nodes.forEach((node) => {
-      if (node.children && node.children.length > 0) {
-        pruneEmptyChildren(node.children);
-      } else {
-        delete node.children;
-      }
+  const prune = (nodes: TCategoryNode[]) =>
+    nodes.forEach((n) => {
+      if (n.children && n.children.length > 0) prune(n.children);
+      else delete n.children;
     });
-  };
+  prune(roots);
 
-  pruneEmptyChildren(rootCategories);
-
-  return rootCategories;
+  return roots;
 };
 
 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
-  const allCategories = await prisma.category.findMany({
+  const all = await prisma.category.findMany({
+    where: { deleted: false },
     orderBy: [{ order: "asc" }, { name: "asc" }],
   });
-  const categoryTree = buildCategoryTree(
-    allCategories as unknown as TCategory[]
-  );
-  return categoryTree;
+  return buildCategoryTree(all as unknown as TCategory[]);
 };
 
 const getSingleCategoryFromDB = async (
-  id: string
+  id: string,
 ): Promise<TCategory | null> => {
   const result = await prisma.category.findUnique({
     where: { id },
     include: { parent: true },
   });
-  if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
-  }
+  if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
   return result as unknown as TCategory;
 };
 
 const updateCategoryInDB = async (
   id: string,
-  payload: Partial<TCategory>
+  payload: Partial<TCategory>,
 ): Promise<TCategory | null> => {
   const category = await prisma.category.findUnique({ where: { id } });
-  if (!category) {
+  if (!category)
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
-  }
 
-  // Parent validation
   if (payload.parentId) {
     const parent = await prisma.category.findUnique({
       where: { id: payload.parentId },
     });
-    if (!parent) {
+    if (!parent)
       throw new ApiError(httpStatus.BAD_REQUEST, "Parent category not found.");
-    }
   }
 
   const result = await prisma.category.update({
@@ -142,69 +112,52 @@ const updateCategoryInDB = async (
 
 const getAllSubcategoriesFromDB = async (): Promise<TCategory[]> => {
   const subcategories = await prisma.category.findMany({
-    where: {
-      parentId: { not: null },
-    },
-    include: {
-      parent: {
-        select: {
-          name: true,
-          slug: true,
-        },
-      },
-    },
+    where: { parentId: { not: null }, deleted: false },
+    include: { parent: { select: { name: true, slug: true } } },
     orderBy: [{ order: "asc" }, { name: "asc" }],
   });
-
   return subcategories as unknown as TCategory[];
 };
 
 const getSubcategoriesByParentId = async (
-  parentId: string
+  parentId: string,
 ): Promise<TCategory[]> => {
   const subcategories = await prisma.category.findMany({
-    where: { parentId },
+    where: { parentId, deleted: false },
     orderBy: [{ order: "asc" }, { name: "asc" }],
   });
-
   return subcategories as unknown as TCategory[];
 };
 
 const deleteCategoryFromDB = async (id: string): Promise<TCategory | null> => {
   const category = await prisma.category.findUnique({ where: { id } });
-  if (!category) {
+  if (!category)
     throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
-  }
 
-  // 1. Check if any products use this category
   const productCount = await prisma.product.count({
     where: { categoryId: id },
   });
   if (productCount > 0) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      `Cannot delete category: ${productCount} product(s) are associated with it.`
+      `Cannot delete: ${productCount} product(s) are associated with this category.`,
     );
   }
 
-  // 2. Check if this category is a parent to any other categories
-  const childCount = await prisma.category.count({
-    where: { parentId: id },
-  });
+  const childCount = await prisma.category.count({ where: { parentId: id } });
   if (childCount > 0) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      `Cannot delete category: It has ${childCount} sub-category(ies). Please delete or reassign them first.`
+      `Cannot delete: It has ${childCount} sub-category(ies). Reassign them first.`,
     );
   }
 
-  // If checks pass, proceed with deletion
-  const result = await prisma.category.delete({
+  const result = await prisma.category.update({
     where: { id },
+    data: { deleted: true, isActive: false },
   });
   return result as unknown as TCategory;
 };
-
 export const CategoryService = {
   createCategoryIntoDB,
   getAllCategoriesFromDB,

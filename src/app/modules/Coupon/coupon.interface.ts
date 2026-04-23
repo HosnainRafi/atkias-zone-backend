@@ -26,6 +26,6 @@ export type TCoupon = {
 // This represents the items sent from the client's cart
 export type TCouponCartItem = {
   productId: string;
-  productSizeId: string;
+  productVariantId?: string;
   quantity: number;
 };

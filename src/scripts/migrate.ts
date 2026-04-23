@@ -1,12 +1,12 @@
-import { MongoClient, ObjectId } from "mongodb";
 import {
-  PrismaClient,
   AdminRole,
-  CategoryGender,
+  // CategoryGender removed - using CategoryType now
   CouponType,
-  PaymentStatus,
   OrderStatus,
+  PaymentStatus,
+  PrismaClient,
 } from "@prisma/client";
+import { MongoClient } from "mongodb";
 
 const mongoUri =
   "mongodb+srv://vibebinarybd_db_user:1cBjiBHG5QrMHSLE@cluster0.u1nijux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -17,7 +17,7 @@ const prisma = new PrismaClient();
 const mapAdminRole = (role: string): AdminRole => {
   switch (role.toLowerCase()) {
     case "super_admin":
-      return AdminRole.SUPER_ADMIN;
+    case "admin":
     case "manager":
       return AdminRole.ADMIN;
     case "editor":
@@ -27,19 +27,7 @@ const mapAdminRole = (role: string): AdminRole => {
   }
 };
 
-const mapCategoryGender = (gender: string): CategoryGender | null => {
-  if (!gender) return null;
-  switch (gender.toLowerCase()) {
-    case "men":
-      return CategoryGender.Men;
-    case "women":
-      return CategoryGender.Women;
-    case "unisex":
-      return CategoryGender.Unisex;
-    default:
-      return null;
-  }
-};
+// CategoryGender was removed from schema
 
 const mapCouponType = (type: string): CouponType => {
   return type === "percentage" ? CouponType.percentage : CouponType.fixed;
@@ -98,7 +86,7 @@ async function migrate() {
           image: cat.image,
           order: cat.order || 0,
           sizeChart: cat.sizeChart ? JSON.stringify(cat.sizeChart) : null,
-          gender: mapCategoryGender(cat.gender),
+          // gender field removed from schema
           parentId: null, // Set later
           createdAt: cat.createdAt || new Date(),
           updatedAt: cat.updatedAt || new Date(),
@@ -133,7 +121,7 @@ async function migrate() {
       });
       if (!catExists) {
         console.warn(
-          `Skipping product ${prod.title} because category ${prod.category} does not exist.`
+          `Skipping product ${prod.title} because category ${prod.category} does not exist.`,
         );
         continue;
       }
@@ -177,15 +165,15 @@ async function migrate() {
           const sizeId = size._id ? size._id.toString() : undefined;
 
           if (sizeId) {
-            const existingSize = await prisma.productSize.findUnique({
+            const existingSize = await prisma.productVariant.findUnique({
               where: { id: sizeId },
             });
             if (!existingSize) {
-              await prisma.productSize.create({
+              await prisma.productVariant.create({
                 data: {
                   id: sizeId,
                   productId: prod._id.toString(),
-                  size: size.size,
+                  label: size.size,
                   stock: Number(size.stock),
                   priceOverride: size.priceOverride
                     ? Number(size.priceOverride)
@@ -303,8 +291,8 @@ async function migrate() {
           const pId = item.product
             ? item.product.toString()
             : item.productId
-            ? item.productId.toString()
-            : null;
+              ? item.productId.toString()
+              : null;
           if (!pId) continue;
 
           const pExists = await prisma.product.findUnique({
@@ -326,7 +314,7 @@ async function migrate() {
             quantity: Number(item.quantity),
             unitPrice: Number(item.unitPrice || item.price),
             totalPrice: Number(
-              item.totalPrice || item.quantity * (item.unitPrice || item.price)
+              item.totalPrice || item.quantity * (item.unitPrice || item.price),
             ),
           };
 

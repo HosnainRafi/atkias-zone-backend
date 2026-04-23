@@ -1,6 +1,6 @@
 // src/app/modules/Category/category.interface.ts
 
-export type TCategoryGender = "Men" | "Women" | "Unisex";
+export type TCategoryType = "PRODUCT" | "SKIN_TYPE" | "CONCERN";
 
 export type TCategory = {
   id?: string;
@@ -11,6 +11,9 @@ export type TCategory = {
   order?: number;
   sizeChart?: string;
   parentId?: string | null;
-  parentCategory?: string | null;
-  gender?: TCategoryGender;
+  type?: TCategoryType;
+  isActive?: boolean;
+  deleted?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 };

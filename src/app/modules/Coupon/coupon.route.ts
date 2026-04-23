@@ -12,37 +12,29 @@ const router = express.Router();
 router.post(
   "/apply",
   validateRequest(CouponValidation.applyCouponZodSchema),
-  CouponController.applyCoupon
+  CouponController.applyCoupon,
 );
 
 // --- Admin-Only Routes ---
 
 router.post(
   "/",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
+  auth(ADMIN_ROLE.ADMIN),
   validateRequest(CouponValidation.createCouponZodSchema),
-  CouponController.createCoupon
+  CouponController.createCoupon,
 );
 
 router.get("/", CouponController.getAllCoupons);
 
-router.get(
-  "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  CouponController.getSingleCoupon
-);
+router.get("/:id", auth(ADMIN_ROLE.ADMIN), CouponController.getSingleCoupon);
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
+  auth(ADMIN_ROLE.ADMIN),
   validateRequest(CouponValidation.updateCouponZodSchema),
-  CouponController.updateCoupon
+  CouponController.updateCoupon,
 );
 
-router.delete(
-  "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  CouponController.deleteCoupon
-);
+router.delete("/:id", auth(ADMIN_ROLE.ADMIN), CouponController.deleteCoupon);
 
 export const CouponRoutes = router;

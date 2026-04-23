@@ -1,7 +1,7 @@
 // src/app/modules/Admin/admin.interface.ts
 
 // Type for the Admin Role
-export type TAdminRole = "SUPER_ADMIN" | "ADMIN" | "EDITOR";
+export type TAdminRole = "ADMIN" | "EDITOR";
 
 export type TAdmin = {
   id?: string;

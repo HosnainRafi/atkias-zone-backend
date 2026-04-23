@@ -10,16 +10,16 @@ const router = express.Router();
 
 router.post(
   "/apply-category-discount",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
+  auth(ADMIN_ROLE.ADMIN),
   validateRequest(ProductValidation.applyCategoryDiscountZodSchema),
-  ProductController.applyCategoryDiscount
+  ProductController.applyCategoryDiscount,
 );
 
 router.post(
   "/",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can create
+  auth(ADMIN_ROLE.ADMIN), // Only admins can create
   validateRequest(ProductValidation.createProductZodSchema),
-  ProductController.createProduct
+  ProductController.createProduct,
 );
 
 router.get("/", ProductController.getAllProducts); // Anyone can view all (filtered)
@@ -28,21 +28,21 @@ router.get("/:id", ProductController.getSingleProduct); // Anyone can view one (
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can update
+  auth(ADMIN_ROLE.ADMIN), // Only admins can update
   validateRequest(ProductValidation.updateProductZodSchema),
-  ProductController.updateProduct
+  ProductController.updateProduct,
 );
 
 router.delete(
   "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN), // Only admins can delete
-  ProductController.deleteProduct
+  auth(ADMIN_ROLE.ADMIN), // Only admins can delete
+  ProductController.deleteProduct,
 );
 
 router.delete(
   "/:id/force", // Use a distinct path like '/force' or '/permanent'
-  auth(ADMIN_ROLE.SUPER_ADMIN), // Maybe restrict to super_admin only?
-  ProductController.hardDeleteProduct // Calls hard delete controller
+  auth(ADMIN_ROLE.ADMIN), // Restrict to admin only
+  ProductController.hardDeleteProduct, // Calls hard delete controller
 );
 
 export const ProductRoutes = router;

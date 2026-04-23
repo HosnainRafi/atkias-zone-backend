@@ -10,92 +10,135 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ─────────────────────────────────────────
+// ADMINS
+// ─────────────────────────────────────────
+
 enum AdminRole {
-  SUPER_ADMIN
   ADMIN
   EDITOR
 }
 
 model Admin {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
   role      AdminRole
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
-  createdCoupons      Coupon[]
-  orderStatusChanges  OrderStatusHistory[]
+  couponsCreated  Coupon[]
+  statusHistories OrderStatusHistory[]
+  bannersCreated  Banner[]
+  inventoryLogs   InventoryLog[]
+
+  @@map("admins")
 }
 
-enum CategoryGender {
-  Men
-  Women
-  Unisex
+// ─────────────────────────────────────────
+// BRANDS
+// ─────────────────────────────────────────
+
+model Brand {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  logo        String?
+  description String?
+  country     String?
+  isActive    Boolean  @default(true)
+  deleted     Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@map("brands")
+}
+
+// ─────────────────────────────────────────
+// CATEGORIES
+// ─────────────────────────────────────────
+
+enum CategoryType {
+  PRODUCT
+  SKIN_TYPE
+  CONCERN
 }
 
 model Category {
-  id             String          @id @default(uuid())
-  name           String
-  slug           String          @unique
-  description    String?
-  image          String?
-  sizeChart      String?         // Storing as string or JSON
-  order          Int             @default(0)
-  parentId       String?
-  parent         Category?       @relation("CategoryToCategory", fields: [parentId], references: [id])
-  children       Category[]      @relation("CategoryToCategory")
-  gender         CategoryGender?
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id          String       @id @default(uuid())
+  name        String
+  slug        String       @unique
+  description String?
+  image       String?
+  sizeChart   String?
+  order       Int          @default(0)
+  parentId    String?
+  type        CategoryType @default(PRODUCT)
+  isActive    Boolean      @default(true)
+  deleted     Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 
-  products       Product[]
-  coupons        Coupon[]        @relation("CategoryCoupons")
+  parent   Category?  @relation("CategorySelf", fields: [parentId], references: [id])
+  children Category[] @relation("CategorySelf")
+  products Product[]
+
+  couponCategories CouponCategory[]
+
+  @@map("categories")
 }
 
-enum CouponType {
-  percentage
-  fixed
+// ─────────────────────────────────────────
+// TAGS (skin concern / type filtering)
+// ─────────────────────────────────────────
+
+model Tag {
+  id   String @id @default(uuid())
+  name String @unique
+  slug String @unique
+
+  products ProductTag[]
+
+  @@map("tags")
 }
 
-model Coupon {
-  id                 String    @id @default(uuid())
-  code               String    @unique
-  description        String?
-  type               CouponType
-  value              Float
-  minOrderAmount     Float?
-  maxDiscountAmount  Float?
-  usageLimit         Int
-  usedCount          Int       @default(0)
-  validFrom          DateTime
-  validUntil         DateTime
-  isActive           Boolean   @default(true)
-  createdById        String
-  createdBy          Admin     @relation(fields: [createdById], references: [id])
-  appliesToAllProducts Boolean @default(true)
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+model ProductTag {
+  productId String
+  tagId     String
 
-  categories         Category[] @relation("CategoryCoupons")
-  products           Product[]  @relation("ProductCoupons")
-  orders             Order[]
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag     Tag     @relation(fields: [tagId], references: [id])
+
+  @@id([productId, tagId])
+  @@map("product_tags")
 }
+
+// ─────────────────────────────────────────
+// PRODUCTS
+// ─────────────────────────────────────────
 
 model Product {
   id             String   @id @default(uuid())
   title          String
   slug           String   @unique
   description    String?
+  howToUse       String?
+  ingredients    String?
   categoryId     String
-  category       Category @relation(fields: [categoryId], references: [id])
-  basePrice      Float
-  compareAtPrice Float?
+  brandId        String?
+  basePrice      Decimal  @db.Decimal(10, 2)
+  compareAtPrice Decimal? @db.Decimal(10, 2)
+  appPrice       Decimal? @db.Decimal(10, 2)
   images         String[]
   sku            String?  @unique
   deleted        Boolean  @default(false)
   newArrival     Boolean  @default(false)
+  isFeatured     Boolean  @default(false)
+  isOnOffer      Boolean  @default(false)
   productOrder   Int      @default(0)
   isActive       Boolean  @default(true)
   averageRating  Float    @default(0)
@@ -103,31 +146,263 @@ model Product {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  sizes          ProductSize[]
-  coupons        Coupon[]      @relation("ProductCoupons")
+  category       Category         @relation(fields: [categoryId], references: [id])
+  brand          Brand?           @relation(fields: [brandId], references: [id])
+  variants       ProductVariant[]
   orderItems     OrderItem[]
   reviews        Review[]
+  tags           ProductTag[]
+  couponProducts CouponProduct[]
+  inventoryLogs  InventoryLog[]
+
+  @@map("products")
 }
 
-model ProductSize {
-  id            String  @id @default(uuid())
+// ─────────────────────────────────────────
+// PRODUCT VARIANTS (size / weight / shade)
+// ─────────────────────────────────────────
+
+model ProductVariant {
+  id            String   @id @default(uuid())
   productId     String
-  product       Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  size          String
-  stock         Int     @default(0)
-  priceOverride Float?
+  label         String
+  stock         Int      @default(0)
+  priceOverride Decimal? @db.Decimal(10, 2)
   sku           String?
+
+  product       Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems    OrderItem[]
+  inventoryLogs InventoryLog[]
+
+  @@map("product_variants")
+}
+
+// ─────────────────────────────────────────
+// INVENTORY LOGS
+// ─────────────────────────────────────────
+
+enum InventoryChangeType {
+  RESTOCK
+  SALE
+  RETURN
+  ADJUSTMENT
+}
+
+model InventoryLog {
+  id          String              @id @default(uuid())
+  productId   String
+  variantId   String?
+  changeType  InventoryChangeType
+  qty         Int
+  note        String?
+  changedById String?
+  createdAt   DateTime            @default(now())
+
+  product   Product         @relation(fields: [productId], references: [id])
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
+  changedBy Admin?          @relation(fields: [changedById], references: [id])
+
+  @@map("inventory_logs")
+}
+
+// ─────────────────────────────────────────
+// BANNERS
+// ─────────────────────────────────────────
+
+enum BannerPosition {
+  HERO
+  PROMO
+  POPUP
+}
+
+model Banner {
+  id          String         @id @default(uuid())
+  title       String?
+  image       String
+  mobileImage String?
+  linkUrl     String?
+  position    BannerPosition @default(HERO)
+  isActive    Boolean        @default(true)
+  deleted     Boolean        @default(false)
+  order       Int            @default(0)
+  validFrom   DateTime?
+  validUntil  DateTime?
+  createdById String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  createdBy Admin @relation(fields: [createdById], references: [id])
+
+  @@map("banners")
+}
+
+// ─────────────────────────────────────────
+// HOMEPAGE SECTIONS
+// ─────────────────────────────────────────
+
+enum HomepageSectionType {
+  BANNER
+  PRODUCT_GRID
+  CATEGORY_GRID
+  BRAND_GRID
+  YOUTUBE_VIDEOS
+  ANNOUNCEMENT_BAR
+  CUSTOM_HTML
+}
+
+model HomepageSection {
+  id        String              @id @default(uuid())
+  title     String?
+  subtitle  String?
+  type      HomepageSectionType
+  order     Int                 @default(0)
+  isActive  Boolean             @default(true)
+  deleted   Boolean             @default(false)
+  config    String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  items HomepageSectionItem[]
+
+  @@map("homepage_sections")
+}
+
+enum SectionItemType {
+  PRODUCT
+  CATEGORY
+  BRAND
+  BANNER
+  VIDEO
+}
+
+model HomepageSectionItem {
+  id        String          @id @default(uuid())
+  sectionId String
+  refType   SectionItemType
+  refId     String
+  order     Int             @default(0)
+  createdAt DateTime        @default(now())
+
+  section HomepageSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("homepage_section_items")
+}
+
+// ─────────────────────────────────────────
+// YOUTUBE VIDEOS
+// ─────────────────────────────────────────
+
+model YoutubeVideo {
+  id          String   @id @default(uuid())
+  title       String
+  youtubeId   String   @unique
+  thumbnail   String?
+  description String?
+  isActive    Boolean  @default(true)
+  deleted     Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("youtube_videos")
+}
+
+// ─────────────────────────────────────────
+// ANNOUNCEMENTS
+// ─────────────────────────────────────────
+
+model Announcement {
+  id        String   @id @default(uuid())
+  text      String
+  linkUrl   String?
+  isActive  Boolean  @default(true)
+  deleted   Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+// ─────────────────────────────────────────
+// COUPONS
+// ─────────────────────────────────────────
+
+enum CouponType {
+  percentage
+  fixed
+}
+
+model Coupon {
+  id                   String     @id @default(uuid())
+  code                 String     @unique
+  description          String?
+  type                 CouponType
+  value                Decimal    @db.Decimal(10, 2)
+  minOrderAmount       Decimal?   @db.Decimal(10, 2)
+  maxDiscountAmount    Decimal?   @db.Decimal(10, 2)
+  usageLimit           Int
+  usedCount            Int        @default(0)
+  validFrom            DateTime
+  validUntil           DateTime
+  isActive             Boolean    @default(true)
+  createdById          String
+  appliesToAllProducts Boolean    @default(true)
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+
+  createdBy  Admin            @relation(fields: [createdById], references: [id])
+  orders     Order[]
+  categories CouponCategory[]
+  products   CouponProduct[]
+
+  @@map("coupons")
+}
+
+model CouponCategory {
+  couponId   String
+  categoryId String
+
+  coupon   Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@id([couponId, categoryId])
+  @@map("coupon_categories")
+}
+
+model CouponProduct {
+  couponId  String
+  productId String
+
+  coupon  Coupon  @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@id([couponId, productId])
+  @@map("coupon_products")
+}
+
+// ─────────────────────────────────────────
+// ORDERS
+// ─────────────────────────────────────────
+
+enum PaymentMethod {
+  COD
+  BKASH
+  NAGAD
+  CARD
 }
 
 enum PaymentStatus {
   pending
   paid
   failed
+  refunded
 }
 
 enum OrderStatus {
   pending
   confirmed
+  processing
   shipped
   delivered
   cancelled
@@ -135,66 +410,80 @@ enum OrderStatus {
 }
 
 model Order {
-  id              String        @id @default(uuid())
-  trackingNumber  String        @unique
-  
-  // Shipping Address (Embedded in Mongoose, flattened or JSON in Postgres)
-  customerName    String
-  mobile          String
-  district        String
-  upazila         String
-  addressLine     String
-  postalCode      String?
+  id                     String        @id @default(uuid())
+  trackingNumber         String        @unique
+  customerName           String
+  email                  String?
+  mobile                 String
+  district               String
+  upazila                String
+  addressLine            String
+  postalCode             String?
+  deliveryChargeZone     String?
+  orderNote              String?
+  isGuestOrder           Boolean       @default(true)
+  subtotal               Decimal       @db.Decimal(10, 2)
+  shipping               Decimal       @default(0) @db.Decimal(10, 2)
+  couponId               String?
+  discountAmount         Decimal       @default(0) @db.Decimal(10, 2)
+  totalAmount            Decimal       @db.Decimal(10, 2)
+  paymentMethod          PaymentMethod @default(COD)
+  paymentStatus          PaymentStatus @default(pending)
+  transactionId          String?
+  paymentGatewayResponse String?
+  status                 OrderStatus   @default(pending)
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
 
-  orderNote       String?
-  subtotal        Float
-  shipping        Float         @default(0)
-  couponId        String?
-  coupon          Coupon?       @relation(fields: [couponId], references: [id])
-  discountAmount  Float         @default(0)
-  totalAmount     Float
-  paymentStatus   PaymentStatus @default(pending)
-  status          OrderStatus   @default(pending)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-
+  coupon          Coupon?              @relation(fields: [couponId], references: [id])
   items           OrderItem[]
-  statusHistory   OrderStatusHistory[]
+  statusHistories OrderStatusHistory[]
   reviews         Review[]
+
+  @@map("orders")
 }
 
 model OrderItem {
-  id            String  @id @default(uuid())
-  orderId       String
-  order         Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  productId     String
-  product       Product @relation(fields: [productId], references: [id])
-  productSizeId String  // Keeping ID reference, though strict relation might be hard if size deleted
-  title         String  // Snapshot
-  size          String  // Snapshot
-  image         String  // Snapshot
-  quantity      Int
-  unitPrice     Float
-  totalPrice    Float
+  id               String  @id @default(uuid())
+  orderId          String
+  productId        String
+  productVariantId String?
+  title            String
+  variantLabel     String?
+  image            String
+  quantity         Int
+  unitPrice        Decimal @db.Decimal(10, 2)
+  totalPrice       Decimal @db.Decimal(10, 2)
+
+  order          Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product        Product         @relation(fields: [productId], references: [id])
+  productVariant ProductVariant? @relation(fields: [productVariantId], references: [id])
+
+  @@map("order_items")
 }
 
 model OrderStatusHistory {
   id          String      @id @default(uuid())
   orderId     String
-  order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
   status      OrderStatus
   note        String?
   changedById String?
-  changedBy   Admin?      @relation(fields: [changedById], references: [id])
   changedAt   DateTime    @default(now())
+
+  order     Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  changedBy Admin? @relation(fields: [changedById], references: [id])
+
+  @@map("order_status_histories")
 }
+
+// ─────────────────────────────────────────
+// REVIEWS
+// ─────────────────────────────────────────
 
 model Review {
   id           String   @id @default(uuid())
   productId    String
-  product      Product  @relation(fields: [productId], references: [id])
   orderId      String
-  order        Order    @relation(fields: [orderId], references: [id])
   customerName String
   rating       Int
   comment      String
@@ -202,5 +491,9 @@ model Review {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  product Product @relation(fields: [productId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
+
   @@unique([productId, orderId])
+  @@map("reviews")
 }

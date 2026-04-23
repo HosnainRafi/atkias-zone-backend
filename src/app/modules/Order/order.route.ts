@@ -12,35 +12,27 @@ const router = express.Router();
 router.post(
   "/",
   validateRequest(OrderValidation.createOrderZodSchema),
-  OrderController.createOrder
+  OrderController.createOrder,
 );
 
 router.post(
   "/track",
   validateRequest(OrderValidation.trackOrderZodSchema),
-  OrderController.trackOrder
+  OrderController.trackOrder,
 );
 
 // --- Admin-Only Routes ---
 
-router.get(
-  "/",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  OrderController.getAllOrders
-);
+router.get("/", auth(ADMIN_ROLE.ADMIN), OrderController.getAllOrders);
 
-router.get(
-  "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  OrderController.getSingleOrder
-);
+router.get("/:id", auth(ADMIN_ROLE.ADMIN), OrderController.getSingleOrder);
 
 // Route for admin to update order status
 router.patch(
   "/:id/status",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
+  auth(ADMIN_ROLE.ADMIN),
   validateRequest(OrderValidation.updateOrderStatusZodSchema),
-  OrderController.updateOrderStatus
+  OrderController.updateOrderStatus,
 );
 
 export const OrderRoutes = router;

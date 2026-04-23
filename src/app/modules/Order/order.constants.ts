@@ -1,26 +1,43 @@
-// src/app/modules/Order/order.constants.ts
+﻿// src/app/modules/Order/order.constants.ts
+export const ADMIN_ROLE_ORDER = {
+  ADMIN: "ADMIN",
+  EDITOR: "EDITOR",
+} as const;
+
 export const ORDER_STATUS = {
-  pending: "pending", // Order placed, awaiting confirmation
-  confirmed: "confirmed", // Admin confirmed the order
-  shipped: "shipped", // Order handed over to delivery
-  delivered: "delivered", // Customer received the order
-  cancelled: "cancelled", // Order cancelled
-  refunded: "refunded", // Order refunded
+  pending: "pending",
+  confirmed: "confirmed",
+  processing: "processing",
+  shipped: "shipped",
+  delivered: "delivered",
+  cancelled: "cancelled",
+  refunded: "refunded",
 } as const;
 
 export const OrderStatus = [
   "pending",
   "confirmed",
+  "processing",
   "shipped",
   "delivered",
   "cancelled",
   "refunded",
-];
+] as const;
 
 export const PAYMENT_STATUS = {
   pending: "pending",
-  paid: "paid", // For now, this will be set on 'delivered' or 'confirmed'
+  paid: "paid",
   failed: "failed",
+  refunded: "refunded",
 } as const;
 
-export const PaymentStatus = ["pending", "paid", "failed"];
+export const PaymentStatus = ["pending", "paid", "failed", "refunded"] as const;
+
+export const PAYMENT_METHOD = {
+  COD: "COD",
+  BKASH: "BKASH",
+  NAGAD: "NAGAD",
+  CARD: "CARD",
+} as const;
+
+export const PaymentMethod = ["COD", "BKASH", "NAGAD", "CARD"] as const;

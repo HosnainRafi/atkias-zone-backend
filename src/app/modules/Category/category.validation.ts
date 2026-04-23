@@ -1,38 +1,15 @@
 // src/app/modules/Category/category.validation.ts
 import { z } from "zod";
 
-const CategoryGender = ["Men", "Women", "Unisex"];
+const CategoryType = ["PRODUCT", "SKIN_TYPE", "CONCERN"] as const;
 
-// Helper to generate a URL-friendly slug
 const createSlug = (name: string): string => {
   return name
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "") // Remove special chars
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-"); // Remove consecutive hyphens
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
 };
-
-// const sizeChartZodSchema = z
-//   .object({
-//     headers: z
-//       .array(z.string().min(1))
-//       .min(1, { message: "Size chart must have at least one header." }),
-//     rows: z
-//       .array(z.array(z.string()))
-//       .min(1, { message: "Size chart must have at least one row." }),
-//   })
-//   .refine(
-//     (data) => {
-//       // Ensure all rows have the same number of columns as the headers
-//       return data.rows.every((row) => row.length === data.headers.length);
-//     },
-//     {
-//       message:
-//         "All size chart rows must have the same number of entries as the headers.",
-//       path: ["rows"],
-//     }
-//   )
-//   .optional();
 
 const sizeChartZodSchema = z
   .string()
@@ -47,15 +24,15 @@ const createCategoryZodSchema = z.object({
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
       sizeChart: sizeChartZodSchema,
-      parentCategory: z.string().optional().nullable(),
+      parentId: z.string().optional().nullable(),
       order: z.coerce.number().int().optional().default(0),
-      gender: z.enum([...CategoryGender] as [string, ...string[]]).optional(),
+      type: z.enum(CategoryType).optional().default("PRODUCT"),
+      isActive: z.boolean().optional().default(true),
     })
     .transform((data) => ({
       ...data,
       slug: createSlug(data.name),
-      // Ensure empty string becomes null for the DB default
-      parentCategory: data.parentCategory === "" ? null : data.parentCategory,
+      parentId: data.parentId === "" ? null : data.parentId,
     })),
 });
 
@@ -66,29 +43,20 @@ const updateCategoryZodSchema = z.object({
       description: z.string().optional(),
       image: z.string().url({ message: "Invalid image URL" }).optional(),
       sizeChart: sizeChartZodSchema,
-      parentCategory: z.string().optional().nullable(),
+      parentId: z.string().optional().nullable(),
       order: z.coerce.number().int().optional(),
-      gender: z
-        .enum([...CategoryGender] as [string, ...string[]])
-        .optional()
-        .nullable(),
+      type: z.enum(CategoryType).optional(),
+      isActive: z.boolean().optional(),
     })
     .transform((data) => {
-      const transformedData: any = { ...data };
+      const transformedData: Record<string, unknown> = { ...data };
       if (data.name) {
         transformedData.slug = createSlug(data.name);
       }
-      // Handle parentCategory update explicitly
-      if (data.parentCategory !== undefined) {
-        transformedData.parentCategory =
-          data.parentCategory === "" || data.parentCategory === null
-            ? null
-            : data.parentCategory;
+      if (data.parentId !== undefined) {
+        transformedData.parentId =
+          data.parentId === "" || data.parentId === null ? null : data.parentId;
       }
-      if (data.gender !== undefined) {
-        transformedData.gender = data.gender === "" ? null : data.gender;
-      }
-
       return transformedData;
     }),
 });

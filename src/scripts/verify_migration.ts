@@ -19,15 +19,16 @@ async function verify() {
 
     const lastOrder = await prisma.order.findFirst({
       orderBy: { createdAt: "desc" },
-      include: { items: true, statusHistory: true },
+      include: { statusHistories: true },
     });
 
     if (lastOrder) {
       console.log("\nLast Order:");
       console.log(`ID: ${lastOrder.id}`);
       console.log(`Customer: ${lastOrder.customerName}`);
-      console.log(`Items: ${lastOrder.items.length}`);
-      console.log(`History: ${lastOrder.statusHistory.length}`);
+      console.log(
+        `History: ${(lastOrder as any).statusHistories?.length ?? 0}`,
+      );
     }
   } catch (e) {
     console.error(e);

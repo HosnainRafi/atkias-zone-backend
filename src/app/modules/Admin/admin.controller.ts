@@ -8,7 +8,6 @@ import { AdminService } from "./admin.service";
 
 const createAdmin = catchAsync(async (req: Request, res: Response) => {
   const result = await AdminService.createAdminIntoDB(req.body);
-
   sendResponse<TAdmin>(res, {
     statusCode: httpStatus.CREATED,
     success: true,
@@ -19,7 +18,6 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
 
 const loginAdmin = catchAsync(async (req: Request, res: Response) => {
   const result = await AdminService.loginAdmin(req.body);
-
   sendResponse<TLoginAdminResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -28,7 +26,52 @@ const loginAdmin = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMe = catchAsync(async (req: Request, res: Response) => {
+  const result = await AdminService.getMeFromDB(req.user!.userId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Profile retrieved!",
+    data: result,
+  });
+});
+
+const getAllAdmins = catchAsync(async (req: Request, res: Response) => {
+  const result = await AdminService.getAllAdminsFromDB();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Admins retrieved!",
+    data: result,
+  });
+});
+
+const changePassword = catchAsync(async (req: Request, res: Response) => {
+  await AdminService.changePasswordInDB(req.user!.userId, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Password changed successfully!",
+    data: null,
+  });
+});
+
+const updateAdmin = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AdminService.updateAdminInDB(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Admin updated!",
+    data: result,
+  });
+});
+
 export const AdminController = {
   createAdmin,
   loginAdmin,
+  getMe,
+  getAllAdmins,
+  changePassword,
+  updateAdmin,
 };

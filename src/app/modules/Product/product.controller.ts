@@ -18,16 +18,16 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
-  // Filtering & Pagination
   const filters = pick(req.query, [
     "searchTerm",
     "category",
-    "size",
+    "brand",
     "minPrice",
     "maxPrice",
     "newArrival",
+    "isFeatured",
+    "isOnOffer",
     "isActive",
-    "gender",
   ]);
   const options = pick(req.query, ["page", "limit", "sortBy", "sortOrder"]);
 
@@ -84,7 +84,7 @@ const applyCategoryDiscount = catchAsync(
       message: `${result.modifiedCount} products updated successfully!`,
       data: result,
     });
-  }
+  },
 );
 
 const hardDeleteProduct = catchAsync(async (req: Request, res: Response) => {

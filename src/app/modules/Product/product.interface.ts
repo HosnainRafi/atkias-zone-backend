@@ -1,30 +1,35 @@
 // src/app/modules/Product/product.interface.ts
+import { Decimal } from "@prisma/client/runtime/library";
 
-// Interface for the embedded size object
-export type TProductSize = {
+export type TProductVariant = {
   id?: string;
-  size: string;
+  label: string; // e.g. "150ml", "50g", "Shade: Rose"
   stock: number;
-  priceOverride?: number | null;
+  priceOverride?: Decimal | number | null;
   sku?: string | null;
   productId?: string;
 };
 
-// Interface for the main Product
 export type TProduct = {
   id?: string;
   title: string;
   slug: string;
   description?: string | null;
+  howToUse?: string | null;
+  ingredients?: string | null;
   categoryId: string;
-  basePrice: number;
-  compareAtPrice?: number | null;
+  brandId?: string | null;
+  basePrice: Decimal | number;
+  compareAtPrice?: Decimal | number | null;
+  appPrice?: Decimal | number | null;
   images: string[];
-  sizes?: TProductSize[];
+  variants?: TProductVariant[];
   sku?: string | null;
   isActive: boolean;
   averageRating: number;
   newArrival: boolean;
+  isFeatured: boolean;
+  isOnOffer: boolean;
   productOrder: number;
   deleted: boolean;
   createdAt?: Date;

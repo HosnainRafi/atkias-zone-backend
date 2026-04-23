@@ -12,32 +12,24 @@ const router = express.Router();
 router.post(
   "/",
   validateRequest(ReviewValidation.createReviewZodSchema),
-  ReviewController.createReview
+  ReviewController.createReview,
 );
 
 router.get(
   "/product/:productId",
-  ReviewController.getApprovedReviewsForProduct
+  ReviewController.getApprovedReviewsForProduct,
 );
 
 // --- Admin Routes ---
-router.get(
-  "/",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  ReviewController.getAllReviews
-);
+router.get("/", auth(ADMIN_ROLE.ADMIN), ReviewController.getAllReviews);
 
 router.patch(
   "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
+  auth(ADMIN_ROLE.ADMIN),
   validateRequest(ReviewValidation.updateReviewZodSchema),
-  ReviewController.updateReview
+  ReviewController.updateReview,
 );
 
-router.delete(
-  "/:id",
-  auth(ADMIN_ROLE.ADMIN, ADMIN_ROLE.SUPER_ADMIN),
-  ReviewController.deleteReview
-);
+router.delete("/:id", auth(ADMIN_ROLE.ADMIN), ReviewController.deleteReview);
 
 export const ReviewRoutes = router;
