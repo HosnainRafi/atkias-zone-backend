@@ -1,7 +1,14 @@
+import dotenv from "dotenv";
+import path from "path";
 import { MongoClient } from "mongodb";
 
-const uri =
-  "mongodb+srv://vibebinarybd_db_user:1cBjiBHG5QrMHSLE@cluster0.u1nijux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+dotenv.config({ path: path.join(process.cwd(), ".env") });
+
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error("MONGODB_URI environment variable is not set");
+}
 
 async function inspect() {
   const client = new MongoClient(uri);

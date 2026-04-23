@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+import path from "path";
 import {
   AdminRole,
   // CategoryGender removed - using CategoryType now
@@ -8,9 +10,14 @@ import {
 } from "@prisma/client";
 import { MongoClient } from "mongodb";
 
-const mongoUri =
-  "mongodb+srv://vibebinarybd_db_user:1cBjiBHG5QrMHSLE@cluster0.u1nijux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const dbName = "test";
+dotenv.config({ path: path.join(process.cwd(), ".env") });
+
+const mongoUri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_DB_NAME || "test";
+
+if (!mongoUri) {
+  throw new Error("MONGODB_URI environment variable is not set");
+}
 
 const prisma = new PrismaClient();
 
