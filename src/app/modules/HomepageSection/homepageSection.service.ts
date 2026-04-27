@@ -1,11 +1,11 @@
 // src/app/modules/HomepageSection/homepageSection.service.ts
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import prisma from "../../../shared/prisma";
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import prisma from '../../../shared/prisma';
 import {
   THomepageSection,
   THomepageSectionItem,
-} from "./homepageSection.interface";
+} from './homepageSection.interface';
 
 const createSectionIntoDB = async (
   payload: THomepageSection,
@@ -17,7 +17,7 @@ const createSectionIntoDB = async (
       ...sectionData,
       items: items && items.length > 0 ? { create: items } : undefined,
     } as any,
-    include: { items: { orderBy: { order: "asc" } } },
+    include: { items: { orderBy: { order: 'asc' } } },
   });
   return result as unknown as THomepageSection;
 };
@@ -27,8 +27,8 @@ const getAllSectionsFromDB = async (
 ): Promise<THomepageSection[]> => {
   const result = await prisma.homepageSection.findMany({
     where: { deleted: false, ...(activeOnly ? { isActive: true } : {}) },
-    orderBy: { order: "asc" },
-    include: { items: { orderBy: { order: "asc" } } },
+    orderBy: { order: 'asc' },
+    include: { items: { orderBy: { order: 'asc' } } },
   });
   return result as unknown as THomepageSection[];
 };
@@ -38,10 +38,10 @@ const getSingleSectionFromDB = async (
 ): Promise<THomepageSection> => {
   const result = await prisma.homepageSection.findFirst({
     where: { id, deleted: false },
-    include: { items: { orderBy: { order: "asc" } } },
+    include: { items: { orderBy: { order: 'asc' } } },
   });
   if (!result)
-    throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Homepage section not found.');
   return result as unknown as THomepageSection;
 };
 
@@ -51,12 +51,12 @@ const updateSectionInDB = async (
 ): Promise<THomepageSection> => {
   const section = await prisma.homepageSection.findUnique({ where: { id } });
   if (!section)
-    throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Homepage section not found.');
 
   const result = await prisma.homepageSection.update({
     where: { id },
     data: payload as any,
-    include: { items: { orderBy: { order: "asc" } } },
+    include: { items: { orderBy: { order: 'asc' } } },
   });
   return result as unknown as THomepageSection;
 };
@@ -64,7 +64,7 @@ const updateSectionInDB = async (
 const deleteSectionFromDB = async (id: string): Promise<THomepageSection> => {
   const section = await prisma.homepageSection.findUnique({ where: { id } });
   if (!section)
-    throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Homepage section not found.');
 
   const result = await prisma.homepageSection.update({
     where: { id },
@@ -76,13 +76,13 @@ const deleteSectionFromDB = async (id: string): Promise<THomepageSection> => {
 
 const addItemToSectionInDB = async (
   sectionId: string,
-  payload: Omit<THomepageSectionItem, "sectionId">,
+  payload: Record<string, unknown>,
 ): Promise<THomepageSectionItem> => {
   const section = await prisma.homepageSection.findFirst({
     where: { id: sectionId, deleted: false },
   });
   if (!section)
-    throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Homepage section not found.');
 
   const result = await prisma.homepageSectionItem.create({
     data: { ...payload, sectionId } as any,
@@ -92,13 +92,13 @@ const addItemToSectionInDB = async (
 
 const updateItemInDB = async (
   itemId: string,
-  payload: Partial<THomepageSectionItem>,
+  payload: Record<string, unknown>,
 ): Promise<THomepageSectionItem> => {
   const item = await prisma.homepageSectionItem.findUnique({
     where: { id: itemId },
   });
   if (!item)
-    throw new ApiError(httpStatus.NOT_FOUND, "Section item not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Section item not found.');
 
   const result = await prisma.homepageSectionItem.update({
     where: { id: itemId },
@@ -114,7 +114,7 @@ const deleteItemFromDB = async (
     where: { id: itemId },
   });
   if (!item)
-    throw new ApiError(httpStatus.NOT_FOUND, "Section item not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Section item not found.');
 
   const result = await prisma.homepageSectionItem.delete({
     where: { id: itemId },

@@ -1,15 +1,15 @@
 ﻿// src/app/modules/Product/product.service.ts
-import { Prisma } from "@prisma/client";
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import { IGenericResponse } from "../../../interfaces/common";
-import calculatePagination from "../../../shared/calculatePagination";
-import prisma from "../../../shared/prisma";
-import { TProduct } from "./product.interface";
+import { Prisma } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import { IGenericResponse } from '../../../interfaces/common';
+import calculatePagination from '../../../shared/calculatePagination';
+import prisma from '../../../shared/prisma';
+import { TProduct } from './product.interface';
 
 // --- Create Product ---
 const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
-  const { variants, ...rest } = payload;
+  const { variants, tagIds, ...rest } = payload;
 
   const existingProduct = await prisma.product.findUnique({
     where: { slug: payload.slug },
@@ -17,7 +17,7 @@ const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
   if (existingProduct) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      "Product with this slug already exists.",
+      'Product with this slug already exists.',
     );
   }
 
@@ -25,14 +25,32 @@ const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
     const brand = await prisma.brand.findUnique({
       where: { id: rest.brandId },
     });
-    if (!brand) throw new ApiError(httpStatus.BAD_REQUEST, "Brand not found.");
+    if (!brand) throw new ApiError(httpStatus.BAD_REQUEST, 'Brand not found.');
+  }
+
+  if (tagIds?.length) {
+    const existingTags = await prisma.tag.findMany({
+      where: { id: { in: tagIds } },
+      select: { id: true },
+    });
+    if (existingTags.length !== new Set(tagIds).size) {
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        'One or more tags are invalid.',
+      );
+    }
   }
 
   const result = await prisma.product.create({
     data: {
       ...rest,
+      tags: tagIds?.length
+        ? {
+            create: tagIds.map(tagId => ({ tagId })),
+          }
+        : undefined,
       variants: {
-        create: variants?.map((v) => ({
+        create: variants?.map(v => ({
           label: v.label,
           stock: v.stock,
           priceOverride: v.priceOverride as any,
@@ -40,7 +58,12 @@ const createProductIntoDB = async (payload: TProduct): Promise<TProduct> => {
         })),
       },
     },
-    include: { variants: true, category: true, brand: true },
+    include: {
+      variants: true,
+      category: true,
+      brand: true,
+      tags: { include: { tag: true } },
+    },
   });
   return result as unknown as TProduct;
 };
@@ -64,7 +87,7 @@ const getAllProductsFromDB = async (
     page?: number;
     limit?: number;
     sortBy?: string;
-    sortOrder?: "asc" | "desc";
+    sortOrder?: 'asc' | 'desc';
   },
 ): Promise<IGenericResponse<TProduct[]>> => {
   const {
@@ -85,10 +108,10 @@ const getAllProductsFromDB = async (
   if (searchTerm) {
     andConditions.push({
       OR: [
-        { title: { contains: searchTerm, mode: "insensitive" } },
-        { sku: { contains: searchTerm, mode: "insensitive" } },
-        { category: { name: { contains: searchTerm, mode: "insensitive" } } },
-        { brand: { name: { contains: searchTerm, mode: "insensitive" } } },
+        { title: { contains: searchTerm, mode: 'insensitive' } },
+        { sku: { contains: searchTerm, mode: 'insensitive' } },
+        { category: { name: { contains: searchTerm, mode: 'insensitive' } } },
+        { brand: { name: { contains: searchTerm, mode: 'insensitive' } } },
       ],
     });
   }
@@ -101,10 +124,10 @@ const getAllProductsFromDB = async (
       const subs = await prisma.category.findMany({
         where: { parentId: categoryDoc.id },
       });
-      const ids = [categoryDoc.id, ...subs.map((c) => c.id)];
+      const ids = [categoryDoc.id, ...subs.map(c => c.id)];
       andConditions.push({ categoryId: { in: ids } });
     } else {
-      andConditions.push({ id: "non-existent" });
+      andConditions.push({ id: 'non-existent' });
     }
   }
 
@@ -113,7 +136,7 @@ const getAllProductsFromDB = async (
       where: { OR: [{ slug: brand }, { id: brand }] },
     });
     if (brandDoc) andConditions.push({ brandId: brandDoc.id });
-    else andConditions.push({ id: "non-existent" });
+    else andConditions.push({ id: 'non-existent' });
   }
 
   if (minPrice)
@@ -121,23 +144,28 @@ const getAllProductsFromDB = async (
   if (maxPrice)
     andConditions.push({ basePrice: { lte: Number(maxPrice) as any } });
   if (isActive !== undefined)
-    andConditions.push({ isActive: isActive === "true" });
+    andConditions.push({ isActive: isActive === 'true' });
   if (newArrival !== undefined)
-    andConditions.push({ newArrival: newArrival === "true" });
+    andConditions.push({ newArrival: newArrival === 'true' });
   if (isFeatured !== undefined)
-    andConditions.push({ isFeatured: isFeatured === "true" });
+    andConditions.push({ isFeatured: isFeatured === 'true' });
   if (isOnOffer !== undefined)
-    andConditions.push({ isOnOffer: isOnOffer === "true" });
+    andConditions.push({ isOnOffer: isOnOffer === 'true' });
 
   const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
 
   const [result, total] = await Promise.all([
     prisma.product.findMany({
       where: whereCondition,
-      include: { variants: true, category: true, brand: true },
+      include: {
+        variants: true,
+        category: true,
+        brand: true,
+        tags: { include: { tag: true } },
+      },
       orderBy: sortBy
-        ? { [sortBy]: sortOrder || "asc" }
-        : { productOrder: "asc" },
+        ? { [sortBy]: sortOrder || 'asc' }
+        : { productOrder: 'asc' },
       skip,
       take: limit,
     }),
@@ -159,10 +187,11 @@ const getSingleProductFromDB = async (
       variants: true,
       category: true,
       brand: true,
+      tags: { include: { tag: true } },
       reviews: { where: { isApproved: true } },
     },
   });
-  if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  if (!result) throw new ApiError(httpStatus.NOT_FOUND, 'Product not found.');
   return result as unknown as TProduct;
 };
 
@@ -170,22 +199,44 @@ const updateProductInDB = async (
   id: string,
   payload: Partial<TProduct>,
 ): Promise<TProduct | null> => {
-  const { variants, ...rest } = payload;
+  const { variants, tagIds, ...rest } = payload;
 
   const product = await prisma.product.findUnique({ where: { id } });
-  if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  if (!product) throw new ApiError(httpStatus.NOT_FOUND, 'Product not found.');
+
+  if (tagIds) {
+    const existingTags = await prisma.tag.findMany({
+      where: { id: { in: tagIds } },
+      select: { id: true },
+    });
+    if (existingTags.length !== new Set(tagIds).size) {
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        'One or more tags are invalid.',
+      );
+    }
+  }
 
   if (variants) {
     await prisma.productVariant.deleteMany({ where: { productId: id } });
+  }
+
+  if (tagIds) {
+    await prisma.productTag.deleteMany({ where: { productId: id } });
   }
 
   const result = await prisma.product.update({
     where: { id },
     data: {
       ...rest,
+      tags: tagIds
+        ? {
+            create: tagIds.map(tagId => ({ tagId })),
+          }
+        : undefined,
       variants: variants
         ? {
-            create: variants.map((v) => ({
+            create: variants.map(v => ({
               label: v.label,
               stock: v.stock,
               priceOverride: v.priceOverride as any,
@@ -194,14 +245,19 @@ const updateProductInDB = async (
           }
         : undefined,
     },
-    include: { category: true, brand: true, variants: true },
+    include: {
+      category: true,
+      brand: true,
+      variants: true,
+      tags: { include: { tag: true } },
+    },
   });
   return result as unknown as TProduct;
 };
 
 type TDiscountPayload = {
   categoryId: string;
-  discountType: "percentage" | "fixed";
+  discountType: 'percentage' | 'fixed';
   discountValue: number;
 };
 
@@ -214,7 +270,7 @@ const applyCategoryDiscountToDB = async (
     where: { id: categoryId },
   });
   if (!category)
-    throw new ApiError(httpStatus.NOT_FOUND, "Category not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Category not found.');
 
   const products = await prisma.product.findMany({
     where: { categoryId, isActive: true },
@@ -222,15 +278,15 @@ const applyCategoryDiscountToDB = async (
   if (products.length === 0)
     throw new ApiError(
       httpStatus.NOT_FOUND,
-      "No active products in this category.",
+      'No active products in this category.',
     );
 
   let modifiedCount = 0;
   await prisma.$transaction(
-    products.map((product) => {
+    products.map(product => {
       const old = Number(product.basePrice);
       let newPrice =
-        discountType === "percentage"
+        discountType === 'percentage'
           ? old * (1 - discountValue / 100)
           : old - discountValue;
       newPrice = Math.max(0, parseFloat(newPrice.toFixed(2)));
@@ -247,7 +303,7 @@ const applyCategoryDiscountToDB = async (
 
 const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
   const product = await prisma.product.findUnique({ where: { id } });
-  if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  if (!product) throw new ApiError(httpStatus.NOT_FOUND, 'Product not found.');
   const result = await prisma.product.update({
     where: { id },
     data: { isActive: false, deleted: true },
@@ -257,7 +313,7 @@ const deleteProductFromDB = async (id: string): Promise<TProduct | null> => {
 
 const hardDeleteProductFromDB = async (id: string) => {
   const product = await prisma.product.findUnique({ where: { id } });
-  if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found.");
+  if (!product) throw new ApiError(httpStatus.NOT_FOUND, 'Product not found.');
 
   const orderCount = await prisma.orderItem.count({ where: { productId: id } });
   if (orderCount > 0) {
@@ -267,7 +323,7 @@ const hardDeleteProductFromDB = async (id: string) => {
     });
     return {
       deleted: false,
-      message: "Product has orders; soft-deleted instead.",
+      message: 'Product has orders; soft-deleted instead.',
       product: soft as unknown as TProduct,
     };
   }
@@ -278,7 +334,7 @@ const hardDeleteProductFromDB = async (id: string) => {
 
   return {
     deleted: true,
-    message: "Product permanently deleted.",
+    message: 'Product permanently deleted.',
     product: result as unknown as TProduct,
   };
 };

@@ -324,3 +324,1414 @@ Please make sure your database server is running at `165.101.188.2:5432`.
     at fulfilled (C:\Users\hp\Projects\atkias-zone-backend\src\app\modules\Category\category.service.ts:5:58) {
   statusCode: 404
 }
+[2026-04-23T08:32:54.146Z] [INFO] ⏳ Connecting to database...
+[2026-04-23T08:32:54.215Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-23T08:32:55.488Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-23T08:32:56.342Z] [INFO] 🛢️  Database connected successfully
+[2026-04-23T08:33:01.958Z] [INFO] ⏳ Connecting to database...
+[2026-04-23T08:33:01.976Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-23T08:33:02.143Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-23T08:33:04.151Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T11:17:34.910Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:17:35.469Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:17:37.681Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:17:39.157Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T11:25:15.423Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:25:15.450Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:25:16.227Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:25:18.340Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T11:27:44.803Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:27:44.818Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:27:45.812Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:27:47.053Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T11:27:50.383Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:27:50.397Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:27:51.505Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:27:54.921Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:27:54.939Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:27:55.323Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:27:57.416Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T11:30:17.178Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:30:17.195Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:30:19.616Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:30:22.318Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-04-25T11:37:41.995Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:37:42.033Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:37:47.038Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-04-25T11:42:31.172Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T11:42:31.210Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T11:42:33.902Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T11:42:35.434Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T12:29:59.386Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.admin.findUnique()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:48:36
+
+  45 const { email, password } = payload;
+  46 
+  47 // 1. Check if admin exists
+→ 48 const admin = await prisma.admin.findUnique(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 9)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.loginAdmin (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:48:17)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2024',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Admin', connection_limit: 9, timeout: 10 }
+}
+[2026-04-25T12:30:47.423Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T12:30:47.467Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T12:30:49.447Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T12:30:50.397Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T19:10:25.832Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.admin.findUnique()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:36
+
+  92 const getMeFromDB = async (
+  93   adminId: string,
+  94 ): Promise<Omit<TAdmin, "password">> => {
+→ 95   const admin = await prisma.admin.findUnique(
+Can't reach database server at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:17)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Admin',
+    database_host: 'ep-rough-feather-amy7hm4l-pooler.c-5.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-25T19:14:39.484Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:14:40.798Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:14:42.133Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:19:39.350Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:19:40.156Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:16.156Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:18.297Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:19.347Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:20.195Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:20.547Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:20.716Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:20.932Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:21.147Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:43:31.197Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:44:33.529Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T19:44:33.680Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T19:44:35.713Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T19:44:36.036Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T19:44:38.483Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:44:53.659Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:45:37.446Z] [INFO] ⏳ Connecting to database...
+[2026-04-25T19:45:37.466Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-25T19:45:40.716Z] [INFO] 🛢️  Database connected successfully
+[2026-04-25T19:45:42.310Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-25T19:45:42.820Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-25T19:53:41.249Z] [ERROR] globalErrorHandler ~ ApiError: You are not authorized
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:16:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 401
+}
+[2026-04-26T04:06:34.955Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:06:35.725Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:06:37.580Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:06:38.747Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:14:27.238Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:35:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at param (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:600:14)
+    at param (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:610:14)
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:664:3) {
+  statusCode: 403
+}
+[2026-04-26T04:14:39.978Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:35:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at param (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:600:14)
+    at param (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:610:14)
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:664:3) {
+  statusCode: 403
+}
+[2026-04-26T04:18:01.865Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:18:01.965Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:18:03.238Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:18:03.977Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:18:07.190Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:18:07.208Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:18:08.113Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:18:09.134Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:18:13.811Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:18:13.827Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:18:13.993Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:18:15.845Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:18:45.478Z] [ERROR] globalErrorHandler ~ ApiError: Cannot delete: It has 1 sub-category(ies). Reassign them first.
+    at Object.deleteCategoryFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:149:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:78:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 400
+}
+[2026-04-26T04:19:15.625Z] [ERROR] globalErrorHandler ~ ApiError: Cannot delete: It has 1 sub-category(ies). Reassign them first.
+    at Object.deleteCategoryFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:149:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:78:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 400
+}
+[2026-04-26T04:21:23.746Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:21:24.228Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:21:24.836Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: [1;91merror[0m: [1mError validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.[0m
+  [1;94m-->[0m  [4mschema.prisma:10[0m
+[1;94m   | [0m
+[1;94m 9 | [0m  provider = "postgresql"
+[1;94m10 | [0m  url      = [1;91menv("DATABASE_URL")[0m
+[1;94m   | [0m
+
+Validation Error Count: 1
+    at t (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1012'
+}
+[2026-04-26T04:22:44.948Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:22:45.333Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:22:45.832Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:22:50.360Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-04-26T04:22:50.381Z] [ERROR] globalErrorHandler ~ PrismaClientInitializationError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[2026-04-26T04:22:56.886Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:24:45.522Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:24:45.538Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:24:46.959Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:24:47.526Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:24:47.817Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:24:52.186Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:24:54.482Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:24:58.792Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:25:11.880Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:25:13.182Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:25:15.474Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:26:08.175Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:26:22.127Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findUnique()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:8:50
+
+  5 import { TCategory } from "./category.interface";
+  6 
+  7 const createCategoryIntoDB = async (payload: TCategory): Promise<TCategory> => {
+→ 8   const existingCategory = await prisma.category.findUnique(
+The table `public.categories` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createCategoryIntoDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:8:28)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:10:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', table: 'public.categories' }
+}
+[2026-04-26T04:31:23.441Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:31:23.461Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:31:24.023Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:31:25.449Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:44:59.148Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T04:44:59.338Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T04:45:00.722Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T04:45:01.280Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T04:49:10.935Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Gel-Cleanser-1777178950394-190822481.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Gel-Cleanser-1777178950394-190822481.webp"
+}
+[2026-04-26T04:49:10.952Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T04:52:52.120Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Moisturizers-1777179171517-491234992.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Moisturizers-1777179171517-491234992.webp"
+}
+[2026-04-26T04:52:52.122Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T04:56:15.996Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Gel-Moisturizer-1777179375805-638127120.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Gel-Moisturizer-1777179375805-638127120.webp"
+}
+[2026-04-26T04:56:15.998Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T04:58:42.889Z] [ERROR] globalErrorHandler ~ Error: Only image files are allowed (jpeg, jpg, png, gif, webp)
+    at imageFilter (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\config\multer.config.ts:56:7)
+    at wrappedFileFilter (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\multer@2.1.1\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\multer@2.1.1\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:508:28)
+    at HeaderParser.cb (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\streamsearch@1.1.0\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\streamsearch@1.1.0\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:567:19) {
+  storageErrors: []
+}
+[2026-04-26T05:01:44.796Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Sunscreen-1777179704576-982956125.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Sunscreen-1777179704576-982956125.webp"
+}
+[2026-04-26T05:01:44.803Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T05:03:22.696Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Vitamin-C-Serum-1777179802365-24128082.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Vitamin-C-Serum-1777179802365-24128082.webp"
+}
+[2026-04-26T05:03:22.699Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T05:05:56.632Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Retinol-Serum-1777179956314-114793763.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Retinol-Serum-1777179956314-114793763.webp"
+}
+[2026-04-26T05:05:56.634Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T05:14:12.709Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T05:14:13.333Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T05:14:15.092Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T05:14:15.348Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T05:17:30.124Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T05:17:30.138Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T05:17:31.311Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T05:17:32.028Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T05:33:50.530Z] [ERROR] globalErrorHandler ~ ApiError: A category with slug 'test' already exists.
+    at Object.createCategoryIntoDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:12:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:10:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 409
+}
+[2026-04-26T05:34:45.325Z] [ERROR] globalErrorHandler ~ ApiError: A category with slug 'testtest' already exists.
+    at Object.createCategoryIntoDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:12:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:10:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 409
+}
+[2026-04-26T12:32:37.632Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\LumiÃ©ra-1777206756505-885755468.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\LumiÃ©ra-1777206756505-885755468.webp"
+}
+[2026-04-26T12:32:38.064Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T15:15:06.720Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T15:15:07.477Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T15:15:09.160Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T15:15:10.338Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T16:18:06.434Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T16:18:06.533Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T16:18:08.229Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T16:18:09.262Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T16:19:25.270Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T16:19:25.298Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T16:19:26.169Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T16:19:27.354Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T16:32:56.181Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T16:32:56.233Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T16:32:57.200Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T16:32:59.038Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T16:39:15.830Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 9)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2024',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Tag', connection_limit: 9, timeout: 10 }
+}
+[2026-04-26T16:41:19.430Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Tag',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T16:41:26.481Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Tag',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T16:41:35.596Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Tag',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T16:43:30.722Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Tag',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T16:43:36.756Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.tag.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:35
+
+  29 };
+  30 
+  31 const getAllTagsFromDB = async (): Promise<TTag[]> => {
+→ 32   const result = await prisma.tag.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllTagsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.service.ts:32:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Tag\tag.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Tag',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T16:48:51.704Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T16:48:54.591Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T16:48:55.299Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T16:48:58.038Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T16:49:29.725Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T16:49:29.746Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T16:49:30.190Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T16:49:31.876Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T17:47:06.349Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.admin.findUnique()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:36
+
+  92 const getMeFromDB = async (
+  93   adminId: string,
+  94 ): Promise<Omit<TAdmin, "password">> => {
+→ 95   const admin = await prisma.admin.findUnique(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 9)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:17)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2024',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Admin', connection_limit: 9, timeout: 10 }
+}
+[2026-04-26T17:49:39.349Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T17:49:41.291Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T17:49:42.097Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T17:49:44.016Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T17:56:56.734Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:135:20
+
+  132 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  133 
+  134 const [result, total] = await Promise.all([
+→ 135   prisma.product.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:134:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T17:59:56.096Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T17:59:56.110Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T17:59:56.862Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T17:59:58.245Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T18:00:09.311Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T18:00:09.348Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T18:00:09.879Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T18:00:11.938Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T18:04:30.679Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T18:04:30.738Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T18:04:31.400Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T18:04:32.944Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T18:21:37.154Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Vitamin-C-Brightening-Serum-1777227695594-257080697.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Vitamin-C-Brightening-Serum-1777227695594-257080697.webp"
+}
+[2026-04-26T18:21:37.171Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T19:16:25.384Z] [ERROR] globalErrorHandler ~ Error: Only image files are allowed (jpeg, jpg, png, gif, webp)
+    at imageFilter (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\config\multer.config.ts:56:7)
+    at wrappedFileFilter (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\multer@2.1.1\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\multer@2.1.1\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:508:28)
+    at HeaderParser.cb (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\streamsearch@1.1.0\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\streamsearch@1.1.0\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\busboy@1.6.0\node_modules\busboy\lib\types\multipart.js:567:19) {
+  storageErrors: []
+}
+[2026-04-26T19:17:27.745Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hydrating-Gel-Moisturizer-1777231047592-342158472.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hydrating-Gel-Moisturizer-1777231047592-342158472.webp"
+}
+[2026-04-26T19:17:27.748Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-26T20:00:38.620Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.admin.findUnique()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:36
+
+  92 const getMeFromDB = async (
+  93   adminId: string,
+  94 ): Promise<Omit<TAdmin, "password">> => {
+→ 95   const admin = await prisma.admin.findUnique(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:95:17)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Admin',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T20:02:49.758Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T20:02:49.774Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T20:02:52.645Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T20:02:55.624Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T20:06:17.719Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-calm-night-anjr7m3q-pooler.c-6.us-east-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-04-26T20:17:11.790Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T20:17:11.811Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T20:17:14.085Z] [INFO] 🛢️  Database connected successfully
+[2026-04-26T20:17:14.378Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T20:18:58.021Z] [INFO] ⏳ Connecting to database...
+[2026-04-26T20:18:58.049Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-26T20:19:00.006Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-26T20:19:00.274Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T05:24:55.337Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T05:24:55.367Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T05:24:57.569Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T05:24:58.822Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T05:30:57.776Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T05:30:57.828Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T05:30:59.400Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T05:30:59.787Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T05:32:00.408Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T05:32:00.425Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T05:32:03.735Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T05:32:03.752Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T05:32:04.506Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T05:32:05.757Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T06:49:26.099Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777272564842-587905889.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777272564842-587905889.webp"
+}
+[2026-04-27T06:49:26.421Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-27T07:25:35.210Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T07:25:36.580Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T07:25:38.751Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T07:25:47.208Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T07:28:54.458Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T07:28:54.496Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T07:28:56.728Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T07:29:20.038Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T08:31:39.584Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777278698871-368143107.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777278698871-368143107.webp"
+}
+[2026-04-27T08:31:39.620Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-27T08:31:40.587Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.homepageSectionItem.create()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:51
+
+  84 if (!section)
+  85   throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+  86 
+→ 87 const result = await prisma.homepageSectionItem.create({
+       data: {
+         type: "BANNER",
+         referenceId: "http://localhost:3000/admin/homepage-item",
+         title: "Banner Section",
+         image: "http://localhost:5000/uploads/Hero-Banner-compressed-1777278698892.webp",
+         linkUrl: "http://localhost:3000/admin/homepage-item",
+         order: 1,
+         sectionId: "29cd3d09-5cee-442c-80c3-a70ebfbf20a1",
+     +   refType: SectionItemType
+       }
+     })
+
+Argument `refType` is missing.
+    at wn (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.addItemToSectionInDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.controller.ts:67:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-04-27T08:32:00.034Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777278719861-617777497.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777278719861-617777497.webp"
+}
+[2026-04-27T08:32:00.037Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-27T08:32:00.616Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.homepageSectionItem.create()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:51
+
+  84 if (!section)
+  85   throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+  86 
+→ 87 const result = await prisma.homepageSectionItem.create({
+       data: {
+         type: "BANNER",
+         referenceId: "http://localhost:3000/admin/homepage-item",
+         title: "Banner Section",
+         image: "http://localhost:5000/uploads/Hero-Banner-compressed-1777278719869.webp",
+         linkUrl: "http://localhost:3000/admin/homepage-item",
+         order: 1,
+         sectionId: "29cd3d09-5cee-442c-80c3-a70ebfbf20a1",
+     +   refType: SectionItemType
+       }
+     })
+
+Argument `refType` is missing.
+    at wn (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.addItemToSectionInDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.controller.ts:67:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-04-27T08:34:11.709Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T08:34:11.778Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T08:34:13.032Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T08:34:13.788Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T08:34:30.598Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777278870446-745644794.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777278870446-745644794.webp"
+}
+[2026-04-27T08:34:30.613Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-27T08:34:31.565Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.homepageSectionItem.create()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:51
+
+  84 if (!section)
+  85   throw new ApiError(httpStatus.NOT_FOUND, "Homepage section not found.");
+  86 
+→ 87 const result = await prisma.homepageSectionItem.create({
+       data: {
+         type: "BANNER",
+         referenceId: "http://localhost:3000/admin/homepage-item",
+         title: "Banner Section",
+         image: "http://localhost:5000/uploads/Hero-Banner-compressed-1777278870477.webp",
+         linkUrl: "http://localhost:3000/admin/homepage-item",
+         order: 1,
+         sectionId: "29cd3d09-5cee-442c-80c3-a70ebfbf20a1",
+     +   refType: SectionItemType
+       }
+     })
+
+Argument `refType` is missing.
+    at wn (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.addItemToSectionInDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.service.ts:87:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\HomepageSection\homepageSection.controller.ts:67:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-04-27T08:41:43.622Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T08:41:43.641Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T08:41:44.942Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T08:41:45.602Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T08:43:55.327Z] [INFO] ⏳ Connecting to database...
+[2026-04-27T08:43:55.410Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-27T08:43:56.610Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-27T08:43:57.476Z] [INFO] 🛢️  Database connected successfully
+[2026-04-27T08:46:44.149Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777279603654-609307994.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777279603654-609307994.webp"
+}
+[2026-04-27T08:46:44.174Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
