@@ -1,58 +1,49 @@
 // src/app.ts
-import cors from "cors";
-import express, { Application, Request, Response } from "express";
-import httpStatus from "http-status";
-import path from "path";
-import globalErrorHandler from "./app/middlewares/globalErrorHandler";
-import mainRouter from "./app/routes";
-import { cleanupTempFiles } from "./config/multer.config";
+import cors from 'cors';
+import express, { Application, Request, Response } from 'express';
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import mainRouter from './app/routes';
+import httpStatus from 'http-status';
+import path from 'path';
+import { cleanupTempFiles } from './config/multer.config';
 
 const app: Application = express();
 
 // Middlewares
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = ["http://localhost:5000", "https://outfitro.com"];
-      // Allow requests with no origin (mobile apps, Postman, etc.)
-      // or any localhost origin in development
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        (process.env.NODE_ENV === "development" &&
-          /^https?:\/\/localhost(:\d+)?$/.test(origin))
-      ) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://outfitro.com',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
   }),
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", express.static(path.join(process.cwd(), "public/uploads")));
+app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));
 
 // Health check endpoint for deployment platforms
-app.get("/health", (req: Request, res: Response) => {
+app.get('/health', (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: "Server is healthy",
+    message: 'Server is healthy',
   });
 });
 
 // Test Route
-app.get("/", (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: "Welcome to Outfitro API!",
+    message: 'Welcome to Outfitro API!',
   });
 });
 
 // Main API Routes
-app.use("/api/v1", mainRouter);
+app.use('/api/v1', mainRouter);
 
 // Global Error Handler
 app.use(globalErrorHandler);
@@ -66,11 +57,11 @@ setTimeout(cleanupTempFiles, 5000);
 app.use((req: Request, res: Response) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
-    message: "API Not Found!",
+    message: 'API Not Found!',
     errorMessages: [
       {
         path: req.originalUrl,
-        message: "The requested route does not exist.",
+        message: 'The requested route does not exist.',
       },
     ],
   });

@@ -1,35 +1,44 @@
 // src/app/modules/Order/order.controller.ts
-import { Request, Response } from "express";
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { TOrder, TPublicOrderTracking } from "./order.interface";
-import { OrderService } from "./order.service";
-import pick from "../../../shared/pick";
-import { sendOrderNotificationEmail } from "../../../shared/emailService";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { TOrder, TPublicOrderTracking } from './order.interface';
+import { OrderService } from './order.service';
+import pick from '../../../shared/pick';
+import { sendOrderNotificationEmail } from '../../../shared/emailService';
 
 // --- Public Controller ---
 const createOrder = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderService.createOrderIntoDB(req.body);
   sendOrderNotificationEmail(result)
-    .then(() => console.log("Admin notified via email"))
-    .catch((err) => console.error("Email notification failed:", err));
+    .then(() => console.log('Admin notified via email'))
+    .catch(err => console.error('Email notification failed:', err));
   sendResponse<TOrder>(res, {
     statusCode: httpStatus.CREATED,
     success: true,
-    message: "Order placed successfully!",
+    message: 'Order placed successfully!',
     data: result,
   });
 });
 
 // --- Admin Controllers ---
 const getAllOrders = catchAsync(async (req: Request, res: Response) => {
-  const options = pick(req.query, ["page", "limit", "sortBy", "sortOrder"]);
+  const options = pick(req.query, [
+    'page',
+    'limit',
+    'sortBy',
+    'sortOrder',
+    'status',
+    'searchTerm',
+    'paymentStatus',
+    'paymentMethod',
+  ]);
   const result = await OrderService.getAllOrdersFromDB(options);
   sendResponse<TOrder[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Orders retrieved successfully!",
+    message: 'Orders retrieved successfully!',
     meta: result.meta,
     data: result.data,
   });
@@ -41,7 +50,7 @@ const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
   sendResponse<TOrder>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Order retrieved successfully!",
+    message: 'Order retrieved successfully!',
     data: result,
   });
 });
@@ -52,24 +61,27 @@ const updateOrderStatus = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderService.updateOrderStatusInDB(
     id,
     adminId,
-    req.body
+    req.body,
   );
   sendResponse<TOrder>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Order status updated successfully!",
+    message: 'Order status updated successfully!',
     data: result,
   });
 });
 
 const trackOrder = catchAsync(async (req: Request, res: Response) => {
   const { trackingNumber, mobile } = req.body;
-  const result = await OrderService.trackOrderPublicly(trackingNumber, mobile);
+  const result = await OrderService.trackOrderPublicly({
+    trackingNumber,
+    mobile,
+  });
 
   sendResponse<TPublicOrderTracking[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Order status retrieved successfully!",
+    message: 'Order status retrieved successfully!',
     data: result,
   });
 });

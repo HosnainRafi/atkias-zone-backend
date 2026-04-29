@@ -30,7 +30,7 @@ const getAllAnnouncements = catchAsync(async (req: Request, res: Response) => {
 const getSingleAnnouncement = catchAsync(
   async (req: Request, res: Response) => {
     const result = await AnnouncementService.getSingleAnnouncementFromDB(
-      req.params.id,
+      req.params.id as string,
     );
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -43,7 +43,7 @@ const getSingleAnnouncement = catchAsync(
 
 const updateAnnouncement = catchAsync(async (req: Request, res: Response) => {
   const result = await AnnouncementService.updateAnnouncementInDB(
-    req.params.id,
+    req.params.id as string,
     req.body,
   );
   sendResponse(res, {
@@ -56,7 +56,7 @@ const updateAnnouncement = catchAsync(async (req: Request, res: Response) => {
 
 const deleteAnnouncement = catchAsync(async (req: Request, res: Response) => {
   const result = await AnnouncementService.deleteAnnouncementFromDB(
-    req.params.id,
+    req.params.id as string,
   );
   sendResponse(res, {
     statusCode: httpStatus.OK,

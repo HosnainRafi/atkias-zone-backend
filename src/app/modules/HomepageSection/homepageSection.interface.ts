@@ -1,32 +1,41 @@
 // src/app/modules/HomepageSection/homepageSection.interface.ts
 
 export type THomepageSectionType =
-  | "FEATURED_PRODUCTS"
-  | "CATEGORY_SHOWCASE"
-  | "BRAND_SHOWCASE"
-  | "CUSTOM";
-export type TSectionItemType = "PRODUCT" | "CATEGORY" | "BRAND" | "CUSTOM";
+  | 'BANNER'
+  | 'PRODUCT_GRID'
+  | 'CATEGORY_GRID'
+  | 'BRAND_GRID'
+  | 'YOUTUBE_VIDEOS'
+  | 'ANNOUNCEMENT_BAR'
+  | 'CUSTOM_HTML';
+export type TSectionItemType =
+  | 'PRODUCT'
+  | 'CATEGORY'
+  | 'BRAND'
+  | 'BANNER'
+  | 'VIDEO';
 
 export type THomepageSectionItem = {
   id?: string;
   sectionId: string;
-  type: TSectionItemType;
-  referenceId?: string | null;
+  refType: TSectionItemType;
+  refId?: string | null;
   title?: string | null;
   image?: string | null;
   linkUrl?: string | null;
   order?: number;
   createdAt?: Date;
-  updatedAt?: Date;
 };
 
 export type THomepageSection = {
   id?: string;
-  title: string;
+  title?: string | null;
+  subtitle?: string | null;
   type: THomepageSectionType;
   isActive?: boolean;
   deleted?: boolean;
   order?: number;
+  config?: string | null;
   items?: THomepageSectionItem[];
   createdAt?: Date;
   updatedAt?: Date;

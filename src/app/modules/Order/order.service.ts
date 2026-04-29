@@ -1,13 +1,22 @@
 ﻿// src/app/modules/Order/order.service.ts
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import { IGenericResponse } from "../../../interfaces/common";
-import calculatePagination from "../../../shared/calculatePagination";
-import prisma from "../../../shared/prisma";
-import { CouponService, TCouponValidationResponse } from "../Coupon/coupon.service";
-import { TCreateOrderPayload, TOrder, TOrderItem, TPublicOrderTracking } from "./order.interface";
-import { generateTrackingNumber } from "./order.utils";
-import { PaymentStatus, OrderStatus } from "@prisma/client";
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import { IGenericResponse } from '../../../interfaces/common';
+import calculatePagination from '../../../shared/calculatePagination';
+import prisma from '../../../shared/prisma';
+import {
+  CouponService,
+  TCouponValidationResponse,
+} from '../Coupon/coupon.service';
+import {
+  TCreateOrderPayload,
+  TOrder,
+  TOrderItem,
+  TPublicOrderTracking,
+} from './order.interface';
+import { generateTrackingNumber } from './order.utils';
+import { PaymentStatus, OrderStatus, PaymentMethod } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 const orderInclude = {
   items: true,
@@ -15,10 +24,19 @@ const orderInclude = {
   coupon: true,
 };
 
-const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> => {
-  const { items, shippingAddress, couponCode, shipping = 0, orderNote, paymentMethod } = payload;
+const createOrderIntoDB = async (
+  payload: TCreateOrderPayload,
+): Promise<TOrder> => {
+  const {
+    items,
+    shippingAddress,
+    couponCode,
+    shipping = 0,
+    orderNote,
+    paymentMethod,
+  } = payload;
 
-  const productIds = items.map((i) => i.productId);
+  const productIds = items.map(i => i.productId);
   const productsFromDB = await prisma.product.findMany({
     where: { id: { in: productIds } },
     include: { variants: true },
@@ -26,19 +44,38 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
 
   let subtotal = 0;
   const processedItems: TOrderItem[] = [];
-  const stockUpdates: { variantId?: string; productId: string; quantity: number }[] = [];
+  const stockUpdates: {
+    variantId?: string;
+    productId: string;
+    quantity: number;
+  }[] = [];
 
   for (const item of items) {
-    const product = productsFromDB.find((p) => p.id === item.productId);
-    if (!product) throw new ApiError(httpStatus.BAD_REQUEST, `Product ${item.productId} not found.`);
-    if (!product.isActive) throw new ApiError(httpStatus.BAD_REQUEST, `"${product.title}" is unavailable.`);
+    const product = productsFromDB.find(p => p.id === item.productId);
+    if (!product)
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        `Product ${item.productId} not found.`,
+      );
+    if (!product.isActive)
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        `"${product.title}" is unavailable.`,
+      );
 
     let variant = undefined;
     if (item.productVariantId) {
-      variant = product.variants.find((v) => v.id === item.productVariantId);
-      if (!variant) throw new ApiError(httpStatus.BAD_REQUEST, `Invalid variant for "${product.title}".`);
+      variant = product.variants.find(v => v.id === item.productVariantId);
+      if (!variant)
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          `Invalid variant for "${product.title}".`,
+        );
       if (variant.stock < item.quantity) {
-        throw new ApiError(httpStatus.BAD_REQUEST, `Not enough stock for "${product.title}" (${variant.label}). Available: ${variant.stock}.`);
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          `Not enough stock for "${product.title}" (${variant.label}). Available: ${variant.stock}.`,
+        );
       }
     }
 
@@ -58,7 +95,11 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
     });
 
     if (variant) {
-      stockUpdates.push({ variantId: variant.id, productId: product.id, quantity: item.quantity });
+      stockUpdates.push({
+        variantId: variant.id,
+        productId: product.id,
+        quantity: item.quantity,
+      });
     }
   }
 
@@ -66,8 +107,17 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
   let couponId: string | undefined;
 
   if (couponCode) {
-    const couponResult: TCouponValidationResponse = await CouponService.validateAndApplyCoupon(couponCode, items.map((i) => ({ productId: i.productId, productVariantId: i.productVariantId ?? undefined, quantity: i.quantity })));
-    if (!couponResult.isValid) throw new ApiError(httpStatus.BAD_REQUEST, couponResult.message);
+    const couponResult: TCouponValidationResponse =
+      await CouponService.validateAndApplyCoupon(
+        couponCode,
+        items.map(i => ({
+          productId: i.productId,
+          productVariantId: i.productVariantId ?? undefined,
+          quantity: i.quantity,
+        })),
+      );
+    if (!couponResult.isValid)
+      throw new ApiError(httpStatus.BAD_REQUEST, couponResult.message);
     discountAmount = couponResult.discountAmount;
     couponId = couponResult.coupon?.id;
   }
@@ -75,7 +125,7 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
   const totalAmount = subtotal + shipping - discountAmount;
   const trackingNumber = generateTrackingNumber();
 
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async tx => {
     const newOrder = await tx.order.create({
       data: {
         trackingNumber,
@@ -93,11 +143,11 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
         couponId,
         discountAmount,
         totalAmount,
-        paymentMethod: (paymentMethod as any) ?? PaymentStatus.pending,
+        paymentMethod: (paymentMethod as any) ?? PaymentMethod.COD,
         paymentStatus: PaymentStatus.pending,
         status: OrderStatus.pending,
         items: {
-          create: processedItems.map((item) => ({
+          create: processedItems.map(item => ({
             productId: item.productId,
             productVariantId: item.productVariantId,
             title: item.title,
@@ -109,7 +159,7 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
           })),
         },
         statusHistories: {
-          create: { status: OrderStatus.pending, note: "Order placed" },
+          create: { status: OrderStatus.pending, note: 'Order placed' },
         },
       },
       include: orderInclude,
@@ -125,7 +175,10 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
     }
 
     if (couponId) {
-      await tx.coupon.update({ where: { id: couponId }, data: { usedCount: { increment: 1 } } });
+      await tx.coupon.update({
+        where: { id: couponId },
+        data: { usedCount: { increment: 1 } },
+      });
     }
 
     return newOrder;
@@ -135,16 +188,54 @@ const createOrderIntoDB = async (payload: TCreateOrderPayload): Promise<TOrder> 
 };
 
 const getAllOrdersFromDB = async (options: {
-  page?: number; limit?: number; sortBy?: string; sortOrder?: "asc" | "desc"; status?: string;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
+  status?: string;
+  searchTerm?: string;
+  paymentStatus?: string;
+  paymentMethod?: string;
 }): Promise<IGenericResponse<TOrder[]>> => {
   const { page, limit, skip, sortBy, sortOrder } = calculatePagination(options);
-  const where = options.status ? { status: options.status as any } : {};
+
+  const andConditions: Prisma.OrderWhereInput[] = [];
+
+  if (options.status) {
+    andConditions.push({ status: options.status as any });
+  }
+
+  if (options.paymentStatus) {
+    andConditions.push({ paymentStatus: options.paymentStatus as any });
+  }
+
+  if (options.paymentMethod) {
+    andConditions.push({ paymentMethod: options.paymentMethod as any });
+  }
+
+  if (options.searchTerm) {
+    andConditions.push({
+      OR: [
+        {
+          trackingNumber: { contains: options.searchTerm, mode: 'insensitive' },
+        },
+        { customerName: { contains: options.searchTerm, mode: 'insensitive' } },
+        { mobile: { contains: options.searchTerm, mode: 'insensitive' } },
+        { email: { contains: options.searchTerm, mode: 'insensitive' } },
+      ],
+    });
+  }
+
+  const where: Prisma.OrderWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
 
   const [result, total] = await Promise.all([
     prisma.order.findMany({
       where,
       include: orderInclude,
-      orderBy: sortBy ? { [sortBy]: sortOrder || "desc" } : { createdAt: "desc" },
+      orderBy: sortBy
+        ? { [sortBy]: sortOrder || 'desc' }
+        : { createdAt: 'desc' },
       skip,
       take: limit,
     }),
@@ -155,22 +246,35 @@ const getAllOrdersFromDB = async (options: {
 };
 
 const getSingleOrderFromDB = async (id: string): Promise<TOrder | null> => {
-  const result = await prisma.order.findUnique({ where: { id }, include: orderInclude });
-  if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  const result = await prisma.order.findUnique({
+    where: { id },
+    include: orderInclude,
+  });
+  if (!result) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
   return result as unknown as TOrder;
 };
 
-const updateOrderStatusInDB = async (id: string, adminId: string, payload: { status: string; note?: string; paymentStatus?: string }): Promise<TOrder | null> => {
+const updateOrderStatusInDB = async (
+  id: string,
+  adminId: string,
+  payload: { status: string; note?: string; paymentStatus?: string },
+): Promise<TOrder | null> => {
   const order = await prisma.order.findUnique({ where: { id } });
-  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   const result = await prisma.order.update({
     where: { id },
     data: {
       status: payload.status as any,
-      paymentStatus: payload.paymentStatus ? (payload.paymentStatus as any) : undefined,
+      paymentStatus: payload.paymentStatus
+        ? (payload.paymentStatus as any)
+        : undefined,
       statusHistories: {
-        create: { status: payload.status as any, note: payload.note, changedById: adminId },
+        create: {
+          status: payload.status as any,
+          note: payload.note,
+          changedById: adminId,
+        },
       },
     },
     include: orderInclude,
@@ -179,21 +283,42 @@ const updateOrderStatusInDB = async (id: string, adminId: string, payload: { sta
   return result as unknown as TOrder;
 };
 
-const trackOrderPublicly = async (trackingNumber: string, mobile: string): Promise<TPublicOrderTracking[]> => {
+const trackOrderPublicly = async (payload: {
+  trackingNumber?: string;
+  mobile?: string;
+}): Promise<TPublicOrderTracking[]> => {
+  const { trackingNumber, mobile } = payload;
+
+  if (!trackingNumber && !mobile) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Either tracking number or mobile is required.',
+    );
+  }
+
+  const whereClauses: Prisma.OrderWhereInput[] = [];
+  if (trackingNumber) {
+    whereClauses.push({ trackingNumber });
+  }
+  if (mobile) {
+    whereClauses.push({ mobile });
+  }
+
   const orders = await prisma.order.findMany({
-    where: { trackingNumber, mobile },
+    where: { OR: whereClauses },
     include: { items: true, statusHistories: true },
   });
 
-  if (!orders.length) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!orders.length)
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
-  return orders.map((order) => ({
+  return orders.map(order => ({
     trackingNumber: order.trackingNumber,
     status: order.status as any,
     paymentStatus: order.paymentStatus as any,
     statusHistories: order.statusHistories as any,
     createdAt: order.createdAt,
-    items: order.items.map((item) => ({
+    items: order.items.map(item => ({
       title: item.title,
       variantLabel: item.variantLabel,
       quantity: item.quantity,

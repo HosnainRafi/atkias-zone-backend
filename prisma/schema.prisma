@@ -95,11 +95,23 @@ model Category {
 // ─────────────────────────────────────────
 // TAGS (skin concern / type filtering)
 // ─────────────────────────────────────────
+enum TagType {
+  SKIN_TYPE
+  CONCERN
+  INGREDIENT
+  FEATURE
+  ROUTINE
+  TEXTURE
+  AGE_GROUP
+  SPF_TYPE
+  GENDER
+}
 
 model Tag {
-  id   String @id @default(uuid())
-  name String @unique
-  slug String @unique
+  id   String  @id @default(uuid())
+  name String  @unique
+  slug String  @unique
+  type TagType @default(SKIN_TYPE)
 
   products ProductTag[]
 
@@ -222,9 +234,14 @@ enum BannerPosition {
 model Banner {
   id          String         @id @default(uuid())
   title       String?
-  image       String
+  subtitle    String?
+  description String?
+  image       String?
   mobileImage String?
   linkUrl     String?
+  buttonText  String?
+  buttonLink  String?
+  slides      Json? // HERO: [{image,mobileImage?,title?,subtitle?,buttonText?,buttonLink?}]
   position    BannerPosition @default(HERO)
   isActive    Boolean        @default(true)
   deleted     Boolean        @default(false)
@@ -283,7 +300,10 @@ model HomepageSectionItem {
   id        String          @id @default(uuid())
   sectionId String
   refType   SectionItemType
-  refId     String
+  refId     String?
+  title     String?
+  image     String?
+  linkUrl   String?
   order     Int             @default(0)
   createdAt DateTime        @default(now())
 

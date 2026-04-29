@@ -1,5 +1,5 @@
 // src/app/modules/Product/product.interface.ts
-import { Decimal } from "@prisma/client/runtime/library";
+import { Decimal } from '@prisma/client/runtime/library';
 
 export type TProductVariant = {
   id?: string;
@@ -23,6 +23,7 @@ export type TProduct = {
   compareAtPrice?: Decimal | number | null;
   appPrice?: Decimal | number | null;
   images: string[];
+  tagIds?: string[];
   variants?: TProductVariant[];
   sku?: string | null;
   isActive: boolean;

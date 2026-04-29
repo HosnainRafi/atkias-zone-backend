@@ -23,7 +23,7 @@ const uploadSingleImage = catchAsync(async (req: Request, res: Response) => {
     const ext = path.extname(req.file.originalname);
     const name = path.basename(req.file.originalname, ext).replace(/\s+/g, '-');
     const compressedFilename = `${name}-compressed-${Date.now()}${ext}`;
-    
+
     const finalPath = path.join(process.cwd(), 'public', 'uploads', compressedFilename);
 
     // Compress image
@@ -86,7 +86,7 @@ const uploadMultipleImages = catchAsync(
         const ext = path.extname(file.originalname);
         const name = path.basename(file.originalname, ext).replace(/\s+/g, '-');
         const compressedFilename = `${name}-compressed-${Date.now()}-${Math.random().toString(36).substr(2, 9)}${ext}`;
-        
+
         const finalPath = path.join(process.cwd(), 'public', 'uploads', compressedFilename);
 
         // Compress each image
@@ -140,7 +140,7 @@ const uploadMultipleImages = catchAsync(
 const deleteImage = catchAsync(async (req: Request, res: Response) => {
   const { filename } = req.params;
 
-  const filePath = path.join(process.cwd(), 'public', 'uploads', filename);
+  const filePath = path.join(process.cwd(), 'public', 'uploads', filename as string);
 
   // Validate filename to prevent directory traversal attacks
   if (!filePath.startsWith(path.join(process.cwd(), 'public', 'uploads'))) {

@@ -14,7 +14,7 @@ router.post(
   validateRequest(ProductValidation.applyCategoryDiscountZodSchema),
   ProductController.applyCategoryDiscount,
 );
-
+ 
 router.post(
   "/",
   auth(ADMIN_ROLE.ADMIN), // Only admins can create

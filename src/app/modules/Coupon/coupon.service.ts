@@ -1,19 +1,36 @@
 ﻿// src/app/modules/Coupon/coupon.service.ts
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import prisma from "../../../shared/prisma";
-import { TCoupon, TCouponCartItem } from "./coupon.interface";
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import prisma from '../../../shared/prisma';
+import { TCoupon, TCouponCartItem } from './coupon.interface';
 
 const couponInclude = {
   createdBy: { select: { name: true, email: true } },
-  categories: { select: { categoryId: true } },
-  products: { select: { productId: true } },
+  categories: {
+    select: {
+      categoryId: true,
+      category: {
+        select: {
+          id: true,
+          name: true,
+          parentId: true,
+          parent: { select: { id: true, name: true } },
+        },
+      },
+    },
+  },
+  products: {
+    select: {
+      productId: true,
+      product: { select: { id: true, title: true } },
+    },
+  },
 };
 
 // --- Create Coupon ---
 const createCouponIntoDB = async (
   adminId: string,
-  payload: Omit<TCoupon, "createdById" | "usedCount">
+  payload: Omit<TCoupon, 'createdById' | 'usedCount'>,
 ): Promise<TCoupon> => {
   const { appliesToCategories, appliesToProducts, ...rest } = payload;
 
@@ -23,11 +40,11 @@ const createCouponIntoDB = async (
       createdById: adminId,
       categories:
         appliesToCategories && appliesToCategories.length > 0
-          ? { create: appliesToCategories.map((id) => ({ categoryId: id })) }
+          ? { create: appliesToCategories.map(id => ({ categoryId: id })) }
           : undefined,
       products:
         appliesToProducts && appliesToProducts.length > 0
-          ? { create: appliesToProducts.map((id) => ({ productId: id })) }
+          ? { create: appliesToProducts.map(id => ({ productId: id })) }
           : undefined,
     },
     include: couponInclude,
@@ -43,13 +60,19 @@ const getAllCouponsFromDB = async (): Promise<TCoupon[]> => {
 
 // --- Get Single Coupon ---
 const getSingleCouponFromDB = async (id: string): Promise<TCoupon | null> => {
-  const result = await prisma.coupon.findUnique({ where: { id }, include: couponInclude });
-  if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Coupon not found.");
+  const result = await prisma.coupon.findUnique({
+    where: { id },
+    include: couponInclude,
+  });
+  if (!result) throw new ApiError(httpStatus.NOT_FOUND, 'Coupon not found.');
   return result as unknown as TCoupon;
 };
 
 // --- Update Coupon ---
-const updateCouponInDB = async (id: string, payload: Partial<TCoupon>): Promise<TCoupon | null> => {
+const updateCouponInDB = async (
+  id: string,
+  payload: Partial<TCoupon>,
+): Promise<TCoupon | null> => {
   const { appliesToCategories, appliesToProducts, ...rest } = payload;
 
   if (appliesToCategories !== undefined) {
@@ -65,11 +88,11 @@ const updateCouponInDB = async (id: string, payload: Partial<TCoupon>): Promise<
       ...rest,
       categories:
         appliesToCategories && appliesToCategories.length > 0
-          ? { create: appliesToCategories.map((cid) => ({ categoryId: cid })) }
+          ? { create: appliesToCategories.map(cid => ({ categoryId: cid })) }
           : undefined,
       products:
         appliesToProducts && appliesToProducts.length > 0
-          ? { create: appliesToProducts.map((pid) => ({ productId: pid })) }
+          ? { create: appliesToProducts.map(pid => ({ productId: pid })) }
           : undefined,
     },
     include: couponInclude,
@@ -81,7 +104,7 @@ const updateCouponInDB = async (id: string, payload: Partial<TCoupon>): Promise<
 // --- Delete Coupon ---
 const deleteCouponFromDB = async (id: string): Promise<TCoupon | null> => {
   const existing = await prisma.coupon.findUnique({ where: { id } });
-  if (!existing) throw new ApiError(httpStatus.NOT_FOUND, "Coupon not found.");
+  if (!existing) throw new ApiError(httpStatus.NOT_FOUND, 'Coupon not found.');
   const result = await prisma.coupon.delete({ where: { id } });
   return result as unknown as TCoupon;
 };
@@ -96,10 +119,19 @@ export type TCouponValidationResponse = {
 
 const validateAndApplyCoupon = async (
   code: string,
-  items: TCouponCartItem[]
+  items: TCouponCartItem[],
 ): Promise<TCouponValidationResponse> => {
-  const ok = (isValid: boolean, discountAmount: number, message: string, coupon?: TCoupon): TCouponValidationResponse =>
-    ({ isValid, discountAmount, message, coupon });
+  const ok = (
+    isValid: boolean,
+    discountAmount: number,
+    message: string,
+    coupon?: TCoupon,
+  ): TCouponValidationResponse => ({
+    isValid,
+    discountAmount,
+    message,
+    coupon,
+  });
 
   const coupon = await prisma.coupon.findUnique({
     where: { code },
@@ -109,15 +141,17 @@ const validateAndApplyCoupon = async (
     },
   });
 
-  if (!coupon) return ok(false, 0, "Invalid coupon code.");
-  if (!coupon.isActive) return ok(false, 0, "This coupon is no longer active.");
+  if (!coupon) return ok(false, 0, 'Invalid coupon code.');
+  if (!coupon.isActive) return ok(false, 0, 'This coupon is no longer active.');
 
   const now = new Date();
-  if (coupon.validUntil < now) return ok(false, 0, "This coupon has expired.");
-  if (coupon.validFrom > now) return ok(false, 0, "This coupon is not yet valid.");
-  if (coupon.usedCount >= coupon.usageLimit) return ok(false, 0, "This coupon has reached its usage limit.");
+  if (coupon.validUntil < now) return ok(false, 0, 'This coupon has expired.');
+  if (coupon.validFrom > now)
+    return ok(false, 0, 'This coupon is not yet valid.');
+  if (coupon.usedCount >= coupon.usageLimit)
+    return ok(false, 0, 'This coupon has reached its usage limit.');
 
-  const productIds = items.map((i) => i.productId);
+  const productIds = items.map(i => i.productId);
   const productsFromDB = await prisma.product.findMany({
     where: { id: { in: productIds } },
     include: { variants: true },
@@ -127,10 +161,10 @@ const validateAndApplyCoupon = async (
   let eligibleTotal = 0;
 
   for (const item of items) {
-    const product = productsFromDB.find((p) => p.id === item.productId);
+    const product = productsFromDB.find(p => p.id === item.productId);
     if (!product) continue;
 
-    const variant = product.variants.find((v) => v.id === item.productVariantId);
+    const variant = product.variants.find(v => v.id === item.productVariantId);
     const itemPrice = Number(variant?.priceOverride ?? product.basePrice);
     const itemTotal = itemPrice * item.quantity;
     cartSubtotal += itemTotal;
@@ -138,36 +172,52 @@ const validateAndApplyCoupon = async (
     if (coupon.appliesToAllProducts) {
       eligibleTotal += itemTotal;
     } else if (coupon.categories.length > 0) {
-      const match = coupon.categories.some((cc) => cc.categoryId === product.categoryId);
+      const match = coupon.categories.some(
+        cc => cc.categoryId === product.categoryId,
+      );
       if (match) eligibleTotal += itemTotal;
     } else if (coupon.products.length > 0) {
-      const match = coupon.products.some((cp) => cp.productId === product.id);
+      const match = coupon.products.some(cp => cp.productId === product.id);
       if (match) eligibleTotal += itemTotal;
     }
   }
 
   if (coupon.minOrderAmount && cartSubtotal < Number(coupon.minOrderAmount)) {
-    return ok(false, 0, `Minimum order of ${coupon.minOrderAmount} BDT required.`);
+    return ok(
+      false,
+      0,
+      `Minimum order of ${coupon.minOrderAmount} BDT required.`,
+    );
   }
 
   if (eligibleTotal === 0 && !coupon.appliesToAllProducts) {
-    return ok(false, 0, "This coupon is not valid for the items in your cart.");
+    return ok(false, 0, 'This coupon is not valid for the items in your cart.');
   }
 
   let discountAmount = 0;
-  const effectiveEligible = coupon.appliesToAllProducts ? cartSubtotal : eligibleTotal;
+  const effectiveEligible = coupon.appliesToAllProducts
+    ? cartSubtotal
+    : eligibleTotal;
 
-  if (coupon.type === "fixed") {
+  if (coupon.type === 'fixed') {
     discountAmount = Math.min(Number(coupon.value), effectiveEligible);
   } else {
     discountAmount = (effectiveEligible * Number(coupon.value)) / 100;
-    if (coupon.maxDiscountAmount && discountAmount > Number(coupon.maxDiscountAmount)) {
+    if (
+      coupon.maxDiscountAmount &&
+      discountAmount > Number(coupon.maxDiscountAmount)
+    ) {
       discountAmount = Number(coupon.maxDiscountAmount);
     }
     if (discountAmount > effectiveEligible) discountAmount = effectiveEligible;
   }
 
-  return ok(true, parseFloat(discountAmount.toFixed(2)), "Coupon applied successfully!", coupon as unknown as TCoupon);
+  return ok(
+    true,
+    parseFloat(discountAmount.toFixed(2)),
+    'Coupon applied successfully!',
+    coupon as unknown as TCoupon,
+  );
 };
 
 export const CouponService = {
