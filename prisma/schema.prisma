@@ -167,6 +167,10 @@ model Product {
   couponProducts CouponProduct[]
   inventoryLogs  InventoryLog[]
 
+  @@index([deleted, isActive, productOrder])
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([slug])
   @@map("products")
 }
 
