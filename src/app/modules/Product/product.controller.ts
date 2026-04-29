@@ -43,7 +43,7 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
 
 const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params; // Can be ID or Slug
-  const result = await ProductService.getSingleProductFromDB(id);
+  const result = await ProductService.getSingleProductFromDB(id as string);
   sendResponse<TProduct>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -54,7 +54,7 @@ const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
 
 const updateProduct = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await ProductService.updateProductInDB(id, req.body);
+  const result = await ProductService.updateProductInDB(id as string, req.body);
   sendResponse<TProduct>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -65,7 +65,7 @@ const updateProduct = catchAsync(async (req: Request, res: Response) => {
 
 const deleteProduct = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await ProductService.deleteProductFromDB(id);
+  const result = await ProductService.deleteProductFromDB(id as string);
   sendResponse<TProduct>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -89,7 +89,7 @@ const applyCategoryDiscount = catchAsync(
 
 const hardDeleteProduct = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await ProductService.hardDeleteProductFromDB(id);
+  const result = await ProductService.hardDeleteProductFromDB(id as string);
 
   // Define the expected structure for clarity (optional but good practice)
   type HardDeleteResponse = {

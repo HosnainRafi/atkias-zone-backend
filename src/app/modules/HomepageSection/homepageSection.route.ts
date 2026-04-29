@@ -49,4 +49,5 @@ router.delete(
   HomepageSectionController.deleteItem,
 );
 
-export const HomepageSectionRoutes = router; 
+export const HomepageSectionRoutes = router;
+ 

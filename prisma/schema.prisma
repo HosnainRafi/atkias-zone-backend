@@ -230,9 +230,14 @@ enum BannerPosition {
 model Banner {
   id          String         @id @default(uuid())
   title       String?
-  image       String
+  subtitle    String?
+  description String?
+  image       String?
   mobileImage String?
   linkUrl     String?
+  buttonText  String?
+  buttonLink  String?
+  slides      Json? // HERO: [{image,mobileImage?,title?,subtitle?,buttonText?,buttonLink?}]
   position    BannerPosition @default(HERO)
   isActive    Boolean        @default(true)
   deleted     Boolean        @default(false)

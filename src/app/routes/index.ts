@@ -1,6 +1,7 @@
 // src/app/routes/index.ts
 import express from 'express';
 import { AdminRoutes } from '../modules/Admin/admin.route';
+import { AnalyticsRoutes } from '../modules/Analytics/analytics.route';
 import { AnnouncementRoutes } from '../modules/Announcement/announcement.route';
 import { BannerRoutes } from '../modules/Banner/banner.route';
 import { BrandRoutes } from '../modules/Brand/brand.route';
@@ -18,6 +19,7 @@ const router = express.Router();
 
 const moduleRoutes = [
   { path: '/admin', route: AdminRoutes },
+  { path: '/analytics', route: AnalyticsRoutes },
   { path: '/categories', route: CategoryRoutes },
   { path: '/products', route: ProductRoutes },
   { path: '/brands', route: BrandRoutes },
