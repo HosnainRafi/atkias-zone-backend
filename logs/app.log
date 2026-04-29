@@ -2332,3 +2332,165 @@ Unique constraint failed on the fields: (`sku`)
 [2026-04-29T07:50:41.605Z] [INFO] 🚀 Application listening on port 5000
 [2026-04-29T07:50:42.253Z] [INFO] ✅ SMTP server ready to send emails
 [2026-04-29T07:50:44.290Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T08:49:24.469Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `tx.coupon.update()` invocation in
+E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:178:23
+
+  175 }
+  176 
+  177 if (couponId) {
+→ 178   await tx.coupon.update(
+Transaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5276 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:178:7)
+    at async Proxy._transactionWithCallback (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:8000)
+    at async Object.createOrderIntoDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:128:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:13:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2028',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Coupon',
+    error: 'Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5276 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.'
+  }
+}
+[2026-04-29T08:49:40.585Z] [ERROR] ❌ Failed to send order notification email: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T08:49:40.588Z] [ERROR] Error details: Cannot read properties of undefined (reading 'customerName')
+[2026-04-29T08:49:40.589Z] [ERROR] Email notification failed: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T09:49:50.098Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T09:49:50.262Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T09:49:51.569Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T09:49:52.883Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:05:22.770Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777457122134-932257544.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777457122134-932257544.webp"
+}
+[2026-04-29T10:05:22.787Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-29T10:05:23.068Z] [ERROR] globalErrorHandler ~ ZodError: [
+  {
+    "code": "invalid_format",
+    "format": "url",
+    "path": [
+      "body",
+      "slides",
+      1,
+      "buttonLink"
+    ],
+    "message": "Invalid URL"
+  }
+]
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\validateRequest.ts:7:42)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+[2026-04-29T10:05:36.216Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777457135880-135918273.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777457135880-135918273.webp"
+}
+[2026-04-29T10:05:36.285Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-29T10:05:36.620Z] [ERROR] globalErrorHandler ~ ZodError: [
+  {
+    "code": "invalid_format",
+    "format": "url",
+    "path": [
+      "body",
+      "slides",
+      1,
+      "buttonLink"
+    ],
+    "message": "Invalid URL"
+  }
+]
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\validateRequest.ts:7:42)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+[2026-04-29T10:06:06.569Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\public\temp\Hero-Banner-1777457166419-137304497.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atika's Zone\\atkias-zone-backend\\public\\temp\\Hero-Banner-1777457166419-137304497.webp"
+}
+[2026-04-29T10:06:06.574Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at Immediate.next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-04-29T10:07:34.420Z] [ERROR] ❌ Failed to send order notification email: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T10:07:34.436Z] [ERROR] Error details: Cannot read properties of undefined (reading 'customerName')
+[2026-04-29T10:07:34.443Z] [ERROR] Email notification failed: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T10:10:06.557Z] [ERROR] ❌ Failed to send order notification email: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T10:10:06.558Z] [ERROR] Error details: Cannot read properties of undefined (reading 'customerName')
+[2026-04-29T10:10:06.559Z] [ERROR] Email notification failed: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
