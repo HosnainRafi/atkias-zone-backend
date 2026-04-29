@@ -521,3 +521,21 @@ model Review {
   @@unique([productId, orderId])
   @@map("reviews")
 }
+
+// ─────────────────────────────────────────
+// VISITORS
+// ─────────────────────────────────────────
+
+model Visitor {
+  id        String   @id @default(uuid())
+  ip        String?
+  userAgent String?
+  page      String?
+  referrer  String?
+  country   String?
+  device    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("visitors")
+}

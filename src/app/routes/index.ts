@@ -13,6 +13,7 @@ import { ProductRoutes } from '../modules/Product/product.route';
 import { ReviewRoutes } from '../modules/Review/review.route';
 import { TagRoutes } from '../modules/Tag/tag.route';
 import { UploadRoutes } from '../modules/Upload/upload.routes';
+import { VisitorRoutes } from '../modules/Visitor/visitor.route';
 import { YoutubeVideoRoutes } from '../modules/YoutubeVideo/youtubeVideo.route';
 
 const router = express.Router();
@@ -32,6 +33,7 @@ const moduleRoutes = [
   { path: '/youtube-videos', route: YoutubeVideoRoutes },
   { path: '/announcements', route: AnnouncementRoutes },
   { path: '/upload', route: UploadRoutes },
+  { path: '/visitors', route: VisitorRoutes },
 ];
 
 moduleRoutes.forEach(route => router.use(route.path, route.route));

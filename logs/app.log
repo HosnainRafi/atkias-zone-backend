@@ -2494,3 +2494,357 @@ Transaction API error: Transaction already closed: A query cannot be executed on
     at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
     at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
     at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-04-29T10:25:10.390Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:25:10.448Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:25:12.508Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:25:12.639Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:39:03.116Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:39:03.562Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:39:05.756Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:39:06.446Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:39:34.243Z] [ERROR] globalErrorHandler ~ ApiError: Product not found.
+    at Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:194:22)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:39:57.155Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:40:13.382Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:40:57.727Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:40:57.778Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:40:59.118Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:40:59.869Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:41:21.531Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:42:21.942Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:42:21.961Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:42:22.409Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:42:23.973Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:42:38.130Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:43:41.034Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:43:41.037Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:44:13.584Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:45:27.954Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:45:27.983Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:45:29.019Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:45:29.997Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T10:47:00.584Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:96:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-04-29T10:58:46.947Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T10:58:46.972Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T10:58:48.725Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T10:58:49.004Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T11:09:37.280Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T11:09:37.313Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T11:09:38.694Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T11:09:39.452Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T11:11:12.613Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'create')
+    at Object.trackVisitor (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:14:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+[2026-04-29T11:14:02.156Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'create')
+    at Object.trackVisitor (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:14:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+[2026-04-29T11:17:37.467Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:17:38.634Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:17:41.742Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:17:45.791Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:18:58.348Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:18:59.588Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:01.620Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:05.654Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:23.426Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:24.744Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:29.945Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:31.062Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:33.115Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:47.625Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:48.801Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:50.859Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:19:54.896Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:20:18.113Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'create')
+    at Object.trackVisitor (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:14:24)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+[2026-04-29T11:20:22.791Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:20:23.834Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:20:25.886Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:20:29.940Z] [ERROR] globalErrorHandler ~ TypeError: Cannot read properties of undefined (reading 'count')
+    at Object.getVisitorStats (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:49:20)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:30:39)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:13)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:38:7)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atika's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+[2026-04-29T11:21:17.061Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T11:21:17.312Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T11:21:18.002Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T11:21:19.461Z] [INFO] 🛢️  Database connected successfully
+[2026-04-29T11:37:44.349Z] [INFO] ⏳ Connecting to database...
+[2026-04-29T11:37:46.059Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-29T11:37:47.547Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-29T11:37:48.200Z] [INFO] 🛢️  Database connected successfully

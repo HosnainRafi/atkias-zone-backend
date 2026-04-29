@@ -14,14 +14,14 @@ router.post(
   validateRequest(ProductValidation.applyCategoryDiscountZodSchema),
   ProductController.applyCategoryDiscount,
 );
- 
+
 router.post(
   "/",
   auth(ADMIN_ROLE.ADMIN), // Only admins can create
   validateRequest(ProductValidation.createProductZodSchema),
   ProductController.createProduct,
 );
-
+ 
 router.get("/", ProductController.getAllProducts); // Anyone can view all (filtered)
 
 router.get("/:id", ProductController.getSingleProduct); // Anyone can view one (by ID or Slug)
