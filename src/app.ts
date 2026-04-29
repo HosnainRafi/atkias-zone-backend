@@ -1,10 +1,10 @@
 // src/app.ts
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
-import globalErrorHandler from "./app/middlewares/globalErrorHandler";
-import mainRouter from "./app/routes";
 import httpStatus from "http-status";
 import path from "path";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
+import mainRouter from "./app/routes";
 import { cleanupTempFiles } from "./config/multer.config";
 
 const app: Application = express();
@@ -12,14 +12,24 @@ const app: Application = express();
 // Middlewares
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://outfitro.com",
-    ],
+    origin: function (origin, callback) {
+      const allowedOrigins = ["http://localhost:5000", "https://outfitro.com"];
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      // or any localhost origin in development
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        (process.env.NODE_ENV === "development" &&
+          /^https?:\/\/localhost(:\d+)?$/.test(origin))
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
