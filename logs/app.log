@@ -6026,3 +6026,969 @@ Unknown argument `showOnHomepage`. Available options are marked with ?.
 [2026-04-30T06:00:55.893Z] [INFO] 🚀 Application listening on port 5000
 [2026-04-30T06:00:56.414Z] [INFO] 🛢️  Database connected successfully
 [2026-04-30T06:00:56.485Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-30T15:09:37.957Z] [INFO] ⏳ Connecting to database...
+[2026-04-30T15:09:38.412Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-30T15:09:43.263Z] [INFO] ⏳ Connecting to database...
+[2026-04-30T15:09:43.290Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-30T15:09:44.708Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-30T15:09:46.410Z] [INFO] 🛢️  Database connected successfully
+[2026-04-30T15:14:51.004Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:14:51.312Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:16:33.117Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:16:33.429Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:17:19.589Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:20:21.110Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:20:24.150Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:20:28.214Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:20:34.293Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:21:18.025Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:21:19.352Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:21:21.666Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:21:25.974Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:22:19.164Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:22:19.757Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:24:04.992Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:24:06.299Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:24:08.615Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:38
+
+  116 
+  117 // --- Get All Reviews (Admin) ---
+  118 const getAllReviewsFromDB = async (): Promise<TReview[]> => {
+→ 119   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:119:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:44:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:18.709Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:19.291Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:29.458Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:32.576Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:36.625Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:42.970Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:47.736Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:48.037Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:25:57.397Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:00.324Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:06.186Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:12.132Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:38.662Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:42.229Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:26:54.628Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:00.644Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:10.296Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:10.873Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:26.235Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:29.494Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:33.448Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:27:46.388Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:28:34.514Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:29:05.745Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:29:09.733Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:29:15.741Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:32:24.470Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:33:13.348Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:33:17.976Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-04-30T15:33:23.957Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
