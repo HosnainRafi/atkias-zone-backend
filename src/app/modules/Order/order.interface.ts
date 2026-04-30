@@ -1,5 +1,5 @@
 ﻿// src/app/modules/Order/order.interface.ts
-import { OrderStatus, PaymentStatus, PaymentMethod } from "./order.constants";
+import { OrderStatus, PaymentStatus, PaymentMethod } from './order.constants';
 
 export type TShippingAddress = {
   customerName: string;
@@ -76,12 +76,15 @@ export type TCreateOrderPayload = {
 };
 
 export type TPublicOrderTracking = {
+  id: string;
   trackingNumber: string;
+  customerName: string;
   status: (typeof OrderStatus)[number];
   paymentStatus: (typeof PaymentStatus)[number];
   statusHistories: TOrderStatusHistory[];
   createdAt: Date;
   items: {
+    productId: string;
     title: string;
     variantLabel?: string | null;
     quantity: number;

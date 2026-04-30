@@ -1,8 +1,8 @@
 // src/app/modules/Review/review.service.ts
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import prisma from "../../../shared/prisma";
-import { TCreateReviewPayload, TReview } from "./review.interface";
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import prisma from '../../../shared/prisma';
+import { TCreateReviewPayload, TReview } from './review.interface';
 
 // --- Helper: Calculate Average Rating ---
 const calculateAverageRating = async (productId: string) => {
@@ -35,7 +35,7 @@ const calculateAverageRating = async (productId: string) => {
 
 // --- Create Review (Public) ---
 const createReviewIntoDB = async (
-  payload: TCreateReviewPayload
+  payload: TCreateReviewPayload,
 ): Promise<TReview> => {
   const { orderId, productId, customerName, rating, comment } = payload;
 
@@ -46,25 +46,23 @@ const createReviewIntoDB = async (
   });
 
   if (!order) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
   }
 
   // 2. Check if order is delivered
-  if (order.status !== "delivered") {
+  if (order.status !== 'delivered') {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      "You can only review delivered orders."
+      'You can only review delivered orders.',
     );
   }
 
   // 3. Verify the product exists in the order
-  const productInOrder = order.items.find(
-    (item) => item.productId === productId
-  );
+  const productInOrder = order.items.find(item => item.productId === productId);
   if (!productInOrder) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      "This product was not found in your order."
+      'This product was not found in your order.',
     );
   }
 
@@ -81,7 +79,7 @@ const createReviewIntoDB = async (
   if (existingReview) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      "You have already reviewed this product for this order."
+      'You have already reviewed this product for this order.',
     );
   }
 
@@ -104,14 +102,14 @@ const createReviewIntoDB = async (
 
 // --- Get Approved Reviews for a Product (Public) ---
 const getApprovedReviewsForProduct = async (
-  productId: string
+  productId: string,
 ): Promise<TReview[]> => {
   const result = await prisma.review.findMany({
     where: {
       productId,
       isApproved: true,
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { createdAt: 'desc' },
   });
   return result as unknown as TReview[];
 };
@@ -127,7 +125,7 @@ const getAllReviewsFromDB = async (): Promise<TReview[]> => {
         },
       },
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { createdAt: 'desc' },
   });
   return result as unknown as TReview[];
 };
@@ -135,11 +133,11 @@ const getAllReviewsFromDB = async (): Promise<TReview[]> => {
 // --- Update Review (Admin) ---
 const updateReviewInDB = async (
   reviewId: string,
-  payload: Partial<Pick<TReview, "isApproved" | "comment">>
+  payload: Partial<Pick<TReview, 'isApproved' | 'showOnHomepage' | 'comment'>>,
 ): Promise<TReview | null> => {
   const review = await prisma.review.findUnique({ where: { id: reviewId } });
   if (!review) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Review not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Review not found.');
   }
 
   const result = await prisma.review.update({
@@ -159,7 +157,7 @@ const updateReviewInDB = async (
 const deleteReviewFromDB = async (id: string): Promise<TReview | null> => {
   const review = await prisma.review.findUnique({ where: { id } });
   if (!review) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Review not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Review not found.');
   }
 
   const result = await prisma.review.delete({
@@ -172,10 +170,32 @@ const deleteReviewFromDB = async (id: string): Promise<TReview | null> => {
   return result as unknown as TReview;
 };
 
+// --- Get Featured Reviews for Homepage (Public) ---
+const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+  const result = await prisma.review.findMany({
+    where: {
+      isApproved: true,
+      showOnHomepage: true,
+    },
+    include: {
+      product: {
+        select: {
+          title: true,
+          slug: true,
+          images: true,
+        },
+      },
+    },
+    orderBy: { createdAt: 'desc' },
+  });
+  return result as unknown as TReview[];
+};
+
 export const ReviewService = {
   createReviewIntoDB,
   getApprovedReviewsForProduct,
   getAllReviewsFromDB,
+  getFeaturedReviewsFromDB,
   updateReviewInDB,
   deleteReviewFromDB,
 };

@@ -1,10 +1,10 @@
 // src/app/modules/Review/review.controller.ts
-import { Request, Response } from "express";
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { TReview } from "./review.interface";
-import { ReviewService } from "./review.service";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { TReview } from './review.interface';
+import { ReviewService } from './review.service';
 
 const createReview = catchAsync(async (req: Request, res: Response) => {
   const result = await ReviewService.createReviewIntoDB(req.body);
@@ -12,7 +12,7 @@ const createReview = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.CREATED,
     success: true,
     message:
-      "Review submitted successfully! It will be visible after approval.",
+      'Review submitted successfully! It will be visible after approval.',
     data: result,
   });
 });
@@ -24,18 +24,28 @@ const getApprovedReviewsForProduct = catchAsync(
     sendResponse<TReview[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: "Reviews retrieved successfully!",
+      message: 'Reviews retrieved successfully!',
       data: result,
     });
-  }
+  },
 );
+
+const getFeaturedReviews = catchAsync(async (req: Request, res: Response) => {
+  const result = await ReviewService.getFeaturedReviewsFromDB();
+  sendResponse<TReview[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Featured reviews retrieved successfully!',
+    data: result,
+  });
+});
 
 const getAllReviews = catchAsync(async (req: Request, res: Response) => {
   const result = await ReviewService.getAllReviewsFromDB();
   sendResponse<TReview[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "All reviews retrieved successfully!",
+    message: 'All reviews retrieved successfully!',
     data: result,
   });
 });
@@ -46,7 +56,7 @@ const updateReview = catchAsync(async (req: Request, res: Response) => {
   sendResponse<TReview>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Review updated successfully!",
+    message: 'Review updated successfully!',
     data: result,
   });
 });
@@ -57,7 +67,7 @@ const deleteReview = catchAsync(async (req: Request, res: Response) => {
   sendResponse<TReview>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Review deleted successfully!",
+    message: 'Review deleted successfully!',
     data: result,
   });
 });
@@ -65,6 +75,7 @@ const deleteReview = catchAsync(async (req: Request, res: Response) => {
 export const ReviewController = {
   createReview,
   getApprovedReviewsForProduct,
+  getFeaturedReviews,
   getAllReviews,
   updateReview,
   deleteReview,

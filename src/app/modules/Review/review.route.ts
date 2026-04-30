@@ -1,35 +1,37 @@
 // src/app/modules/Review/review.route.ts
-import express from "express";
-import auth from "../../middlewares/auth";
-import validateRequest from "../../middlewares/validateRequest";
-import { ADMIN_ROLE } from "../Admin/admin.constants";
-import { ReviewController } from "./review.controller";
-import { ReviewValidation } from "./review.validation";
+import express from 'express';
+import auth from '../../middlewares/auth';
+import validateRequest from '../../middlewares/validateRequest';
+import { ADMIN_ROLE } from '../Admin/admin.constants';
+import { ReviewController } from './review.controller';
+import { ReviewValidation } from './review.validation';
 
 const router = express.Router();
 
 // --- Public Routes ---
 router.post(
-  "/",
+  '/',
   validateRequest(ReviewValidation.createReviewZodSchema),
   ReviewController.createReview,
 );
 
+router.get('/featured', ReviewController.getFeaturedReviews);
+
 router.get(
-  "/product/:productId",
+  '/product/:productId',
   ReviewController.getApprovedReviewsForProduct,
 );
 
 // --- Admin Routes ---
-router.get("/", auth(ADMIN_ROLE.ADMIN), ReviewController.getAllReviews);
+router.get('/', auth(ADMIN_ROLE.ADMIN), ReviewController.getAllReviews);
 
 router.patch(
-  "/:id",
+  '/:id',
   auth(ADMIN_ROLE.ADMIN),
   validateRequest(ReviewValidation.updateReviewZodSchema),
   ReviewController.updateReview,
 );
 
-router.delete("/:id", auth(ADMIN_ROLE.ADMIN), ReviewController.deleteReview);
+router.delete('/:id', auth(ADMIN_ROLE.ADMIN), ReviewController.deleteReview);
 
 export const ReviewRoutes = router;

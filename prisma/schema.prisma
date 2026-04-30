@@ -505,15 +505,16 @@ model OrderStatusHistory {
 // ─────────────────────────────────────────
 
 model Review {
-  id           String   @id @default(uuid())
-  productId    String
-  orderId      String
-  customerName String
-  rating       Int
-  comment      String
-  isApproved   Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id             String   @id @default(uuid())
+  productId      String
+  orderId        String
+  customerName   String
+  rating         Int
+  comment        String
+  isApproved     Boolean  @default(false)
+  showOnHomepage Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   product Product @relation(fields: [productId], references: [id])
   order   Order   @relation(fields: [orderId], references: [id])

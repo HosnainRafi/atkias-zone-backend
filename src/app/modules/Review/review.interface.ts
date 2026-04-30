@@ -8,6 +8,7 @@ export type TReview = {
   rating: number; // 1-5
   comment: string;
   isApproved: boolean;
+  showOnHomepage: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 };

@@ -86,10 +86,28 @@ const trackOrder = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSalesReport = catchAsync(async (req: Request, res: Response) => {
+  const options = pick(req.query, [
+    'startDate',
+    'endDate',
+    'status',
+    'paymentStatus',
+    'paymentMethod',
+  ]);
+  const result = await OrderService.getSalesReportFromDB(options);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Sales report generated successfully!',
+    data: result,
+  });
+});
+
 export const OrderController = {
   createOrder,
   getAllOrders,
   getSingleOrder,
   updateOrderStatus,
   trackOrder,
+  getSalesReport,
 };

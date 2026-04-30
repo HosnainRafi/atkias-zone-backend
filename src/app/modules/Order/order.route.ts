@@ -7,7 +7,7 @@ import { OrderController } from './order.controller';
 import { OrderValidation } from './order.validation';
 
 const router = express.Router();
- 
+
 // Public route for placing an order
 router.post(
   '/',
@@ -27,6 +27,12 @@ router.get('/:id', OrderController.getSingleOrder);
 // --- Admin-Only Routes ---
 
 router.get('/admin/all', auth(ADMIN_ROLE.ADMIN), OrderController.getAllOrders);
+
+router.get(
+  '/admin/sales-report',
+  auth(ADMIN_ROLE.ADMIN),
+  OrderController.getSalesReport,
+);
 
 // Route for admin to update order status
 router.patch(

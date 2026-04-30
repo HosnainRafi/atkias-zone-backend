@@ -313,12 +313,15 @@ const trackOrderPublicly = async (payload: {
     throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   return orders.map(order => ({
+    id: order.id,
     trackingNumber: order.trackingNumber,
+    customerName: order.customerName,
     status: order.status as any,
     paymentStatus: order.paymentStatus as any,
     statusHistories: order.statusHistories as any,
     createdAt: order.createdAt,
     items: order.items.map(item => ({
+      productId: item.productId,
       title: item.title,
       variantLabel: item.variantLabel,
       quantity: item.quantity,
@@ -328,10 +331,83 @@ const trackOrderPublicly = async (payload: {
   }));
 };
 
+// --- Sales Report ---
+export interface TSalesReportRow {
+  orderId: string;
+  trackingNumber: string;
+  customerName: string;
+  mobile: string;
+  district: string;
+  status: string;
+  paymentMethod: string;
+  paymentStatus: string;
+  subtotal: number;
+  shipping: number;
+  discount: number;
+  totalAmount: number;
+  itemCount: number;
+  createdAt: Date;
+}
+
+const getSalesReportFromDB = async (options: {
+  startDate?: string;
+  endDate?: string;
+  status?: string;
+  paymentStatus?: string;
+  paymentMethod?: string;
+}): Promise<TSalesReportRow[]> => {
+  const andConditions: Prisma.OrderWhereInput[] = [];
+
+  if (options.startDate) {
+    andConditions.push({ createdAt: { gte: new Date(options.startDate) } });
+  }
+  if (options.endDate) {
+    const end = new Date(options.endDate);
+    end.setHours(23, 59, 59, 999);
+    andConditions.push({ createdAt: { lte: end } });
+  }
+  if (options.status) {
+    andConditions.push({ status: options.status as any });
+  }
+  if (options.paymentStatus) {
+    andConditions.push({ paymentStatus: options.paymentStatus as any });
+  }
+  if (options.paymentMethod) {
+    andConditions.push({ paymentMethod: options.paymentMethod as any });
+  }
+
+  const where: Prisma.OrderWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
+
+  const orders = await prisma.order.findMany({
+    where,
+    include: { items: true },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return orders.map(order => ({
+    orderId: order.id,
+    trackingNumber: order.trackingNumber,
+    customerName: order.customerName,
+    mobile: order.mobile,
+    district: order.district,
+    status: order.status,
+    paymentMethod: order.paymentMethod,
+    paymentStatus: order.paymentStatus,
+    subtotal: Number(order.subtotal),
+    shipping: Number(order.shipping),
+    discount: Number(order.discountAmount),
+    totalAmount: Number(order.totalAmount),
+    itemCount: order.items.length,
+    createdAt: order.createdAt,
+  }));
+};
+
 export const OrderService = {
   createOrderIntoDB,
   getAllOrdersFromDB,
   getSingleOrderFromDB,
   updateOrderStatusInDB,
   trackOrderPublicly,
+  getSalesReportFromDB,
 };
