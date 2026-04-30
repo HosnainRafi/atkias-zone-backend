@@ -6992,3 +6992,15 @@ The column `reviews.showOnHomepage` does not exist in the current database.
   clientVersion: '5.22.0',
   meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
 }
+[2026-04-30T19:47:51.637Z] [INFO] ⏳ Connecting to database...
+[2026-04-30T19:47:51.646Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-30T19:47:52.475Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-30T19:47:53.958Z] [INFO] 🛢️  Database connected successfully
+[2026-04-30T19:49:07.245Z] [INFO] ⏳ Connecting to database...
+[2026-04-30T19:49:07.258Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-30T19:49:07.735Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-30T19:49:09.425Z] [INFO] 🛢️  Database connected successfully
+[2026-04-30T19:49:13.091Z] [INFO] ⏳ Connecting to database...
+[2026-04-30T19:49:13.100Z] [INFO] 🚀 Application listening on port 5000
+[2026-04-30T19:49:13.223Z] [INFO] ✅ SMTP server ready to send emails
+[2026-04-30T19:49:15.294Z] [INFO] 🛢️  Database connected successfully
