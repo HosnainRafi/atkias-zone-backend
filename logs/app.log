@@ -7004,3 +7004,341 @@ The column `reviews.showOnHomepage` does not exist in the current database.
 [2026-04-30T19:49:13.100Z] [INFO] 🚀 Application listening on port 5000
 [2026-04-30T19:49:13.223Z] [INFO] ✅ SMTP server ready to send emails
 [2026-04-30T19:49:15.294Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:20:22.183Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:20:22.202Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:20:23.209Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:20:24.245Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:32:20.510Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Review', column: 'reviews.showOnHomepage' }
+}
+[2026-05-01T05:32:49.523Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-05-01T05:32:52.186Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-05-01T05:32:54.072Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-05-01T05:33:04.532Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findFirst()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:39
+
+  181 const getSingleProductFromDB = async (
+  182   idOrSlug: string,
+  183 ): Promise<TProduct | null> => {
+→ 184   const result = await prisma.product.findFirst(
+The column `reviews.showOnHomepage` does not exist in the current database.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getSingleProductFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:184:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:46:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2022',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product', column: 'reviews.showOnHomepage' }
+}
+[2026-05-01T05:35:07.029Z] [ERROR] ❌ Failed to send order notification email: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-05-01T05:35:07.031Z] [ERROR] Error details: Cannot read properties of undefined (reading 'customerName')
+[2026-05-01T05:35:07.032Z] [ERROR] Email notification failed: TypeError: Cannot read properties of undefined (reading 'customerName')
+    at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-05-01T05:48:12.549Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:48:13.384Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:48:14.736Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:48:15.520Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:49:28.990Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:49:29.008Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:49:30.417Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:49:31.307Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:49:53.422Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:49:53.443Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:49:53.796Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:49:58.000Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:50:09.835Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:50:09.854Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:50:10.217Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:50:12.117Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:50:24.353Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:50:24.374Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:50:25.081Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:50:26.903Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:50:34.866Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:50:34.885Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:50:36.231Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:50:37.894Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T05:58:18.392Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T05:58:18.412Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T05:58:19.684Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T05:58:20.674Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:02:12.539Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:02:12.558Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:02:13.772Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:02:15.085Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:14:13.025Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:14:13.042Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:14:15.042Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:14:15.634Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:21:19.335Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:21:19.356Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:21:20.479Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:21:22.000Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:22:24.111Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:40:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 403
+}
+[2026-05-01T06:24:35.601Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:24:35.627Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:24:36.878Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:24:38.147Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:26:00.442Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:26:00.477Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:26:01.449Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:26:02.843Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:35:53.346Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:35:53.380Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:35:54.895Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:35:56.384Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:36:47.027Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:36:47.050Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:36:49.792Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:36:51.660Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:43:31.624Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:43:31.655Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:43:32.950Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:43:33.929Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:47:20.737Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:40:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 403
+}
+[2026-05-01T06:47:21.818Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:40:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 403
+}
+[2026-05-01T06:47:23.864Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:40:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 403
+}
+[2026-05-01T06:47:29.286Z] [ERROR] globalErrorHandler ~ ApiError: Forbidden
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\auth.ts:40:15)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:295:15
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+    at router.handle (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3) {
+  statusCode: 403
+}
+[2026-05-01T06:56:47.995Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:56:48.069Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:56:49.182Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:56:51.064Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:56:56.232Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:56:56.250Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:56:56.753Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:56:58.578Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T06:57:13.975Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T06:57:14.002Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T06:57:14.419Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T06:57:16.373Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T07:14:17.818Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T07:14:17.843Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T07:14:18.844Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T07:14:20.267Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T07:14:50.564Z] [ERROR] globalErrorHandler ~ ApiError: Incorrect email or password.
+    at Object.loginAdmin (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:74:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 401
+}
+[2026-05-01T07:16:04.929Z] [ERROR] globalErrorHandler ~ ApiError: Current password is incorrect.
+    at Object.changePasswordInDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:141:11)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:50:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 401
+}
+[2026-05-01T08:16:17.047Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T08:16:17.650Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T08:16:19.084Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T08:16:21.492Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T08:32:34.098Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T08:32:35.533Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T08:32:36.571Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T08:32:38.911Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T09:18:15.370Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T09:18:15.380Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T09:18:15.863Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T09:18:16.878Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T09:18:30.316Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:32.762Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:33.539Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:34.347Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:34.707Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:36.620Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:36.914Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:37.291Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:38.129Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}
+[2026-05-01T09:18:39.310Z] [ERROR] globalErrorHandler ~ ApiError: Admin not found.
+    at Object.getMeFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.service.ts:110:21)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Admin\admin.controller.ts:30:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 404
+}

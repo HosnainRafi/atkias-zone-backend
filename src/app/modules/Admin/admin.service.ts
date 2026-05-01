@@ -1,12 +1,12 @@
 // src/app/modules/Admin/admin.service.ts
-import bcrypt from "bcrypt";
-import httpStatus from "http-status";
-import { Secret } from "jsonwebtoken";
-import config from "../../../config";
-import ApiError from "../../../errors/ApiError";
-import { jwtHelpers } from "../../../helpers/jwtHelpers";
-import prisma from "../../../shared/prisma";
-import { TAdmin, TLoginAdmin, TLoginAdminResponse } from "./admin.interface";
+import bcrypt from 'bcrypt';
+import httpStatus from 'http-status';
+import { Secret } from 'jsonwebtoken';
+import config from '../../../config';
+import ApiError from '../../../errors/ApiError';
+import { jwtHelpers } from '../../../helpers/jwtHelpers';
+import prisma from '../../../shared/prisma';
+import { TAdmin, TLoginAdmin, TLoginAdminResponse } from './admin.interface';
 
 const createAdminIntoDB = async (payload: TAdmin): Promise<TAdmin> => {
   // Check if admin already exists
@@ -19,7 +19,7 @@ const createAdminIntoDB = async (payload: TAdmin): Promise<TAdmin> => {
   if (existingAdmin) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      "Admin with this email already exists.",
+      'Admin with this email already exists.',
     );
   }
 
@@ -31,12 +31,16 @@ const createAdminIntoDB = async (payload: TAdmin): Promise<TAdmin> => {
 
   const result = await prisma.admin.create({
     data: {
-      ...payload,
+      name: payload.name,
+      email: payload.email,
       password: hashedPassword,
+      role: payload.role as any,
+      mustChangePassword: true,
     },
   });
 
-  return result as unknown as TAdmin;
+  const { password: _pw, ...rest } = result;
+  return rest as unknown as TAdmin;
 };
 
 const loginAdmin = async (
@@ -52,30 +56,39 @@ const loginAdmin = async (
   });
 
   if (!admin) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Admin account not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Admin account not found.');
   }
 
-  // 2. Check if password is correct
+  // 2. Check if admin is blocked
+  if (admin.isBlocked) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'Your account has been blocked. Contact super admin.',
+    );
+  }
+
+  // 3. Check if password is correct
   const isPasswordMatched = await bcrypt.compare(password, admin.password);
 
   if (!isPasswordMatched) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, "Incorrect email or password.");
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password.');
   }
 
-  // 3. Create JWT payload
+  // 4. Create JWT payload
   const jwtPayload = {
     userId: admin.id,
     role: admin.role,
+    mustChangePassword: admin.mustChangePassword,
   };
 
-  // 4. Generate Access Token
+  // 5. Generate Access Token
   const accessToken = jwtHelpers.createToken(
     jwtPayload,
     config.jwt.secret as Secret,
     config.jwt.expires_in as string,
   );
 
-  // 5. Format admin data to return (excluding password)
+  // 6. Format admin data to return (excluding password)
   const adminData = {
     id: admin.id,
     name: admin.name,
@@ -85,67 +98,122 @@ const loginAdmin = async (
 
   return {
     accessToken,
+    mustChangePassword: admin.mustChangePassword,
     adminData,
   };
 };
 
 const getMeFromDB = async (
   adminId: string,
-): Promise<Omit<TAdmin, "password">> => {
+): Promise<Omit<TAdmin, 'password'>> => {
   const admin = await prisma.admin.findUnique({ where: { id: adminId } });
-  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, "Admin not found.");
+  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found.');
   const { password: _pw, ...rest } = admin;
-  return rest as unknown as Omit<TAdmin, "password">;
+  return rest as unknown as Omit<TAdmin, 'password'>;
 };
 
-const getAllAdminsFromDB = async (): Promise<Omit<TAdmin, "password">[]> => {
+const getAllAdminsFromDB = async (): Promise<Omit<TAdmin, 'password'>[]> => {
   const admins = await prisma.admin.findMany({
     select: {
       id: true,
       name: true,
       email: true,
       role: true,
+      isBlocked: true,
+      mustChangePassword: true,
       createdAt: true,
       updatedAt: true,
     },
+    orderBy: { createdAt: 'desc' },
   });
-  return admins as unknown as Omit<TAdmin, "password">[];
+  return admins as unknown as Omit<TAdmin, 'password'>[];
 };
 
 const changePasswordInDB = async (
   adminId: string,
   payload: { currentPassword: string; newPassword: string },
-): Promise<void> => {
+): Promise<{ accessToken: string }> => {
   const admin = await prisma.admin.findUnique({ where: { id: adminId } });
-  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, "Admin not found.");
+  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found.');
 
   const matched = await bcrypt.compare(payload.currentPassword, admin.password);
   if (!matched)
     throw new ApiError(
       httpStatus.UNAUTHORIZED,
-      "Current password is incorrect.",
+      'Current password is incorrect.',
     );
 
   const hashed = await bcrypt.hash(
     payload.newPassword,
     Number(config.bcrypt_salt_rounds),
   );
-  await prisma.admin.update({
+  const updated = await prisma.admin.update({
     where: { id: adminId },
-    data: { password: hashed },
+    data: { password: hashed, mustChangePassword: false },
   });
+
+  // Issue a fresh token with mustChangePassword: false so the proxy
+  // immediately lifts the forced-password-change restriction.
+  const jwtPayload = {
+    userId: updated.id,
+    role: updated.role,
+    mustChangePassword: false,
+  };
+  const accessToken = jwtHelpers.createToken(
+    jwtPayload,
+    config.jwt.secret as Secret,
+    config.jwt.expires_in as string,
+  );
+  return { accessToken };
+};
+
+const updateProfileInDB = async (
+  adminId: string,
+  payload: { name: string },
+): Promise<Omit<TAdmin, 'password'>> => {
+  const result = await prisma.admin.update({
+    where: { id: adminId },
+    data: { name: payload.name.trim() },
+  });
+  const { password: _pw, ...rest } = result;
+  return rest as unknown as Omit<TAdmin, 'password'>;
 };
 
 const updateAdminInDB = async (
   id: string,
-  payload: Partial<Pick<TAdmin, "name" | "role">>,
-): Promise<Omit<TAdmin, "password">> => {
+  payload: Partial<Pick<TAdmin, 'name' | 'role' | 'isBlocked'>>,
+): Promise<Omit<TAdmin, 'password'>> => {
   const admin = await prisma.admin.findUnique({ where: { id } });
-  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, "Admin not found.");
+  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found.');
 
-  const result = await prisma.admin.update({ where: { id }, data: payload });
+  // Prevent modifying SUPER_ADMIN
+  if (admin.role === 'SUPER_ADMIN') {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'Cannot modify super admin account.',
+    );
+  }
+
+  const result = await prisma.admin.update({
+    where: { id },
+    data: payload as any,
+  });
   const { password: _pw, ...rest } = result;
-  return rest as unknown as Omit<TAdmin, "password">;
+  return rest as unknown as Omit<TAdmin, 'password'>;
+};
+
+const deleteAdminFromDB = async (id: string): Promise<void> => {
+  const admin = await prisma.admin.findUnique({ where: { id } });
+  if (!admin) throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found.');
+
+  if (admin.role === 'SUPER_ADMIN') {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'Cannot delete super admin account.',
+    );
+  }
+
+  await prisma.admin.delete({ where: { id } });
 };
 
 export const AdminService = {
@@ -154,5 +222,7 @@ export const AdminService = {
   getMeFromDB,
   getAllAdminsFromDB,
   changePasswordInDB,
+  updateProfileInDB,
   updateAdminInDB,
+  deleteAdminFromDB,
 };

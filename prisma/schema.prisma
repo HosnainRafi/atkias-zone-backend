@@ -15,18 +15,21 @@ datasource db {
 // ─────────────────────────────────────────
 
 enum AdminRole {
+  SUPER_ADMIN
   ADMIN
   EDITOR
 }
 
 model Admin {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  role      AdminRole
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id                 String    @id @default(uuid())
+  name               String
+  email              String    @unique
+  password           String
+  role               AdminRole
+  isBlocked          Boolean   @default(false)
+  mustChangePassword Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   couponsCreated  Coupon[]
   statusHistories OrderStatusHistory[]

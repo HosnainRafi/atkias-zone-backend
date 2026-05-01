@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(ADMIN_ROLE.ADMIN), // Only admins can create
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN), // Only admins can create
   validateRequest(CategoryValidation.createCategoryZodSchema),
   CategoryController.createCategory,
 );
@@ -22,14 +22,14 @@ router.get('/subcategories/all', CategoryController.getAllSubcategories);
 router.get('/:id', CategoryController.getSingleCategory); // Anyone can view one
 router.patch(
   '/:id',
-  auth(ADMIN_ROLE.ADMIN), // Only admins can update
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN), // Only admins can update
   validateRequest(CategoryValidation.updateCategoryZodSchema),
   CategoryController.updateCategory,
 );
 
 router.delete(
   '/:id',
-  auth(ADMIN_ROLE.ADMIN), // Only admins can delete
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN), // Only admins can delete
   CategoryController.deleteCategory,
 );
 

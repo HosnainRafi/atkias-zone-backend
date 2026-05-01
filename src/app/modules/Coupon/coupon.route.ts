@@ -1,16 +1,16 @@
 // src/app/modules/Coupon/coupon.route.ts
-import express from "express";
-import auth from "../../middlewares/auth";
-import validateRequest from "../../middlewares/validateRequest";
-import { ADMIN_ROLE } from "../Admin/admin.constants";
-import { CouponController } from "./coupon.controller";
-import { CouponValidation } from "./coupon.validation";
+import express from 'express';
+import auth from '../../middlewares/auth';
+import validateRequest from '../../middlewares/validateRequest';
+import { ADMIN_ROLE } from '../Admin/admin.constants';
+import { CouponController } from './coupon.controller';
+import { CouponValidation } from './coupon.validation';
 
 const router = express.Router();
 
 // Public route for applying a coupon
 router.post(
-  "/apply",
+  '/apply',
   validateRequest(CouponValidation.applyCouponZodSchema),
   CouponController.applyCoupon,
 );
@@ -18,23 +18,31 @@ router.post(
 // --- Admin-Only Routes ---
 
 router.post(
-  "/",
-  auth(ADMIN_ROLE.ADMIN),
+  '/',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
   validateRequest(CouponValidation.createCouponZodSchema),
   CouponController.createCoupon,
 );
 
-router.get("/", CouponController.getAllCoupons);
+router.get('/', CouponController.getAllCoupons);
 
-router.get("/:id", auth(ADMIN_ROLE.ADMIN), CouponController.getSingleCoupon);
+router.get(
+  '/:id',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  CouponController.getSingleCoupon,
+);
 
 router.patch(
-  "/:id",
-  auth(ADMIN_ROLE.ADMIN),
+  '/:id',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
   validateRequest(CouponValidation.updateCouponZodSchema),
   CouponController.updateCoupon,
 );
 
-router.delete("/:id", auth(ADMIN_ROLE.ADMIN), CouponController.deleteCoupon);
+router.delete(
+  '/:id',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  CouponController.deleteCoupon,
+);
 
 export const CouponRoutes = router;

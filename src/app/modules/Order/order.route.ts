@@ -26,18 +26,22 @@ router.get('/:id', OrderController.getSingleOrder);
 
 // --- Admin-Only Routes ---
 
-router.get('/admin/all', auth(ADMIN_ROLE.ADMIN), OrderController.getAllOrders);
+router.get(
+  '/admin/all',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  OrderController.getAllOrders,
+);
 
 router.get(
   '/admin/sales-report',
-  auth(ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
   OrderController.getSalesReport,
 );
 
 // Route for admin to update order status
 router.patch(
   '/admin/:id/status',
-  auth(ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
   validateRequest(OrderValidation.updateOrderStatusZodSchema),
   OrderController.updateOrderStatus,
 );

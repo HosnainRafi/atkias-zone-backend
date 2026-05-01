@@ -23,15 +23,23 @@ router.get(
 );
 
 // --- Admin Routes ---
-router.get('/', auth(ADMIN_ROLE.ADMIN), ReviewController.getAllReviews);
+router.get(
+  '/',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN, ADMIN_ROLE.EDITOR),
+  ReviewController.getAllReviews,
+);
 
 router.patch(
   '/:id',
-  auth(ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN, ADMIN_ROLE.EDITOR),
   validateRequest(ReviewValidation.updateReviewZodSchema),
   ReviewController.updateReview,
 );
 
-router.delete('/:id', auth(ADMIN_ROLE.ADMIN), ReviewController.deleteReview);
+router.delete(
+  '/:id',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN, ADMIN_ROLE.EDITOR),
+  ReviewController.deleteReview,
+);
 
 export const ReviewRoutes = router;
