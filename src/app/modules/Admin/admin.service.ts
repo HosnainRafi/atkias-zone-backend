@@ -152,15 +152,13 @@ const changePasswordInDB = async (
     data: { password: hashed, mustChangePassword: false },
   });
 
-  // Issue a fresh token with mustChangePassword: false so the proxy
-  // immediately lifts the forced-password-change restriction.
-  const jwtPayload = {
+  const jwtPayloadNew = {
     userId: updated.id,
     role: updated.role,
     mustChangePassword: false,
   };
   const accessToken = jwtHelpers.createToken(
-    jwtPayload,
+    jwtPayloadNew,
     config.jwt.secret as Secret,
     config.jwt.expires_in as string,
   );
