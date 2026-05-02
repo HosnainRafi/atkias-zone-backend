@@ -7458,3 +7458,78 @@ The column `reviews.showOnHomepage` does not exist in the current database.
 [2026-05-01T12:08:50.882Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-01T12:08:51.547Z] [INFO] ✅ SMTP server ready to send emails
 [2026-05-01T12:08:51.581Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T12:09:54.827Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T12:09:54.856Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T12:09:55.444Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T12:09:55.736Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-01T18:39:07.731Z] [INFO] ⏳ Connecting to database...
+[2026-05-01T18:39:08.481Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-01T18:39:09.192Z] [INFO] 🛢️  Database connected successfully
+[2026-05-01T18:39:10.253Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-02T07:36:59.120Z] [INFO] ⏳ Connecting to database...
+[2026-05-02T07:36:59.982Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-02T07:37:01.896Z] [INFO] 🛢️  Database connected successfully
+[2026-05-02T07:37:02.212Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-02T07:37:12.933Z] [INFO] ⏳ Connecting to database...
+[2026-05-02T07:37:12.950Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-02T07:37:13.465Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-02T07:37:13.553Z] [INFO] 🛢️  Database connected successfully
+[2026-05-02T08:04:06.734Z] [ERROR] globalErrorHandler ~ Error: EBUSY: resource busy or locked, unlink 'E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\public\temp\Banner3-1777709045866-469732320.webp'
+    at Object.unlinkSync (node:fs:1942:11)
+    at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Upload\upload.controller.ts:59:10)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'unlink',
+  path: "E:\\Web Development\\Vibe Binary\\Atkia's Zone\\atkias-zone-backend\\public\\temp\\Banner3-1777709045866-469732320.webp"
+}
+[2026-05-02T08:04:06.755Z] [ERROR] Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:642:11)
+    at ServerResponse.header (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:686:10)
+    at ServerResponse.send (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:163:12)
+    at ServerResponse.json (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\response.js:252:15)
+    at globalErrorHandler (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\middlewares\globalErrorHandler.ts:72:26)
+    at Layer.handleError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:116:17)
+    at trimPrefix (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:340:13)
+    at E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+    at processParams (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+    at next (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+[2026-05-02T09:24:49.654Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-02T09:39:28.257Z] [INFO] ⏳ Connecting to database...
+[2026-05-02T09:39:28.315Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-02T09:39:28.896Z] [INFO] 🛢️  Database connected successfully
+[2026-05-02T09:39:29.583Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-02T11:01:07.418Z] [INFO] ⏳ Connecting to database...
+[2026-05-02T11:01:08.618Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-02T11:01:09.731Z] [INFO] 🛢️  Database connected successfully
+[2026-05-02T11:01:10.120Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-02T11:01:50.268Z] [INFO] ⏳ Connecting to database...
+[2026-05-02T11:01:50.298Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-02T11:01:50.897Z] [INFO] 🛢️  Database connected successfully
+[2026-05-02T11:01:50.926Z] [INFO] ✅ SMTP server ready to send emails
