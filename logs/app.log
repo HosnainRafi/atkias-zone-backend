@@ -7649,3 +7649,9 @@ Please make sure your database server is running at `ep-snowy-fog-aormlb40-poole
 [2026-05-03T15:10:18.065Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-03T15:10:18.841Z] [INFO] 🛢️  Database connected successfully
 [2026-05-03T15:10:19.079Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-03T17:24:34.583Z] [INFO] ⏳ Connecting to database...
+[2026-05-03T17:24:35.272Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-03T17:24:36.630Z] [INFO] 🛢️  Database connected successfully
+[2026-05-03T17:24:36.795Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-03T17:38:46.610Z] [INFO] ⏳ Connecting to database...
+[2026-05-03T17:38:46.643Z] [INFO] 🚀 Application listening on port 5000

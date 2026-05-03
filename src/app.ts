@@ -36,7 +36,7 @@ app.get('/health', (req: Request, res: Response) => {
 app.get('/', (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: 'Welcome to Outfitro API!',
+    message: 'Welcome to Atkia\'s Zone API!',
   });
 });
 
