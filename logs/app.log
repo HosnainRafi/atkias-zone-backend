@@ -7645,3 +7645,7 @@ Please make sure your database server is running at `ep-snowy-fog-aormlb40-poole
     at sendOrderNotificationEmail (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\emailService.ts:102:118)
     at <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:14:3)
     at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7)
+[2026-05-03T15:10:17.087Z] [INFO] ⏳ Connecting to database...
+[2026-05-03T15:10:18.065Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-03T15:10:18.841Z] [INFO] 🛢️  Database connected successfully
+[2026-05-03T15:10:19.079Z] [INFO] ✅ SMTP server ready to send emails
