@@ -28,6 +28,8 @@ export type TProduct = {
   sku?: string | null;
   isActive: boolean;
   averageRating: number;
+  reviewCount: number;
+  soldCount: number;
   newArrival: boolean;
   isFeatured: boolean;
   isOnOffer: boolean;

@@ -259,25 +259,46 @@ const updateOrderStatusInDB = async (
   adminId: string,
   payload: { status: string; note?: string; paymentStatus?: string },
 ): Promise<TOrder | null> => {
-  const order = await prisma.order.findUnique({ where: { id } });
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: { items: true },
+  });
   if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
-  const result = await prisma.order.update({
-    where: { id },
-    data: {
-      status: payload.status as any,
-      paymentStatus: payload.paymentStatus
-        ? (payload.paymentStatus as any)
-        : undefined,
-      statusHistories: {
-        create: {
-          status: payload.status as any,
-          note: payload.note,
-          changedById: adminId,
+  const isNewlyConfirmed =
+    payload.status === OrderStatus.confirmed &&
+    order.status !== OrderStatus.confirmed;
+
+  const result = await prisma.$transaction(async tx => {
+    const updatedOrder = await tx.order.update({
+      where: { id },
+      data: {
+        status: payload.status as any,
+        paymentStatus: payload.paymentStatus
+          ? (payload.paymentStatus as any)
+          : undefined,
+        statusHistories: {
+          create: {
+            status: payload.status as any,
+            note: payload.note,
+            changedById: adminId,
+          },
         },
       },
-    },
-    include: orderInclude,
+      include: orderInclude,
+    });
+
+    // Increment soldCount for each product when order is confirmed
+    if (isNewlyConfirmed) {
+      for (const item of order.items) {
+        await tx.product.update({
+          where: { id: item.productId },
+          data: { soldCount: { increment: item.quantity } },
+        });
+      }
+    }
+
+    return updatedOrder;
   });
 
   return result as unknown as TOrder;
