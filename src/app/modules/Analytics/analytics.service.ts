@@ -186,7 +186,17 @@ const getDashboardSummary = async (): Promise<{
     count: s._count.id,
   }));
 
-  return { summary, recentOrders, revenueChart, ordersByStatus };
+  const formattedRecentOrders: RecentOrder[] = recentOrders.map(order => ({
+    id: order.id,
+    trackingNumber: order.trackingNumber,
+    customerName: order.customerName,
+    totalAmount: Number(order.totalAmount),
+    status: String(order.status),
+    paymentStatus: String(order.paymentStatus),
+    createdAt: order.createdAt,
+  }));
+
+  return { summary, recentOrders: formattedRecentOrders, revenueChart, ordersByStatus };
 };
 
 const getStatistics = async (): Promise<StatisticsData> => {
