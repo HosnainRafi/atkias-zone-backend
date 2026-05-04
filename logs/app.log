@@ -8423,3 +8423,103 @@ Please make sure your database server is running at `ep-snowy-fog-aormlb40-poole
 [2026-05-04T05:10:01.015Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-04T05:10:01.714Z] [INFO] 🛢️  Database connected successfully
 [2026-05-04T05:10:02.059Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T05:55:11.832Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T05:55:11.989Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T05:55:13.414Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T05:55:13.717Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T05:58:48.727Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.deliveryChargeConfig.upsert()` invocation in
+C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:52
+
+  38 }
+  39 
+  40 const ensureDeliveryChargeConfig = async (): Promise<TDeliveryChargeConfig> => {
+→ 41   const config = await prisma.deliveryChargeConfig.upsert(
+The table `public.delivery_charge_configs` does not exist in the current database.
+    at $n.handleRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async ensureDeliveryChargeConfig (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:10:7)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'DeliveryChargeConfig',
+    table: 'public.delivery_charge_configs'
+  }
+}
+[2026-05-04T05:58:50.094Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.deliveryChargeConfig.upsert()` invocation in
+C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:52
+
+  38 }
+  39 
+  40 const ensureDeliveryChargeConfig = async (): Promise<TDeliveryChargeConfig> => {
+→ 41   const config = await prisma.deliveryChargeConfig.upsert(
+The table `public.delivery_charge_configs` does not exist in the current database.
+    at $n.handleRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async ensureDeliveryChargeConfig (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:10:7)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'DeliveryChargeConfig',
+    table: 'public.delivery_charge_configs'
+  }
+}
+[2026-05-04T05:58:52.256Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.deliveryChargeConfig.upsert()` invocation in
+C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:52
+
+  38 }
+  39 
+  40 const ensureDeliveryChargeConfig = async (): Promise<TDeliveryChargeConfig> => {
+→ 41   const config = await prisma.deliveryChargeConfig.upsert(
+The table `public.delivery_charge_configs` does not exist in the current database.
+    at $n.handleRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async ensureDeliveryChargeConfig (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:10:7)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'DeliveryChargeConfig',
+    table: 'public.delivery_charge_configs'
+  }
+}
+[2026-05-04T05:58:56.749Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.deliveryChargeConfig.upsert()` invocation in
+C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:52
+
+  38 }
+  39 
+  40 const ensureDeliveryChargeConfig = async (): Promise<TDeliveryChargeConfig> => {
+→ 41   const config = await prisma.deliveryChargeConfig.upsert(
+The table `public.delivery_charge_configs` does not exist in the current database.
+    at $n.handleRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async ensureDeliveryChargeConfig (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:41:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:10:7)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'DeliveryChargeConfig',
+    table: 'public.delivery_charge_configs'
+  }
+}
+[2026-05-04T06:14:16.535Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:14:16.585Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:14:17.086Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:14:17.371Z] [INFO] ✅ SMTP server ready to send emails

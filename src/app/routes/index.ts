@@ -8,6 +8,7 @@ import { BkashRoutes } from "../modules/Bkash/bkash.route";
 import { BrandRoutes } from "../modules/Brand/brand.route";
 import { CategoryRoutes } from "../modules/Category/category.route";
 import { CouponRoutes } from "../modules/Coupon/coupon.route";
+import { DeliveryChargeRoutes } from "../modules/DeliveryCharge/deliveryCharge.route";
 import { HomepageSectionRoutes } from "../modules/HomepageSection/homepageSection.route";
 import { OrderRoutes } from "../modules/Order/order.route";
 import { ProductRoutes } from "../modules/Product/product.route";
@@ -26,6 +27,7 @@ const moduleRoutes = [
   { path: "/products", route: ProductRoutes },
   { path: "/brands", route: BrandRoutes },
   { path: "/coupons", route: CouponRoutes },
+  { path: "/delivery-charge", route: DeliveryChargeRoutes },
   { path: "/orders", route: OrderRoutes },
   { path: "/reviews", route: ReviewRoutes },
   { path: "/tags", route: TagRoutes },
