@@ -7655,3 +7655,771 @@ Please make sure your database server is running at `ep-snowy-fog-aormlb40-poole
 [2026-05-03T17:24:36.795Z] [INFO] ✅ SMTP server ready to send emails
 [2026-05-03T17:38:46.610Z] [INFO] ⏳ Connecting to database...
 [2026-05-03T17:38:46.643Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-03T17:38:57.408Z] [INFO] ⏳ Connecting to database...
+[2026-05-03T17:38:57.427Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-03T17:38:58.217Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-03T17:38:58.476Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T04:31:33.605Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:31:34.287Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:31:35.355Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T04:31:35.722Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T04:32:16.280Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:32:16.296Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:32:16.806Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T04:32:17.261Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T04:38:00.093Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category' }
+}
+[2026-05-04T04:38:00.169Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.announcement.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:44
+
+  14 const getAllAnnouncementsFromDB = async (
+  15   activeOnly = false,
+  16 ): Promise<TAnnouncement[]> => {
+→ 17   const result = await prisma.announcement.findMany(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllAnnouncementsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.controller.ts:21:5)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Announcement' }
+}
+[2026-05-04T04:38:00.181Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.visitor.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:24
+
+  19 const trackVisitor = async (payload: TrackVisitorPayload) => {
+  20   const device = detectDevice(payload.userAgent);
+  21 
+→ 22   await prisma.visitor.create(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.trackVisitor (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Visitor' }
+}
+[2026-05-04T04:38:02.570Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Product' }
+}
+[2026-05-04T04:38:02.577Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Banner' }
+}
+[2026-05-04T04:38:02.611Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Server has closed the connection.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1017',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Banner' }
+}
+[2026-05-04T04:38:05.150Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:05.216Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.count()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:172:20
+
+  169   skip,
+  170   take: limit,
+  171 }),
+→ 172 prisma.product.count(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 1)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:05.260Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.review.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:38
+
+  172 
+  173 // --- Get Featured Reviews for Homepage (Public) ---
+  174 const getFeaturedReviewsFromDB = async (): Promise<TReview[]> => {
+→ 175   const result = await prisma.review.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getFeaturedReviewsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.service.ts:175:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Review\review.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Review',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:07.658Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.youtubeVideo.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.service.ts:15:44
+
+  12 };
+  13 
+  14 const getAllVideosFromDB = async (): Promise<TYoutubeVideo[]> => {
+→ 15   const result = await prisma.youtubeVideo.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllVideosFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.service.ts:15:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'YoutubeVideo',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:07.666Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Category',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:07.677Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:11.201Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.count()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:172:20
+
+  169   skip,
+  170   take: limit,
+  171 }),
+→ 172 prisma.product.count(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 1)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:11.266Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:11.450Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.announcement.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:44
+
+  14 const getAllAnnouncementsFromDB = async (
+  15   activeOnly = false,
+  16 ): Promise<TAnnouncement[]> => {
+→ 17   const result = await prisma.announcement.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllAnnouncementsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.controller.ts:21:5)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Announcement',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:12.721Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:12.730Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:13.769Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:13.771Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.463Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.announcement.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:44
+
+  14 const getAllAnnouncementsFromDB = async (
+  15   activeOnly = false,
+  16 ): Promise<TAnnouncement[]> => {
+→ 17   const result = await prisma.announcement.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllAnnouncementsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.controller.ts:21:5)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Announcement',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.466Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.472Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Category',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.490Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.count()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:172:20
+
+  169   skip,
+  170   take: limit,
+  171 }),
+→ 172 prisma.product.count(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 1)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.503Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.banner.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:38
+
+  18   position?: TBannerPosition,
+  19 ): Promise<TBanner[]> => {
+  20   const now = new Date();
+→ 21   const result = await prisma.banner.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllBannersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.service.ts:21:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Banner\banner.controller.ts:24:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Banner',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:38:27.522Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.product.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:158:20
+
+  155 const whereCondition: Prisma.ProductWhereInput = { AND: andConditions };
+  156 
+  157 const [result, total] = await Promise.all([
+→ 158   prisma.product.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllProductsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.service.ts:157:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Product\product.controller.ts:34:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Product',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-04T04:48:27.563Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:48:27.620Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:48:32.637Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-05-04T04:48:56.847Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:48:56.867Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:49:01.875Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-05-04T04:49:01.904Z] [ERROR] globalErrorHandler ~ PrismaClientInitializationError: 
+Invalid `prisma.order.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:234:18
+
+  231   andConditions.length > 0 ? { AND: andConditions } : {};
+  232 
+  233 const [result, total] = await Promise.all([
+→ 234   prisma.order.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllOrdersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:233:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:37:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[2026-05-04T04:49:01.911Z] [ERROR] globalErrorHandler ~ PrismaClientInitializationError: 
+Invalid `prisma.order.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:234:18
+
+  231   andConditions.length > 0 ? { AND: andConditions } : {};
+  232 
+  233 const [result, total] = await Promise.all([
+→ 234   prisma.order.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllOrdersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:233:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:37:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[2026-05-04T04:49:08.981Z] [ERROR] globalErrorHandler ~ PrismaClientInitializationError: 
+Invalid `prisma.order.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:234:18
+
+  231   andConditions.length > 0 ? { AND: andConditions } : {};
+  232 
+  233 const [result, total] = await Promise.all([
+→ 234   prisma.order.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllOrdersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:233:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:37:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[2026-05-04T04:49:08.983Z] [ERROR] globalErrorHandler ~ PrismaClientInitializationError: 
+Invalid `prisma.order.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:234:18
+
+  231   andConditions.length > 0 ? { AND: andConditions } : {};
+  232 
+  233 const [result, total] = await Promise.all([
+→ 234   prisma.order.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Promise.all (index 0)
+    at async Object.getAllOrdersFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:233:27)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:37:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[2026-05-04T04:49:10.521Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T04:49:16.090Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:49:16.109Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:49:21.115Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-05-04T04:49:24.464Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T04:49:24.481Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T04:49:27.598Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T04:49:27.813Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T05:03:38.547Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T05:03:38.558Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T05:03:38.976Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T05:03:39.491Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T05:03:56.303Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T05:03:56.326Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T05:03:56.497Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T05:03:56.783Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T05:10:00.968Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T05:10:01.015Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T05:10:01.714Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T05:10:02.059Z] [INFO] ✅ SMTP server ready to send emails

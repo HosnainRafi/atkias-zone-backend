@@ -75,6 +75,15 @@ export type TCreateOrderPayload = {
   paymentMethod?: (typeof PaymentMethod)[number];
 };
 
+export type TUpdateOrderPayload = {
+  shippingAddress?: Partial<TShippingAddress>;
+  items?: TOrderInputItem[];
+  orderNote?: string;
+  shipping?: number;
+  paymentMethod?: (typeof PaymentMethod)[number];
+  paymentStatus?: (typeof PaymentStatus)[number];
+};
+
 export type TPublicOrderTracking = {
   id: string;
   trackingNumber: string;

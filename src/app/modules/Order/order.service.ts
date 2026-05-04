@@ -13,6 +13,7 @@ import {
   TOrder,
   TOrderItem,
   TPublicOrderTracking,
+  TUpdateOrderPayload,
 } from './order.interface';
 import { generateTrackingNumber } from './order.utils';
 import { PaymentStatus, OrderStatus, PaymentMethod } from '@prisma/client';
@@ -254,6 +255,177 @@ const getSingleOrderFromDB = async (id: string): Promise<TOrder | null> => {
   return result as unknown as TOrder;
 };
 
+const updateOrderIntoDB = async (
+  id: string,
+  payload: TUpdateOrderPayload,
+): Promise<TOrder | null> => {
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: orderInclude,
+  });
+
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
+
+  const shippingAddress = payload.shippingAddress ?? {};
+  const data: Prisma.OrderUpdateInput = {};
+  const existingVariantQty: Record<string, number> = {};
+
+  for (const item of order.items ?? []) {
+    if (!item.productVariantId) continue;
+    existingVariantQty[item.productVariantId] =
+      (existingVariantQty[item.productVariantId] ?? 0) + item.quantity;
+  }
+
+  if (shippingAddress.customerName !== undefined)
+    data.customerName = shippingAddress.customerName;
+  if (shippingAddress.mobile !== undefined)
+    data.mobile = shippingAddress.mobile;
+  if (shippingAddress.email !== undefined) data.email = shippingAddress.email;
+  if (shippingAddress.district !== undefined)
+    data.district = shippingAddress.district;
+  if (shippingAddress.upazila !== undefined)
+    data.upazila = shippingAddress.upazila;
+  if (shippingAddress.addressLine !== undefined)
+    data.addressLine = shippingAddress.addressLine;
+  if (shippingAddress.postalCode !== undefined)
+    data.postalCode = shippingAddress.postalCode;
+  if (shippingAddress.deliveryChargeZone !== undefined)
+    data.deliveryChargeZone = shippingAddress.deliveryChargeZone;
+
+  if (payload.orderNote !== undefined) data.orderNote = payload.orderNote;
+  if (payload.shipping !== undefined) data.shipping = payload.shipping as any;
+  if (payload.paymentMethod !== undefined)
+    data.paymentMethod = payload.paymentMethod as any;
+  if (payload.paymentStatus !== undefined)
+    data.paymentStatus = payload.paymentStatus as any;
+
+  let processedItems: TOrderItem[] | null = null;
+  const stockUpdates: { variantId: string; quantity: number }[] = [];
+
+  if (payload.items) {
+    const productIds = payload.items.map(item => item.productId);
+    const productsFromDB = await prisma.product.findMany({
+      where: { id: { in: productIds } },
+      include: { variants: true },
+    });
+
+    let subtotal = 0;
+    processedItems = [];
+
+    for (const item of payload.items) {
+      const product = productsFromDB.find(p => p.id === item.productId);
+      if (!product)
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          `Product ${item.productId} not found.`,
+        );
+      if (!product.isActive)
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          `"${product.title}" is unavailable.`,
+        );
+
+      let variant = undefined;
+      if (item.productVariantId) {
+        variant = product.variants.find(v => v.id === item.productVariantId);
+        if (!variant)
+          throw new ApiError(
+            httpStatus.BAD_REQUEST,
+            `Invalid variant for "${product.title}".`,
+          );
+
+        const previouslyReserved = existingVariantQty[variant.id] ?? 0;
+        const availableStock = variant.stock + previouslyReserved;
+        if (availableStock < item.quantity) {
+          throw new ApiError(
+            httpStatus.BAD_REQUEST,
+            `Not enough stock for "${product.title}" (${variant.label}). Available: ${availableStock}.`,
+          );
+        }
+      }
+
+      const unitPrice = Number(variant?.priceOverride ?? product.basePrice);
+      const totalPrice = unitPrice * item.quantity;
+      subtotal += totalPrice;
+
+      processedItems.push({
+        productId: product.id,
+        productVariantId: variant?.id ?? null,
+        title: product.title,
+        variantLabel: variant?.label ?? null,
+        image: product.images[0],
+        quantity: item.quantity,
+        unitPrice,
+        totalPrice,
+      });
+
+      if (variant?.id) {
+        stockUpdates.push({
+          variantId: variant.id,
+          quantity: item.quantity,
+        });
+      }
+    }
+
+    data.subtotal = subtotal as any;
+    data.items = {
+      deleteMany: {},
+      create: processedItems.map(item => ({
+        productId: item.productId,
+        productVariantId: item.productVariantId,
+        title: item.title,
+        variantLabel: item.variantLabel,
+        image: item.image,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+        totalPrice: item.totalPrice,
+      })),
+    };
+
+    const shippingValue =
+      payload.shipping !== undefined
+        ? payload.shipping
+        : Number(order.shipping);
+    const discountAmount = Number(order.discountAmount);
+    data.totalAmount = subtotal + shippingValue - discountAmount;
+  } else if (payload.shipping !== undefined) {
+    const subtotal = Number(order.subtotal);
+    const discountAmount = Number(order.discountAmount);
+    data.totalAmount = subtotal + payload.shipping - discountAmount;
+  }
+
+  const result = await prisma.$transaction(async tx => {
+    if (payload.items) {
+      for (const item of order.items ?? []) {
+        if (!item.productVariantId) continue;
+        await tx.productVariant.update({
+          where: { id: item.productVariantId },
+          data: { stock: { increment: item.quantity } },
+        });
+      }
+    }
+
+    const updatedOrder = await tx.order.update({
+      where: { id },
+      data,
+      include: orderInclude,
+    });
+
+    if (payload.items) {
+      for (const update of stockUpdates) {
+        await tx.productVariant.update({
+          where: { id: update.variantId },
+          data: { stock: { decrement: update.quantity } },
+        });
+      }
+    }
+
+    return updatedOrder;
+  });
+
+  return result as unknown as TOrder;
+};
+
 const updateOrderStatusInDB = async (
   id: string,
   adminId: string,
@@ -428,6 +600,7 @@ export const OrderService = {
   createOrderIntoDB,
   getAllOrdersFromDB,
   getSingleOrderFromDB,
+  updateOrderIntoDB,
   updateOrderStatusInDB,
   trackOrderPublicly,
   getSalesReportFromDB,

@@ -71,6 +71,27 @@ const updateOrderStatus = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createManualOrder = catchAsync(async (req: Request, res: Response) => {
+  const result = await OrderService.createOrderIntoDB(req.body);
+  sendResponse<TOrder>(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: 'Manual order created successfully!',
+    data: result,
+  });
+});
+
+const updateOrder = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await OrderService.updateOrderIntoDB(id, req.body);
+  sendResponse<TOrder>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order updated successfully!',
+    data: result,
+  });
+});
+
 const trackOrder = catchAsync(async (req: Request, res: Response) => {
   const { trackingNumber, mobile } = req.body;
   const result = await OrderService.trackOrderPublicly({
@@ -105,8 +126,10 @@ const getSalesReport = catchAsync(async (req: Request, res: Response) => {
 
 export const OrderController = {
   createOrder,
+  createManualOrder,
   getAllOrders,
   getSingleOrder,
+  updateOrder,
   updateOrderStatus,
   trackOrder,
   getSalesReport,

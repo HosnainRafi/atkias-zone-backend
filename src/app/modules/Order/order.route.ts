@@ -38,6 +38,20 @@ router.get(
   OrderController.getSalesReport,
 );
 
+router.post(
+  '/admin/manual',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  validateRequest(OrderValidation.createManualOrderZodSchema),
+  OrderController.createManualOrder,
+);
+
+router.patch(
+  '/admin/:id',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  validateRequest(OrderValidation.updateOrderZodSchema),
+  OrderController.updateOrder,
+);
+
 // Route for admin to update order status
 router.patch(
   '/admin/:id/status',
