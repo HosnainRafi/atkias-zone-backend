@@ -79,6 +79,22 @@ const updateOrderZodSchema = z.object({
   }),
 });
 
+const createSteadfastParcelZodSchema = z.object({
+  body: z.object({
+    invoice: z.string().min(1).optional(),
+    recipient_name: z.string().min(1).optional(),
+    recipient_phone: z.string().min(1).optional(),
+    recipient_address: z.string().min(1).optional(),
+    cod_amount: z.coerce.number().min(0).optional(),
+    delivery_type: z.union([z.literal(0), z.literal(1)]).optional(),
+    alternative_phone: z.string().min(1).optional(),
+    recipient_email: z.string().email().optional().or(z.literal('')),
+    note: z.string().optional(),
+    item_description: z.string().optional(),
+    total_lot: z.coerce.number().int().positive().optional(),
+  }),
+});
+
 const trackOrderZodSchema = z.object({
   body: z
     .object({
@@ -96,5 +112,6 @@ export const OrderValidation = {
   createManualOrderZodSchema: createOrderZodSchema,
   updateOrderStatusZodSchema,
   updateOrderZodSchema,
+  createSteadfastParcelZodSchema,
   trackOrderZodSchema,
 };

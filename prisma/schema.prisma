@@ -470,6 +470,11 @@ model Order {
   paymentStatus          PaymentStatus @default(pending)
   transactionId          String?
   paymentGatewayResponse String?
+  steadfastConsignmentId Int?
+  steadfastTrackingCode  String?
+  steadfastStatus        String?
+  steadfastRequestedAt   DateTime?
+  steadfastResponse      Json?
   status                 OrderStatus   @default(pending)
   createdAt              DateTime      @default(now())
   updatedAt              DateTime      @updatedAt

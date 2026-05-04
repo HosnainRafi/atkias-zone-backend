@@ -8523,3 +8523,121 @@ The table `public.delivery_charge_configs` does not exist in the current databas
 [2026-05-04T06:14:16.585Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-04T06:14:17.086Z] [INFO] 🛢️  Database connected successfully
 [2026-05-04T06:14:17.371Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T06:14:20.604Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:14:20.615Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:14:20.935Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T06:14:22.043Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:29:23.746Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:29:23.865Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:29:24.707Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T06:29:26.455Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:37:14.676Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:37:14.768Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:37:15.600Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:37:15.883Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T06:43:40.106Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:43:40.127Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:43:40.706Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T06:43:41.808Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:44:43.472Z] [ERROR] globalErrorHandler ~ TypeError: fetch failed
+    at node:internal/deps/undici/undici:15845:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:90:20)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:298:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  [cause]: ConnectTimeoutError: Connect Timeout Error (attempted addresses: 13.248.169.48:443, 76.223.54.146:443, timeout: 10000ms)
+      at onConnectTimeout (node:internal/deps/undici/undici:1690:23)
+      at Immediate._onImmediate (node:internal/deps/undici/undici:1656:35)
+      at process.processImmediate (node:internal/timers:505:21) {
+    code: 'UND_ERR_CONNECT_TIMEOUT'
+  }
+}
+[2026-05-04T06:44:52.666Z] [ERROR] globalErrorHandler ~ TypeError: fetch failed
+    at node:internal/deps/undici/undici:15845:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:90:20)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:298:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  [cause]: [Error: 04100000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:openssl\ssl\record\rec_layer_s3.c:916:SSL alert number 112
+  ] {
+    library: 'SSL routines',
+    reason: 'tlsv1 unrecognized name',
+    code: 'ERR_SSL_TLSV1_UNRECOGNIZED_NAME'
+  }
+}
+[2026-05-04T06:45:04.543Z] [ERROR] globalErrorHandler ~ TypeError: fetch failed
+    at node:internal/deps/undici/undici:15845:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:90:20)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:298:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  [cause]: [Error: 04100000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:openssl\ssl\record\rec_layer_s3.c:916:SSL alert number 112
+  ] {
+    library: 'SSL routines',
+    reason: 'tlsv1 unrecognized name',
+    code: 'ERR_SSL_TLSV1_UNRECOGNIZED_NAME'
+  }
+}
+[2026-05-04T06:52:22.620Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T06:52:22.656Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T06:52:23.113Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T06:52:23.607Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:01:26.111Z] [ERROR] globalErrorHandler ~ TypeError: fetch failed
+    at node:internal/deps/undici/undici:15845:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:90:20)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:354:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  [cause]: ConnectTimeoutError: Connect Timeout Error (attempted addresses: 13.248.169.48:443, 76.223.54.146:443, timeout: 10000ms)
+      at onConnectTimeout (node:internal/deps/undici/undici:1690:23)
+      at Immediate._onImmediate (node:internal/deps/undici/undici:1656:35)
+      at process.processImmediate (node:internal/timers:505:21) {
+    code: 'UND_ERR_CONNECT_TIMEOUT'
+  }
+}
+[2026-05-04T07:09:40.824Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:09:40.894Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:09:41.560Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:09:42.039Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:10:17.786Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:10:17.797Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:10:17.982Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:10:18.214Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:10:25.187Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:10:25.199Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:10:25.315Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:10:25.597Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:12:12.340Z] [ERROR] globalErrorHandler ~ ApiError: Steadfast request failed (401).
+    at requestSteadfast (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:165:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:292:16)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:355:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 502
+}
+[2026-05-04T07:13:42.613Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:13:42.627Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:13:43.244Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:13:43.449Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:26:18.398Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:26:18.675Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:26:19.810Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:26:20.016Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:28:58.208Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T07:28:58.227Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T07:28:58.615Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T07:28:58.634Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T07:30:10.025Z] [ERROR] globalErrorHandler ~ ApiError: Steadfast request failed (401).
+    at requestSteadfast (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:165:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:292:16)
+    at async Object.createSteadfastParcelInDB (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:355:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (C:\Users\hp\Projects\atkias-zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 502
+}

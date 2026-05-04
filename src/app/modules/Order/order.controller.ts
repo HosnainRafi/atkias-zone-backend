@@ -92,6 +92,32 @@ const updateOrder = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createSteadfastParcel = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await OrderService.createSteadfastParcelInDB(id, req.body);
+
+  sendResponse<TOrder>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Steadfast parcel created successfully!',
+    data: result,
+  });
+});
+
+const syncSteadfastParcelStatus = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await OrderService.syncSteadfastParcelStatusInDB(id);
+
+    sendResponse<TOrder>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast parcel status synced successfully!',
+      data: result,
+    });
+  },
+);
+
 const trackOrder = catchAsync(async (req: Request, res: Response) => {
   const { trackingNumber, mobile } = req.body;
   const result = await OrderService.trackOrderPublicly({
@@ -127,10 +153,12 @@ const getSalesReport = catchAsync(async (req: Request, res: Response) => {
 export const OrderController = {
   createOrder,
   createManualOrder,
+  createSteadfastParcel,
   getAllOrders,
   getSingleOrder,
   updateOrder,
   updateOrderStatus,
+  syncSteadfastParcelStatus,
   trackOrder,
   getSalesReport,
 };

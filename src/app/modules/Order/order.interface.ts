@@ -54,6 +54,11 @@ export type TOrder = {
   paymentMethod?: (typeof PaymentMethod)[number];
   paymentStatus: (typeof PaymentStatus)[number];
   transactionId?: string | null;
+  steadfastConsignmentId?: number | null;
+  steadfastTrackingCode?: string | null;
+  steadfastStatus?: string | null;
+  steadfastRequestedAt?: Date | null;
+  steadfastResponse?: unknown;
   status: (typeof OrderStatus)[number];
   statusHistories: TOrderStatusHistory[];
   createdAt?: Date;

@@ -31,6 +31,12 @@ export default {
       process.env.BKASH_BASE_URL ||
       "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized",
   },
+  steadfast: {
+    apiKey: process.env.STEADFAST_API_KEY,
+    secretKey: process.env.STEADFAST_SECRET_KEY,
+    baseUrl:
+      process.env.STEADFAST_BASE_URL || "https://portal.packzy.com/api/v1",
+  },
   backendUrl: process.env.BACKEND_URL || "http://localhost:5000",
   frontendUrl: process.env.FRONTEND_URL || "http://localhost:3000",
 };

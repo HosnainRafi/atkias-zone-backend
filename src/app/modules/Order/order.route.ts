@@ -45,6 +45,19 @@ router.post(
   OrderController.createManualOrder,
 );
 
+router.post(
+  '/admin/:id/steadfast',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  validateRequest(OrderValidation.createSteadfastParcelZodSchema),
+  OrderController.createSteadfastParcel,
+);
+
+router.post(
+  '/admin/:id/steadfast/sync',
+  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  OrderController.syncSteadfastParcelStatus,
+);
+
 router.patch(
   '/admin/:id',
   auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),

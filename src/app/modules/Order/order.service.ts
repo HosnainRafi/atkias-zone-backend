@@ -12,6 +12,11 @@ import {
 } from "../Coupon/coupon.service";
 import { DeliveryChargeService } from "../DeliveryCharge/deliveryCharge.service";
 import {
+  SteadfastService,
+  type TSteadfastCreateParcelPayload,
+  type TSteadfastTrackingSnapshot,
+} from "../Steadfast/steadfast.service";
+import {
   TCreateOrderPayload,
   TOrder,
   TOrderItem,
@@ -251,6 +256,164 @@ const getSingleOrderFromDB = async (id: string): Promise<TOrder | null> => {
   });
   if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
   return result as unknown as TOrder;
+};
+
+function buildSteadfastAddress(order: TOrder): string {
+  return [order.addressLine, order.upazila, order.district, order.postalCode]
+    .filter(Boolean)
+    .join(", ")
+    .slice(0, 250);
+}
+
+function buildSteadfastItemDescription(order: TOrder): string {
+  return order.items
+    .map((item) =>
+      item.variantLabel ? `${item.title} (${item.variantLabel})` : item.title,
+    )
+    .join(", ")
+    .slice(0, 250);
+}
+
+function trimOptional(value?: string | null, maxLength?: number): string | undefined {
+  const trimmed = value?.trim();
+  if (!trimmed) return undefined;
+  return maxLength ? trimmed.slice(0, maxLength) : trimmed;
+}
+
+function getDefaultSteadfastPayload(order: TOrder): TSteadfastCreateParcelPayload {
+  return {
+    invoice: order.trackingNumber,
+    recipient_name: order.customerName.slice(0, 100),
+    recipient_phone: order.mobile.trim(),
+    recipient_address: buildSteadfastAddress(order),
+    cod_amount:
+      order.paymentMethod === PaymentMethod.COD ? Number(order.totalAmount) : 0,
+    delivery_type: 0,
+    recipient_email: order.email || undefined,
+    note: order.orderNote?.slice(0, 250) || undefined,
+    item_description: buildSteadfastItemDescription(order),
+    total_lot: order.items.reduce((sum, item) => sum + item.quantity, 0),
+  };
+}
+
+function getSteadfastPayload(
+  order: TOrder,
+  overrides?: Partial<TSteadfastCreateParcelPayload>,
+): TSteadfastCreateParcelPayload {
+  const defaults = getDefaultSteadfastPayload(order);
+
+  return {
+    invoice: trimOptional(overrides?.invoice, 100) || defaults.invoice,
+    recipient_name:
+      trimOptional(overrides?.recipient_name, 100) || defaults.recipient_name,
+    recipient_phone:
+      trimOptional(overrides?.recipient_phone, 20) || defaults.recipient_phone,
+    recipient_address:
+      trimOptional(overrides?.recipient_address, 250) || defaults.recipient_address,
+    cod_amount: overrides?.cod_amount ?? defaults.cod_amount,
+    delivery_type: overrides?.delivery_type ?? defaults.delivery_type,
+    alternative_phone: trimOptional(overrides?.alternative_phone, 20),
+    recipient_email:
+      trimOptional(overrides?.recipient_email, 120) || defaults.recipient_email,
+    note: trimOptional(overrides?.note, 250) || defaults.note,
+    item_description:
+      trimOptional(overrides?.item_description, 250) || defaults.item_description,
+    total_lot: overrides?.total_lot ?? defaults.total_lot,
+  };
+}
+
+const createSteadfastParcelInDB = async (
+  id: string,
+  overrides?: Partial<TSteadfastCreateParcelPayload>,
+): Promise<TOrder> => {
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: orderInclude,
+  });
+
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+
+  if (order.steadfastConsignmentId || order.steadfastTrackingCode) {
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      "This order has already been sent to Steadfast.",
+    );
+  }
+
+  if (
+    order.status === OrderStatus.delivered ||
+    order.status === OrderStatus.cancelled ||
+    order.status === OrderStatus.refunded
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      "Delivered, cancelled, or refunded orders cannot be sent to Steadfast.",
+    );
+  }
+
+  const requestPayload = getSteadfastPayload(order as unknown as TOrder, overrides);
+  const parcel = await SteadfastService.createParcel(requestPayload);
+
+  const updatedOrder = await prisma.order.update({
+    where: { id },
+    data: {
+      steadfastConsignmentId: parcel.consignmentId,
+      steadfastTrackingCode: parcel.trackingCode,
+      steadfastStatus: parcel.status,
+      steadfastRequestedAt: new Date(),
+      steadfastResponse: {
+        createParcelRequest: requestPayload,
+        createParcelResponse: parcel.rawResponse,
+      } as Prisma.InputJsonValue,
+    },
+    include: orderInclude,
+  });
+
+  return updatedOrder as unknown as TOrder;
+};
+
+const syncSteadfastParcelStatusInDB = async (id: string): Promise<TOrder> => {
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: orderInclude,
+  });
+
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+
+  if (!order.steadfastConsignmentId) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      "This order has not been sent to Steadfast yet.",
+    );
+  }
+
+  const trackingSnapshot: TSteadfastTrackingSnapshot =
+    await SteadfastService.getTrackingSnapshot({
+      consignmentId: order.steadfastConsignmentId,
+      invoice: order.trackingNumber,
+      trackingCode: order.steadfastTrackingCode || undefined,
+    });
+
+  const statusResult = trackingSnapshot.statuses.consignmentId;
+  const existingSteadfastResponse =
+    order.steadfastResponse && typeof order.steadfastResponse === "object"
+      ? (order.steadfastResponse as Record<string, unknown>)
+      : {};
+
+  const updatedOrder = await prisma.order.update({
+    where: { id },
+    data: {
+      steadfastStatus: statusResult.status,
+      steadfastResponse: {
+        ...existingSteadfastResponse,
+        latestStatusResponse: statusResult.rawResponse,
+        latestSync: trackingSnapshot,
+      } as Prisma.InputJsonValue,
+    },
+    include: orderInclude,
+  });
+
+  return updatedOrder as unknown as TOrder;
 };
 
 const updateOrderIntoDB = async (
@@ -598,6 +761,8 @@ export const OrderService = {
   createOrderIntoDB,
   getAllOrdersFromDB,
   getSingleOrderFromDB,
+  createSteadfastParcelInDB,
+  syncSteadfastParcelStatusInDB,
   updateOrderIntoDB,
   updateOrderStatusInDB,
   trackOrderPublicly,
