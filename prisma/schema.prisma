@@ -90,7 +90,8 @@ model Category {
   children Category[] @relation("CategorySelf")
   products Product[]
 
-  couponCategories CouponCategory[]
+  couponCategories         CouponCategory[]
+  deliveryChargeCategories DeliveryChargeCategory[]
 
   @@map("categories")
 }
@@ -162,14 +163,15 @@ model Product {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  category       Category         @relation(fields: [categoryId], references: [id])
-  brand          Brand?           @relation(fields: [brandId], references: [id])
-  variants       ProductVariant[]
-  orderItems     OrderItem[]
-  reviews        Review[]
-  tags           ProductTag[]
-  couponProducts CouponProduct[]
-  inventoryLogs  InventoryLog[]
+  category               Category                @relation(fields: [categoryId], references: [id])
+  brand                  Brand?                  @relation(fields: [brandId], references: [id])
+  variants               ProductVariant[]
+  orderItems             OrderItem[]
+  reviews                Review[]
+  tags                   ProductTag[]
+  couponProducts         CouponProduct[]
+  inventoryLogs          InventoryLog[]
+  deliveryChargeProducts DeliveryChargeProduct[]
 
   @@index([deleted, isActive, productOrder])
   @@index([categoryId])
@@ -361,6 +363,56 @@ model DeliveryChargeConfig {
   updatedAt    DateTime @updatedAt
 
   @@map("delivery_charge_configs")
+}
+
+enum DeliveryChargeZone {
+  inside
+  outside
+}
+
+enum DeliveryChargeScope {
+  all
+  category
+  subcategory
+  product
+}
+
+model DeliveryChargeRule {
+  id        String              @id @default(uuid())
+  zone      DeliveryChargeZone
+  scope     DeliveryChargeScope
+  charge    Decimal             @db.Decimal(10, 2)
+  isActive  Boolean             @default(true)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  categories DeliveryChargeCategory[]
+  products   DeliveryChargeProduct[]
+
+  @@index([zone, scope, isActive])
+  @@map("delivery_charge_rules")
+}
+
+model DeliveryChargeCategory {
+  ruleId     String
+  categoryId String
+
+  rule     DeliveryChargeRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+  category Category           @relation(fields: [categoryId], references: [id])
+
+  @@id([ruleId, categoryId])
+  @@map("delivery_charge_categories")
+}
+
+model DeliveryChargeProduct {
+  ruleId    String
+  productId String
+
+  rule    DeliveryChargeRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+  product Product            @relation(fields: [productId], references: [id])
+
+  @@id([ruleId, productId])
+  @@map("delivery_charge_products")
 }
 
 // ─────────────────────────────────────────

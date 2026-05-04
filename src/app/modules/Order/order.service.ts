@@ -1,29 +1,29 @@
 ﻿// src/app/modules/Order/order.service.ts
-import type { Prisma } from "@prisma/client";
-import { OrderStatus, PaymentMethod, PaymentStatus } from "@prisma/client";
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import { IGenericResponse } from "../../../interfaces/common";
-import calculatePagination from "../../../shared/calculatePagination";
-import prisma from "../../../shared/prisma";
+import type { Prisma } from '@prisma/client';
+import { OrderStatus, PaymentMethod, PaymentStatus } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import { IGenericResponse } from '../../../interfaces/common';
+import calculatePagination from '../../../shared/calculatePagination';
+import prisma from '../../../shared/prisma';
 import {
   CouponService,
   TCouponValidationResponse,
-} from "../Coupon/coupon.service";
-import { DeliveryChargeService } from "../DeliveryCharge/deliveryCharge.service";
+} from '../Coupon/coupon.service';
+import { DeliveryChargeService } from '../DeliveryCharge/deliveryCharge.service';
 import {
   SteadfastService,
   type TSteadfastCreateParcelPayload,
   type TSteadfastTrackingSnapshot,
-} from "../Steadfast/steadfast.service";
+} from '../Steadfast/steadfast.service';
 import {
   TCreateOrderPayload,
   TOrder,
   TOrderItem,
   TPublicOrderTracking,
   TUpdateOrderPayload,
-} from "./order.interface";
-import { generateTrackingNumber } from "./order.utils";
+} from './order.interface';
+import { generateTrackingNumber } from './order.utils';
 
 const orderInclude = {
   items: true,
@@ -37,7 +37,7 @@ const createOrderIntoDB = async (
   const { items, shippingAddress, couponCode, orderNote, paymentMethod } =
     payload;
 
-  const productIds = items.map((i) => i.productId);
+  const productIds = items.map(i => i.productId);
   const productsFromDB = await prisma.product.findMany({
     where: { id: { in: productIds } },
     include: { variants: true },
@@ -52,7 +52,7 @@ const createOrderIntoDB = async (
   }[] = [];
 
   for (const item of items) {
-    const product = productsFromDB.find((p) => p.id === item.productId);
+    const product = productsFromDB.find(p => p.id === item.productId);
     if (!product)
       throw new ApiError(
         httpStatus.BAD_REQUEST,
@@ -66,7 +66,7 @@ const createOrderIntoDB = async (
 
     let variant = undefined;
     if (item.productVariantId) {
-      variant = product.variants.find((v) => v.id === item.productVariantId);
+      variant = product.variants.find(v => v.id === item.productVariantId);
       if (!variant)
         throw new ApiError(
           httpStatus.BAD_REQUEST,
@@ -111,7 +111,7 @@ const createOrderIntoDB = async (
     const couponResult: TCouponValidationResponse =
       await CouponService.validateAndApplyCoupon(
         couponCode,
-        items.map((i) => ({
+        items.map(i => ({
           productId: i.productId,
           productVariantId: i.productVariantId ?? undefined,
           quantity: i.quantity,
@@ -124,12 +124,12 @@ const createOrderIntoDB = async (
   }
 
   const resolvedDeliveryCharge =
-    await DeliveryChargeService.resolveDeliveryCharge(shippingAddress);
+    await DeliveryChargeService.resolveDeliveryCharge(shippingAddress, items);
   const shipping = resolvedDeliveryCharge.fee;
   const totalAmount = subtotal + shipping - discountAmount;
   const trackingNumber = generateTrackingNumber();
 
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async tx => {
     const newOrder = await tx.order.create({
       data: {
         trackingNumber,
@@ -151,7 +151,7 @@ const createOrderIntoDB = async (
         paymentStatus: PaymentStatus.pending,
         status: OrderStatus.pending,
         items: {
-          create: processedItems.map((item) => ({
+          create: processedItems.map(item => ({
             productId: item.productId,
             productVariantId: item.productVariantId,
             title: item.title,
@@ -163,7 +163,7 @@ const createOrderIntoDB = async (
           })),
         },
         statusHistories: {
-          create: { status: OrderStatus.pending, note: "Order placed" },
+          create: { status: OrderStatus.pending, note: 'Order placed' },
         },
       },
       include: orderInclude,
@@ -195,7 +195,7 @@ const getAllOrdersFromDB = async (options: {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: "asc" | "desc";
+  sortOrder?: 'asc' | 'desc';
   status?: string;
   searchTerm?: string;
   paymentStatus?: string;
@@ -221,11 +221,11 @@ const getAllOrdersFromDB = async (options: {
     andConditions.push({
       OR: [
         {
-          trackingNumber: { contains: options.searchTerm, mode: "insensitive" },
+          trackingNumber: { contains: options.searchTerm, mode: 'insensitive' },
         },
-        { customerName: { contains: options.searchTerm, mode: "insensitive" } },
-        { mobile: { contains: options.searchTerm, mode: "insensitive" } },
-        { email: { contains: options.searchTerm, mode: "insensitive" } },
+        { customerName: { contains: options.searchTerm, mode: 'insensitive' } },
+        { mobile: { contains: options.searchTerm, mode: 'insensitive' } },
+        { email: { contains: options.searchTerm, mode: 'insensitive' } },
       ],
     });
   }
@@ -238,8 +238,8 @@ const getAllOrdersFromDB = async (options: {
       where,
       include: orderInclude,
       orderBy: sortBy
-        ? { [sortBy]: sortOrder || "desc" }
-        : { createdAt: "desc" },
+        ? { [sortBy]: sortOrder || 'desc' }
+        : { createdAt: 'desc' },
       skip,
       take: limit,
     }),
@@ -254,33 +254,38 @@ const getSingleOrderFromDB = async (id: string): Promise<TOrder | null> => {
     where: { id },
     include: orderInclude,
   });
-  if (!result) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!result) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
   return result as unknown as TOrder;
 };
 
 function buildSteadfastAddress(order: TOrder): string {
   return [order.addressLine, order.upazila, order.district, order.postalCode]
     .filter(Boolean)
-    .join(", ")
+    .join(', ')
     .slice(0, 250);
 }
 
 function buildSteadfastItemDescription(order: TOrder): string {
   return order.items
-    .map((item) =>
+    .map(item =>
       item.variantLabel ? `${item.title} (${item.variantLabel})` : item.title,
     )
-    .join(", ")
+    .join(', ')
     .slice(0, 250);
 }
 
-function trimOptional(value?: string | null, maxLength?: number): string | undefined {
+function trimOptional(
+  value?: string | null,
+  maxLength?: number,
+): string | undefined {
   const trimmed = value?.trim();
   if (!trimmed) return undefined;
   return maxLength ? trimmed.slice(0, maxLength) : trimmed;
 }
 
-function getDefaultSteadfastPayload(order: TOrder): TSteadfastCreateParcelPayload {
+function getDefaultSteadfastPayload(
+  order: TOrder,
+): TSteadfastCreateParcelPayload {
   return {
     invoice: order.trackingNumber,
     recipient_name: order.customerName.slice(0, 100),
@@ -309,7 +314,8 @@ function getSteadfastPayload(
     recipient_phone:
       trimOptional(overrides?.recipient_phone, 20) || defaults.recipient_phone,
     recipient_address:
-      trimOptional(overrides?.recipient_address, 250) || defaults.recipient_address,
+      trimOptional(overrides?.recipient_address, 250) ||
+      defaults.recipient_address,
     cod_amount: overrides?.cod_amount ?? defaults.cod_amount,
     delivery_type: overrides?.delivery_type ?? defaults.delivery_type,
     alternative_phone: trimOptional(overrides?.alternative_phone, 20),
@@ -317,7 +323,8 @@ function getSteadfastPayload(
       trimOptional(overrides?.recipient_email, 120) || defaults.recipient_email,
     note: trimOptional(overrides?.note, 250) || defaults.note,
     item_description:
-      trimOptional(overrides?.item_description, 250) || defaults.item_description,
+      trimOptional(overrides?.item_description, 250) ||
+      defaults.item_description,
     total_lot: overrides?.total_lot ?? defaults.total_lot,
   };
 }
@@ -331,12 +338,12 @@ const createSteadfastParcelInDB = async (
     include: orderInclude,
   });
 
-  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   if (order.steadfastConsignmentId || order.steadfastTrackingCode) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      "This order has already been sent to Steadfast.",
+      'This order has already been sent to Steadfast.',
     );
   }
 
@@ -347,11 +354,14 @@ const createSteadfastParcelInDB = async (
   ) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      "Delivered, cancelled, or refunded orders cannot be sent to Steadfast.",
+      'Delivered, cancelled, or refunded orders cannot be sent to Steadfast.',
     );
   }
 
-  const requestPayload = getSteadfastPayload(order as unknown as TOrder, overrides);
+  const requestPayload = getSteadfastPayload(
+    order as unknown as TOrder,
+    overrides,
+  );
   const parcel = await SteadfastService.createParcel(requestPayload);
 
   const updatedOrder = await prisma.order.update({
@@ -378,12 +388,12 @@ const syncSteadfastParcelStatusInDB = async (id: string): Promise<TOrder> => {
     include: orderInclude,
   });
 
-  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   if (!order.steadfastConsignmentId) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      "This order has not been sent to Steadfast yet.",
+      'This order has not been sent to Steadfast yet.',
     );
   }
 
@@ -396,7 +406,7 @@ const syncSteadfastParcelStatusInDB = async (id: string): Promise<TOrder> => {
 
   const statusResult = trackingSnapshot.statuses.consignmentId;
   const existingSteadfastResponse =
-    order.steadfastResponse && typeof order.steadfastResponse === "object"
+    order.steadfastResponse && typeof order.steadfastResponse === 'object'
       ? (order.steadfastResponse as Record<string, unknown>)
       : {};
 
@@ -425,7 +435,7 @@ const updateOrderIntoDB = async (
     include: orderInclude,
   });
 
-  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   const shippingAddress = payload.shippingAddress ?? {};
   const data: Prisma.OrderUpdateInput = {};
@@ -464,7 +474,7 @@ const updateOrderIntoDB = async (
   const stockUpdates: { variantId: string; quantity: number }[] = [];
 
   if (payload.items) {
-    const productIds = payload.items.map((item) => item.productId);
+    const productIds = payload.items.map(item => item.productId);
     const productsFromDB = await prisma.product.findMany({
       where: { id: { in: productIds } },
       include: { variants: true },
@@ -474,7 +484,7 @@ const updateOrderIntoDB = async (
     processedItems = [];
 
     for (const item of payload.items) {
-      const product = productsFromDB.find((p) => p.id === item.productId);
+      const product = productsFromDB.find(p => p.id === item.productId);
       if (!product)
         throw new ApiError(
           httpStatus.BAD_REQUEST,
@@ -488,7 +498,7 @@ const updateOrderIntoDB = async (
 
       let variant = undefined;
       if (item.productVariantId) {
-        variant = product.variants.find((v) => v.id === item.productVariantId);
+        variant = product.variants.find(v => v.id === item.productVariantId);
         if (!variant)
           throw new ApiError(
             httpStatus.BAD_REQUEST,
@@ -531,7 +541,7 @@ const updateOrderIntoDB = async (
     data.subtotal = subtotal as any;
     data.items = {
       deleteMany: {},
-      create: processedItems.map((item) => ({
+      create: processedItems.map(item => ({
         productId: item.productId,
         productVariantId: item.productVariantId,
         title: item.title,
@@ -555,7 +565,7 @@ const updateOrderIntoDB = async (
     data.totalAmount = subtotal + payload.shipping - discountAmount;
   }
 
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async tx => {
     if (payload.items) {
       for (const item of order.items ?? []) {
         if (!item.productVariantId) continue;
@@ -596,13 +606,13 @@ const updateOrderStatusInDB = async (
     where: { id },
     include: { items: true },
   });
-  if (!order) throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
   const isNewlyConfirmed =
     payload.status === OrderStatus.confirmed &&
     order.status !== OrderStatus.confirmed;
 
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async tx => {
     const updatedOrder = await tx.order.update({
       where: { id },
       data: {
@@ -646,7 +656,7 @@ const trackOrderPublicly = async (payload: {
   if (!trackingNumber && !mobile) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      "Either tracking number or mobile is required.",
+      'Either tracking number or mobile is required.',
     );
   }
 
@@ -664,9 +674,9 @@ const trackOrderPublicly = async (payload: {
   });
 
   if (!orders.length)
-    throw new ApiError(httpStatus.NOT_FOUND, "Order not found.");
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
 
-  return orders.map((order) => ({
+  return orders.map(order => ({
     id: order.id,
     trackingNumber: order.trackingNumber,
     customerName: order.customerName,
@@ -674,7 +684,7 @@ const trackOrderPublicly = async (payload: {
     paymentStatus: order.paymentStatus as any,
     statusHistories: order.statusHistories as any,
     createdAt: order.createdAt,
-    items: order.items.map((item) => ({
+    items: order.items.map(item => ({
       productId: item.productId,
       title: item.title,
       variantLabel: item.variantLabel,
@@ -736,10 +746,10 @@ const getSalesReportFromDB = async (options: {
   const orders = await prisma.order.findMany({
     where,
     include: { items: true },
-    orderBy: { createdAt: "desc" },
+    orderBy: { createdAt: 'desc' },
   });
 
-  return orders.map((order) => ({
+  return orders.map(order => ({
     orderId: order.id,
     trackingNumber: order.trackingNumber,
     customerName: order.customerName,
