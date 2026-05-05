@@ -19,6 +19,7 @@ export type TDeliveryChargeRule = {
   zone: TDeliveryChargeZone;
   scope: TDeliveryChargeScope;
   charge: number;
+  minOrderAmount: number;
   isActive: boolean;
   categories?: Array<{
     categoryId: string;
@@ -46,6 +47,7 @@ export type TDeliveryChargeRulePayload = {
   zone: TDeliveryChargeZone;
   scope: TDeliveryChargeScope;
   charge: number;
+  minOrderAmount?: number;
   isActive?: boolean;
   appliesToCategories?: string[];
   appliesToProducts?: string[];

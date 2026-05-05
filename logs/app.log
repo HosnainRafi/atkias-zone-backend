@@ -9228,3 +9228,633 @@ The table `public.delivery_charge_configs` does not exist in the current databas
 [2026-05-04T09:28:13.596Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-04T09:28:14.197Z] [INFO] 🛢️  Database connected successfully
 [2026-05-04T09:28:14.560Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T17:03:20.430Z] [INFO] ⏳ Connecting to database...
+[2026-05-04T17:03:20.932Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-04T17:03:21.628Z] [INFO] 🛢️  Database connected successfully
+[2026-05-04T17:03:22.331Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-04T17:03:44.856Z] [ERROR] globalErrorHandler ~ ApiError: Account is not active!
+    at requestSteadfast (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:170:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.createParcel (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Steadfast\steadfast.service.ts:297:16)
+    at async Object.createSteadfastParcelInDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.service.ts:365:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Order\order.controller.ts:97:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  statusCode: 502
+}
+[2026-05-04T18:00:34.469Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.youtubeVideo.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.service.ts:15:44
+
+  12 };
+  13 
+  14 const getAllVideosFromDB = async (): Promise<TYoutubeVideo[]> => {
+→ 15   const result = await prisma.youtubeVideo.findMany(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllVideosFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.service.ts:15:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\YoutubeVideo\youtubeVideo.controller.ts:19:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'YoutubeVideo',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-05T10:30:52.406Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:30:53.053Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:30:53.939Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T10:30:54.061Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:31:11.927Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:31:11.948Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:31:12.300Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T10:31:12.743Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:35:40.009Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.visitor.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:24
+
+  19 const trackVisitor = async (payload: TrackVisitorPayload) => {
+  20   const device = detectDevice(payload.userAgent);
+  21 
+→ 22   await prisma.visitor.create(
+Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.trackVisitor (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.service.ts:22:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Visitor\visitor.controller.ts:14:3)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P1001',
+  clientVersion: '5.22.0',
+  meta: {
+    modelName: 'Visitor',
+    database_host: 'ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech',
+    database_port: 5432
+  }
+}
+[2026-05-05T10:42:01.726Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:42:02.248Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:42:03.607Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:42:07.367Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:42:07.392Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:42:07.924Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T10:42:08.017Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:47:13.733Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:47:13.817Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:47:14.360Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:47:17.126Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T10:49:23.056Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T10:49:23.082Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T10:49:23.583Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T10:49:24.723Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T11:02:36.919Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.update()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:156:50
+
+  153   await prisma.deliveryChargeProduct.deleteMany({ where: { ruleId: id } });
+  154 }
+  155 
+→ 156 const result = await prisma.deliveryChargeRule.update({
+        where: {
+          id: "5cd77b96-765f-4d24-9d2b-b65d2fba0634"
+        },
+        data: {
+          zone: "inside",
+          scope: "category",
+          charge: 10,
+          minOrderAmount: 5000,
+          ~~~~~~~~~~~~~~
+          isActive: true,
+          categories: {
+            create: [
+              {
+                categoryId: "edd6377f-41ec-4432-a200-b2424d47805f"
+              }
+            ]
+          },
+          products: undefined,
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput
+        },
+        include: {
+          categories: {
+            select: {
+              categoryId: true,
+              category: {
+                select: {
+                  id: true,
+                  name: true,
+                  parentId: true,
+                  parent: {
+                    select: {
+                      id: true,
+                      name: true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          products: {
+            select: {
+              productId: true,
+              product: {
+                select: {
+                  id: true,
+                  title: true
+                }
+              }
+            }
+          }
+        }
+      })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.updateDeliveryChargeRuleInDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:156:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:91:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:02:47.209Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.update()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:156:50
+
+  153   await prisma.deliveryChargeProduct.deleteMany({ where: { ruleId: id } });
+  154 }
+  155 
+→ 156 const result = await prisma.deliveryChargeRule.update({
+        where: {
+          id: "5cd77b96-765f-4d24-9d2b-b65d2fba0634"
+        },
+        data: {
+          zone: "inside",
+          scope: "category",
+          charge: 10,
+          minOrderAmount: 5000,
+          ~~~~~~~~~~~~~~
+          isActive: true,
+          categories: {
+            create: [
+              {
+                categoryId: "edd6377f-41ec-4432-a200-b2424d47805f"
+              }
+            ]
+          },
+          products: undefined,
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput
+        },
+        include: {
+          categories: {
+            select: {
+              categoryId: true,
+              category: {
+                select: {
+                  id: true,
+                  name: true,
+                  parentId: true,
+                  parent: {
+                    select: {
+                      id: true,
+                      name: true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          products: {
+            select: {
+              productId: true,
+              product: {
+                select: {
+                  id: true,
+                  title: true
+                }
+              }
+            }
+          }
+        }
+      })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.updateDeliveryChargeRuleInDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:156:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:91:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:03:18.057Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:04:13.398Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:04:15.434Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:04:17.001Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:04:18.459Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:04:19.896Z] [ERROR] globalErrorHandler ~ PrismaClientValidationError: 
+Invalid `prisma.deliveryChargeRule.create()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:50
+
+  112 ): Promise<TDeliveryChargeRule> => {
+  113   const { appliesToCategories, appliesToProducts, ...rest } = payload;
+  114 
+→ 115   const result = await prisma.deliveryChargeRule.create({
+          data: {
+            zone: "inside",
+            scope: "all",
+            charge: 10,
+            minOrderAmount: 1000,
+            ~~~~~~~~~~~~~~
+            isActive: true,
+            categories: undefined,
+            products: undefined,
+        ?   id?: String,
+        ?   createdAt?: DateTime,
+        ?   updatedAt?: DateTime
+          },
+          include: {
+            categories: {
+              select: {
+                categoryId: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    parentId: true,
+                    parent: {
+                      select: {
+                        id: true,
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            products: {
+              select: {
+                productId: true,
+                product: {
+                  select: {
+                    id: true,
+                    title: true
+                  }
+                }
+              }
+            }
+          }
+        })
+
+Unknown argument `minOrderAmount`. Available options are marked with ?.
+    at wn (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.createDeliveryChargeRuleIntoDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.service.ts:115:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\DeliveryCharge\deliveryCharge.controller.ts:65:20)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  clientVersion: '5.22.0'
+}
+[2026-05-05T11:05:54.784Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T11:05:55.147Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T11:05:56.191Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T11:05:56.282Z] [INFO] ✅ SMTP server ready to send emails

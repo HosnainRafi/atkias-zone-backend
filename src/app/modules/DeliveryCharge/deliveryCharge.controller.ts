@@ -41,14 +41,20 @@ export const DeliveryChargeController = {
   updateDeliveryChargeConfig,
   resolveDeliveryChargePreview: catchAsync(
     async (req: Request, res: Response) => {
-      const { zone, productIds = [] } = req.body as {
+      const {
+        zone,
+        productIds = [],
+        orderAmount,
+      } = req.body as {
         zone: 'inside' | 'outside';
         productIds?: string[];
+        orderAmount?: number;
       };
 
       const result = await DeliveryChargeService.resolveDeliveryChargeByZone(
         zone,
         productIds,
+        orderAmount,
       );
 
       sendResponse<TResolvedDeliveryCharge>(res, {

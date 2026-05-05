@@ -378,13 +378,14 @@ enum DeliveryChargeScope {
 }
 
 model DeliveryChargeRule {
-  id        String              @id @default(uuid())
-  zone      DeliveryChargeZone
-  scope     DeliveryChargeScope
-  charge    Decimal             @db.Decimal(10, 2)
-  isActive  Boolean             @default(true)
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @updatedAt
+  id             String              @id @default(uuid())
+  zone           DeliveryChargeZone
+  scope          DeliveryChargeScope
+  charge         Decimal             @db.Decimal(10, 2)
+  minOrderAmount Decimal             @default(0) @db.Decimal(10, 2)
+  isActive       Boolean             @default(true)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
 
   categories DeliveryChargeCategory[]
   products   DeliveryChargeProduct[]

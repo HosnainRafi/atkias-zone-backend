@@ -11,6 +11,7 @@ const resolveDeliveryChargeZodSchema = z.object({
   body: z.object({
     zone: z.enum(['inside', 'outside']),
     productIds: z.array(z.string()).optional().default([]),
+    orderAmount: z.coerce.number().min(0).optional(),
   }),
 });
 
@@ -23,6 +24,7 @@ export const DeliveryChargeValidation = {
         zone: z.enum(['inside', 'outside']),
         scope: z.enum(['all', 'category', 'subcategory', 'product']),
         charge: z.coerce.number().min(0),
+        minOrderAmount: z.coerce.number().min(0).optional(),
         isActive: z.boolean().optional().default(true),
         appliesToCategories: z.array(z.string()).optional(),
         appliesToProducts: z.array(z.string()).optional(),
@@ -59,6 +61,7 @@ export const DeliveryChargeValidation = {
         zone: z.enum(['inside', 'outside']).optional(),
         scope: z.enum(['all', 'category', 'subcategory', 'product']).optional(),
         charge: z.coerce.number().min(0).optional(),
+        minOrderAmount: z.coerce.number().min(0).optional(),
         isActive: z.boolean().optional(),
         appliesToCategories: z.array(z.string()).optional(),
         appliesToProducts: z.array(z.string()).optional(),

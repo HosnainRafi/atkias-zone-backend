@@ -55,6 +55,7 @@ function mapRule(
   return {
     ...rule,
     charge: Number(rule.charge),
+    minOrderAmount: Number(rule.minOrderAmount ?? 0),
   };
 }
 
@@ -190,25 +191,32 @@ function pickHighestRule(rules: TDeliveryChargeRule[]): TDeliveryChargeRule {
 const resolveDeliveryChargeByZone = async (
   zone: 'inside' | 'outside',
   productIds: string[],
+  orderAmount = 0,
 ): Promise<TResolvedDeliveryCharge> => {
   const config = await ensureDeliveryChargeConfig();
   const insideDhaka = zone === 'inside';
+  const normalizedOrderAmount = Number.isFinite(orderAmount)
+    ? Math.max(0, orderAmount)
+    : 0;
+
+  const rules = await prisma.deliveryChargeRule.findMany({
+    where: { zone, isActive: true },
+    include: deliveryChargeRuleInclude,
+  });
+
+  const mappedRules = rules
+    .map(mapRule)
+    .filter(rule => rule.minOrderAmount <= normalizedOrderAmount);
 
   if (productIds.length > 0) {
-    const [rules, products] = await Promise.all([
-      prisma.deliveryChargeRule.findMany({
-        where: { zone, isActive: true },
-        include: deliveryChargeRuleInclude,
-      }),
-      prisma.product.findMany({
-        where: { id: { in: productIds } },
-        select: {
-          id: true,
-          categoryId: true,
-          category: { select: { id: true, parentId: true } },
-        },
-      }),
-    ]);
+    const products = await prisma.product.findMany({
+      where: { id: { in: productIds } },
+      select: {
+        id: true,
+        categoryId: true,
+        category: { select: { id: true, parentId: true } },
+      },
+    });
 
     const productIdSet = new Set(productIds);
     const subcategoryIdSet = new Set(
@@ -217,8 +225,6 @@ const resolveDeliveryChargeByZone = async (
     const categoryIdSet = new Set(
       products.map(p => p.category?.parentId ?? p.categoryId),
     );
-
-    const mappedRules = rules.map(mapRule);
 
     const productRules = mappedRules.filter(
       rule =>
@@ -255,6 +261,14 @@ const resolveDeliveryChargeByZone = async (
         fee: pickHighestRule(categoryRules).charge,
       };
     }
+  }
+
+  const allRules = mappedRules.filter(rule => rule.scope === 'all');
+  if (allRules.length > 0) {
+    return {
+      label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
+      fee: pickHighestRule(allRules).charge,
+    };
   }
 
   return insideDhaka
