@@ -9858,3 +9858,81 @@ Unknown argument `minOrderAmount`. Available options are marked with ?.
 [2026-05-05T11:05:55.147Z] [INFO] 🚀 Application listening on port 5000
 [2026-05-05T11:05:56.191Z] [INFO] 🛢️  Database connected successfully
 [2026-05-05T11:05:56.282Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T11:09:21.428Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T11:09:21.485Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T11:09:22.214Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T11:09:22.514Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T17:09:33.617Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:09:35.098Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:09:36.122Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T17:09:36.334Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T17:10:49.307Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:10:49.338Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:10:55.835Z] [ERROR] ❌ Failed to connect to database PrismaClientInitializationError: Can't reach database server at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-snowy-fog-aormlb40-pooler.c-2.ap-southeast-1.aws.neon.tech:5432`.
+    at t (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:112:2488)
+    at async bootstrap (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\server.ts:49:5) {
+  clientVersion: '5.22.0',
+  errorCode: 'P1001'
+}
+[2026-05-05T17:13:44.781Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:13:44.802Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:13:45.336Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T17:13:45.778Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T17:13:55.709Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:13:55.729Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:13:56.317Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T17:13:56.389Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T17:14:14.207Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:14:14.237Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:14:14.695Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T17:14:15.200Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T17:19:02.228Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T17:19:02.260Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T17:19:02.844Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T17:19:03.365Z] [INFO] ✅ SMTP server ready to send emails
+[2026-05-05T18:03:42.857Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.category.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:37
+
+  68 };
+  69 
+  70 const getAllCategoriesFromDB = async (): Promise<TCategoryNode[]> => {
+→ 71   const all = await prisma.category.findMany(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 9)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllCategoriesFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.service.ts:71:15)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Category\category.controller.ts:20:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2024',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Category', connection_limit: 9, timeout: 10 }
+}
+[2026-05-05T18:03:42.878Z] [ERROR] globalErrorHandler ~ PrismaClientKnownRequestError: 
+Invalid `prisma.announcement.findMany()` invocation in
+E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:44
+
+  14 const getAllAnnouncementsFromDB = async (
+  15   activeOnly = false,
+  16 ): Promise<TAnnouncement[]> => {
+→ 17   const result = await prisma.announcement.findMany(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 9)
+    at $n.handleRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async Object.getAllAnnouncementsFromDB (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.service.ts:17:18)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\app\modules\Announcement\announcement.controller.ts:21:5)
+    at async <anonymous> (E:\Web Development\Vibe Binary\Atkia's Zone\atkias-zone-backend\src\shared\catchAsync.ts:7:7) {
+  code: 'P2024',
+  clientVersion: '5.22.0',
+  meta: { modelName: 'Announcement', connection_limit: 9, timeout: 10 }
+}
+[2026-05-05T18:19:54.549Z] [INFO] ⏳ Connecting to database...
+[2026-05-05T18:19:54.779Z] [INFO] 🚀 Application listening on port 5000
+[2026-05-05T18:19:55.433Z] [INFO] 🛢️  Database connected successfully
+[2026-05-05T18:19:56.581Z] [INFO] ✅ SMTP server ready to send emails

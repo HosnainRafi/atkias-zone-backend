@@ -43,17 +43,17 @@ export const DeliveryChargeController = {
     async (req: Request, res: Response) => {
       const {
         zone,
-        productIds = [],
+        items = [],
         orderAmount,
       } = req.body as {
         zone: 'inside' | 'outside';
-        productIds?: string[];
+        items?: Array<{ productId: string; lineTotal: number }>;
         orderAmount?: number;
       };
 
       const result = await DeliveryChargeService.resolveDeliveryChargeByZone(
         zone,
-        productIds,
+        items,
         orderAmount,
       );
 

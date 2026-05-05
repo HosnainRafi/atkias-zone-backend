@@ -10,7 +10,15 @@ const updateDeliveryChargeConfigZodSchema = z.object({
 const resolveDeliveryChargeZodSchema = z.object({
   body: z.object({
     zone: z.enum(['inside', 'outside']),
-    productIds: z.array(z.string()).optional().default([]),
+    items: z
+      .array(
+        z.object({
+          productId: z.string(),
+          lineTotal: z.coerce.number().min(0),
+        }),
+      )
+      .optional()
+      .default([]),
     orderAmount: z.coerce.number().min(0).optional(),
   }),
 });

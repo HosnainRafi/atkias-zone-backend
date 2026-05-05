@@ -188,82 +188,141 @@ function pickHighestRule(rules: TDeliveryChargeRule[]): TDeliveryChargeRule {
   );
 }
 
+type DeliveryChargeItem = {
+  productId: string;
+  lineTotal: number;
+};
+
 const resolveDeliveryChargeByZone = async (
   zone: 'inside' | 'outside',
-  productIds: string[],
-  orderAmount = 0,
+  items: DeliveryChargeItem[],
+  orderAmount?: number,
 ): Promise<TResolvedDeliveryCharge> => {
   const config = await ensureDeliveryChargeConfig();
   const insideDhaka = zone === 'inside';
+  const normalizedItems = items.filter(
+    item => item.productId && Number.isFinite(item.lineTotal),
+  );
+  const computedOrderAmount = normalizedItems.reduce(
+    (sum, item) => sum + Math.max(0, item.lineTotal),
+    0,
+  );
   const normalizedOrderAmount = Number.isFinite(orderAmount)
     ? Math.max(0, orderAmount)
-    : 0;
+    : computedOrderAmount;
 
   const rules = await prisma.deliveryChargeRule.findMany({
     where: { zone, isActive: true },
     include: deliveryChargeRuleInclude,
   });
+  const mappedRules = rules.map(mapRule);
 
-  const mappedRules = rules
-    .map(mapRule)
-    .filter(rule => rule.minOrderAmount <= normalizedOrderAmount);
+  const productIds = normalizedItems.map(item => item.productId);
+  const products = productIds.length
+    ? await prisma.product.findMany({
+        where: { id: { in: productIds } },
+        select: {
+          id: true,
+          categoryId: true,
+          category: { select: { id: true, parentId: true } },
+        },
+      })
+    : [];
 
-  if (productIds.length > 0) {
-    const products = await prisma.product.findMany({
-      where: { id: { in: productIds } },
-      select: {
-        id: true,
-        categoryId: true,
-        category: { select: { id: true, parentId: true } },
-      },
-    });
+  const productMeta = new Map(
+    products.map(product => [
+      product.id,
+      { categoryId: product.categoryId, parentId: product.category?.parentId },
+    ]),
+  );
 
-    const productIdSet = new Set(productIds);
-    const subcategoryIdSet = new Set(
-      products.filter(p => p.category?.parentId).map(p => p.categoryId),
-    );
-    const categoryIdSet = new Set(
-      products.map(p => p.category?.parentId ?? p.categoryId),
-    );
+  const itemTotals = new Map<string, number>();
+  normalizedItems.forEach(item => {
+    const current = itemTotals.get(item.productId) ?? 0;
+    itemTotals.set(item.productId, current + Math.max(0, item.lineTotal));
+  });
 
-    const productRules = mappedRules.filter(
-      rule =>
-        rule.scope === 'product' &&
-        rule.products?.some(prod => productIdSet.has(prod.productId)),
-    );
-    if (productRules.length > 0) {
-      return {
-        label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
-        fee: pickHighestRule(productRules).charge,
-      };
+  const totalForRule = (rule: TDeliveryChargeRule): number => {
+    if (rule.scope === 'all') return normalizedOrderAmount;
+
+    if (rule.scope === 'product') {
+      return (
+        rule.products?.reduce(
+          (sum, prod) => sum + (itemTotals.get(prod.productId) ?? 0),
+          0,
+        ) ?? 0
+      );
     }
 
-    const subcategoryRules = mappedRules.filter(
-      rule =>
-        rule.scope === 'subcategory' &&
-        rule.categories?.some(cat => subcategoryIdSet.has(cat.categoryId)),
+    const categoryIds = new Set(
+      rule.categories?.map(cat => cat.categoryId) ?? [],
     );
-    if (subcategoryRules.length > 0) {
-      return {
-        label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
-        fee: pickHighestRule(subcategoryRules).charge,
-      };
+
+    if (rule.scope === 'subcategory') {
+      let total = 0;
+      itemTotals.forEach((lineTotal, productId) => {
+        const meta = productMeta.get(productId);
+        if (meta && categoryIds.has(meta.categoryId)) {
+          total += lineTotal;
+        }
+      });
+      return total;
     }
 
-    const categoryRules = mappedRules.filter(
-      rule =>
-        rule.scope === 'category' &&
-        rule.categories?.some(cat => categoryIdSet.has(cat.categoryId)),
-    );
-    if (categoryRules.length > 0) {
-      return {
-        label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
-        fee: pickHighestRule(categoryRules).charge,
-      };
+    if (rule.scope === 'category') {
+      let total = 0;
+      itemTotals.forEach((lineTotal, productId) => {
+        const meta = productMeta.get(productId);
+        if (!meta) return;
+        if (
+          categoryIds.has(meta.categoryId) ||
+          categoryIds.has(meta.parentId)
+        ) {
+          total += lineTotal;
+        }
+      });
+      return total;
     }
+
+    return 0;
+  };
+
+  const isEligible = (rule: TDeliveryChargeRule) =>
+    totalForRule(rule) >= rule.minOrderAmount;
+
+  const productRules = mappedRules.filter(
+    rule => rule.scope === 'product' && isEligible(rule),
+  );
+  if (productRules.length > 0) {
+    return {
+      label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
+      fee: pickHighestRule(productRules).charge,
+    };
   }
 
-  const allRules = mappedRules.filter(rule => rule.scope === 'all');
+  const subcategoryRules = mappedRules.filter(
+    rule => rule.scope === 'subcategory' && isEligible(rule),
+  );
+  if (subcategoryRules.length > 0) {
+    return {
+      label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
+      fee: pickHighestRule(subcategoryRules).charge,
+    };
+  }
+
+  const categoryRules = mappedRules.filter(
+    rule => rule.scope === 'category' && isEligible(rule),
+  );
+  if (categoryRules.length > 0) {
+    return {
+      label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
+      fee: pickHighestRule(categoryRules).charge,
+    };
+  }
+
+  const allRules = mappedRules.filter(
+    rule => rule.scope === 'all' && isEligible(rule),
+  );
   if (allRules.length > 0) {
     return {
       label: insideDhaka ? INSIDE_DHAKA_LABEL : OUTSIDE_DHAKA_LABEL,
