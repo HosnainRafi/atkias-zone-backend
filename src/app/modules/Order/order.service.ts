@@ -15,6 +15,7 @@ import {
   SteadfastService,
   type TSteadfastCreateParcelPayload,
   type TSteadfastTrackingSnapshot,
+  type TSteadfastReturnRequestPayload,
 } from '../Steadfast/steadfast.service';
 import {
   TCreateOrderPayload,
@@ -329,6 +330,38 @@ function getSteadfastPayload(
   };
 }
 
+function toCleanString(value: unknown): string | undefined {
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    return trimmed || undefined;
+  }
+
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return String(value);
+  }
+
+  return undefined;
+}
+
+function toOptionalNumber(value: unknown): number | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+
+  if (typeof value === 'string' && value.trim()) {
+    const numeric = Number(value);
+    if (Number.isFinite(numeric)) return numeric;
+  }
+
+  return undefined;
+}
+
+function asRecord(payload: unknown): Record<string, unknown> | null {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return null;
+  }
+
+  return payload as Record<string, unknown>;
+}
+
 const createSteadfastParcelInDB = async (
   id: string,
   overrides?: Partial<TSteadfastCreateParcelPayload>,
@@ -424,6 +457,230 @@ const syncSteadfastParcelStatusInDB = async (id: string): Promise<TOrder> => {
   });
 
   return updatedOrder as unknown as TOrder;
+};
+
+const createSteadfastBulkParcelsInDB = async (
+  orderIds: string[],
+): Promise<{ results: unknown[]; updatedOrders: TOrder[] }> => {
+  const orders = await prisma.order.findMany({
+    where: { id: { in: orderIds } },
+    include: orderInclude,
+  });
+
+  if (!orders.length) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'No orders found.');
+  }
+
+  const results: unknown[] = [];
+  const eligibleOrders: TOrder[] = [];
+
+  for (const order of orders as unknown as TOrder[]) {
+    if (order.steadfastConsignmentId || order.steadfastTrackingCode) {
+      results.push({
+        orderId: order.id,
+        invoice: order.trackingNumber,
+        error: 'Parcel already sent to Steadfast.',
+      });
+      continue;
+    }
+
+    if (
+      order.status === OrderStatus.delivered ||
+      order.status === OrderStatus.cancelled ||
+      order.status === OrderStatus.refunded
+    ) {
+      results.push({
+        orderId: order.id,
+        invoice: order.trackingNumber,
+        error: 'Delivered, cancelled, or refunded orders cannot be sent.',
+      });
+      continue;
+    }
+
+    eligibleOrders.push(order);
+  }
+
+  if (!eligibleOrders.length) {
+    return { results, updatedOrders: [] };
+  }
+
+  const payloads = eligibleOrders.map(order =>
+    getSteadfastPayload(order as TOrder),
+  );
+
+  const bulkResponse = await SteadfastService.createBulkParcels(payloads);
+  const responseItems = bulkResponse.items;
+
+  const updates: Prisma.PrismaPromise<unknown>[] = [];
+  const updatedOrders: TOrder[] = [];
+  const orderByInvoice = new Map(
+    eligibleOrders.map(order => [order.trackingNumber, order]),
+  );
+  const payloadByInvoice = new Map(
+    payloads.map(payload => [payload.invoice, payload]),
+  );
+
+  for (const item of responseItems) {
+    const record = asRecord(item) || {};
+    const invoice = toCleanString(record.invoice);
+    const consignmentId = toOptionalNumber(record.consignment_id);
+    const trackingCode = toCleanString(record.tracking_code);
+    const status =
+      toCleanString(record.status) ||
+      toCleanString(record.delivery_status) ||
+      'pending';
+    const error = toCleanString(record.error);
+
+    results.push({
+      invoice,
+      consignmentId,
+      trackingCode,
+      status,
+      error,
+      rawResponse: item,
+    });
+
+    if (!invoice || !consignmentId || !trackingCode) continue;
+    const order = orderByInvoice.get(invoice);
+    if (!order) continue;
+
+    const existingSteadfastResponse =
+      order.steadfastResponse && typeof order.steadfastResponse === 'object'
+        ? (order.steadfastResponse as Record<string, unknown>)
+        : {};
+
+    updates.push(
+      prisma.order.update({
+        where: { id: order.id },
+        data: {
+          steadfastConsignmentId: consignmentId,
+          steadfastTrackingCode: trackingCode,
+          steadfastStatus: status,
+          steadfastRequestedAt: new Date(),
+          steadfastResponse: {
+            ...existingSteadfastResponse,
+            bulkCreateRequest: payloadByInvoice.get(invoice),
+            bulkCreateResponse: item,
+            bulkCreateRaw: bulkResponse.rawResponse,
+          } as Prisma.InputJsonValue,
+        },
+        include: orderInclude,
+      }) as unknown as Prisma.PrismaPromise<TOrder>,
+    );
+  }
+
+  if (updates.length) {
+    const updated = (await prisma.$transaction(updates)) as TOrder[];
+    updatedOrders.push(...updated);
+  }
+
+  return { results, updatedOrders };
+};
+
+const createSteadfastReturnRequestInDB = async (
+  id: string,
+  payload: {
+    reason: string;
+    consignmentId?: number;
+    invoice?: string;
+    trackingCode?: string;
+  },
+): Promise<TOrder> => {
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: orderInclude,
+  });
+
+  if (!order) throw new ApiError(httpStatus.NOT_FOUND, 'Order not found.');
+
+  const requestPayload: TSteadfastReturnRequestPayload = {
+    reason: payload.reason.trim(),
+  };
+
+  if (payload.consignmentId) {
+    requestPayload.consignment_id = String(payload.consignmentId);
+  }
+
+  if (payload.invoice) {
+    requestPayload.invoice = payload.invoice.trim();
+  }
+
+  if (payload.trackingCode) {
+    requestPayload.tracking_code = payload.trackingCode.trim();
+  }
+
+  if (!requestPayload.consignment_id) {
+    if (order.steadfastConsignmentId) {
+      requestPayload.consignment_id = String(order.steadfastConsignmentId);
+    } else if (order.steadfastTrackingCode) {
+      requestPayload.tracking_code = order.steadfastTrackingCode;
+    } else if (order.trackingNumber) {
+      requestPayload.invoice = order.trackingNumber;
+    }
+  }
+
+  if (
+    !requestPayload.consignment_id &&
+    !requestPayload.tracking_code &&
+    !requestPayload.invoice
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'No Steadfast identifier found for this order.',
+    );
+  }
+
+  const response = await SteadfastService.createReturnRequest(requestPayload);
+  const existingSteadfastResponse =
+    order.steadfastResponse && typeof order.steadfastResponse === 'object'
+      ? (order.steadfastResponse as Record<string, unknown>)
+      : {};
+
+  const updatedOrder = await prisma.order.update({
+    where: { id },
+    data: {
+      steadfastResponse: {
+        ...existingSteadfastResponse,
+        returnRequest: {
+          request: requestPayload,
+          response,
+        },
+      } as Prisma.InputJsonValue,
+    },
+    include: orderInclude,
+  });
+
+  return updatedOrder as unknown as TOrder;
+};
+
+const getSteadfastReturnRequestsFromAPI = async (): Promise<unknown> => {
+  return SteadfastService.getReturnRequests();
+};
+
+const getSteadfastReturnRequestByIdFromAPI = async (
+  returnId: string,
+): Promise<unknown> => {
+  return SteadfastService.getReturnRequestById(returnId);
+};
+
+const getSteadfastBalanceFromAPI = async (): Promise<unknown> => {
+  return SteadfastService.getBalance();
+};
+
+const getSteadfastStatusByConsignmentIdFromAPI = async (
+  consignmentId: number,
+): Promise<unknown> => {
+  return SteadfastService.getParcelStatusByConsignmentId(consignmentId);
+};
+
+const getSteadfastTrackingsByInvoiceFromAPI = async (
+  invoice: string,
+): Promise<unknown> => {
+  return SteadfastService.getTrackingsByInvoice(invoice);
+};
+
+const checkSteadfastFraudFromAPI = async (phone: string): Promise<unknown> => {
+  return SteadfastService.fraudCheck(phone);
 };
 
 const updateOrderIntoDB = async (
@@ -772,6 +1029,14 @@ export const OrderService = {
   getAllOrdersFromDB,
   getSingleOrderFromDB,
   createSteadfastParcelInDB,
+  createSteadfastBulkParcelsInDB,
+  createSteadfastReturnRequestInDB,
+  getSteadfastReturnRequestsFromAPI,
+  getSteadfastReturnRequestByIdFromAPI,
+  getSteadfastBalanceFromAPI,
+  getSteadfastStatusByConsignmentIdFromAPI,
+  getSteadfastTrackingsByInvoiceFromAPI,
+  checkSteadfastFraudFromAPI,
   syncSteadfastParcelStatusInDB,
   updateOrderIntoDB,
   updateOrderStatusInDB,

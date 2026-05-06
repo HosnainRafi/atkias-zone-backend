@@ -47,14 +47,65 @@ router.post(
 
 router.post(
   '/admin/:id/steadfast',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(OrderValidation.createSteadfastParcelZodSchema),
   OrderController.createSteadfastParcel,
 );
 
 router.post(
+  '/admin/steadfast/bulk',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  validateRequest(OrderValidation.createSteadfastBulkParcelZodSchema),
+  OrderController.createSteadfastBulkParcels,
+);
+
+router.post(
+  '/admin/:id/steadfast/return-request',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  validateRequest(OrderValidation.createSteadfastReturnRequestZodSchema),
+  OrderController.createSteadfastReturnRequest,
+);
+
+router.get(
+  '/admin/steadfast/returns',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  OrderController.getSteadfastReturnRequests,
+);
+
+router.get(
+  '/admin/steadfast/returns/:returnId',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  OrderController.getSteadfastReturnRequest,
+);
+
+router.get(
+  '/admin/steadfast/balance',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  OrderController.getSteadfastBalance,
+);
+
+router.get(
+  '/admin/steadfast/status/:consignmentId',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  OrderController.getSteadfastStatusByConsignmentId,
+);
+
+router.get(
+  '/admin/steadfast/trackings/:invoice',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  OrderController.getSteadfastTrackingsByInvoice,
+);
+
+router.post(
+  '/admin/steadfast/fraud-check',
+  auth(ADMIN_ROLE.SUPER_ADMIN),
+  validateRequest(OrderValidation.createSteadfastFraudCheckZodSchema),
+  OrderController.checkSteadfastFraud,
+);
+
+router.post(
   '/admin/:id/steadfast/sync',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   OrderController.syncSteadfastParcelStatus,
 );
 

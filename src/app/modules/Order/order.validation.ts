@@ -95,6 +95,29 @@ const createSteadfastParcelZodSchema = z.object({
   }),
 });
 
+const createSteadfastBulkParcelZodSchema = z.object({
+  body: z.object({
+    orderIds: z
+      .array(z.string().min(1))
+      .min(1, { message: 'At least one order is required' }),
+  }),
+});
+
+const createSteadfastReturnRequestZodSchema = z.object({
+  body: z.object({
+    reason: z.string().min(1, { message: 'Return reason is required' }),
+    consignmentId: z.coerce.number().int().positive().optional(),
+    invoice: z.string().optional(),
+    trackingCode: z.string().optional(),
+  }),
+});
+
+const createSteadfastFraudCheckZodSchema = z.object({
+  body: z.object({
+    phone: z.string().min(1, { message: 'Phone number is required' }),
+  }),
+});
+
 const trackOrderZodSchema = z.object({
   body: z
     .object({
@@ -113,5 +136,8 @@ export const OrderValidation = {
   updateOrderStatusZodSchema,
   updateOrderZodSchema,
   createSteadfastParcelZodSchema,
+  createSteadfastBulkParcelZodSchema,
+  createSteadfastReturnRequestZodSchema,
+  createSteadfastFraudCheckZodSchema,
   trackOrderZodSchema,
 };

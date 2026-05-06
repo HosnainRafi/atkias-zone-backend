@@ -18,34 +18,34 @@ router.post(
 
 router.patch(
   '/',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(DeliveryChargeValidation.updateDeliveryChargeConfigZodSchema),
   DeliveryChargeController.updateDeliveryChargeConfig,
 );
 
 router.get(
   '/rules',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   DeliveryChargeController.getAllDeliveryChargeRules,
 );
 
 router.post(
   '/rules',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(DeliveryChargeValidation.createDeliveryChargeRuleZodSchema),
   DeliveryChargeController.createDeliveryChargeRule,
 );
 
 router.patch(
   '/rules/:id',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   validateRequest(DeliveryChargeValidation.updateDeliveryChargeRuleZodSchema),
   DeliveryChargeController.updateDeliveryChargeRule,
 );
 
 router.delete(
   '/rules/:id',
-  auth(ADMIN_ROLE.SUPER_ADMIN, ADMIN_ROLE.ADMIN),
+  auth(ADMIN_ROLE.SUPER_ADMIN),
   DeliveryChargeController.deleteDeliveryChargeRule,
 );
 

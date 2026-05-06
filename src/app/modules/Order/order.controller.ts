@@ -92,17 +92,50 @@ const updateOrder = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const createSteadfastParcel = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const result = await OrderService.createSteadfastParcelInDB(id, req.body);
+const createSteadfastParcel = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await OrderService.createSteadfastParcelInDB(id, req.body);
 
-  sendResponse<TOrder>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Steadfast parcel created successfully!',
-    data: result,
-  });
-});
+    sendResponse<TOrder>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast parcel created successfully!',
+      data: result,
+    });
+  },
+);
+
+const createSteadfastBulkParcels = catchAsync(
+  async (req: Request, res: Response) => {
+    const { orderIds } = req.body;
+    const result = await OrderService.createSteadfastBulkParcelsInDB(orderIds);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast bulk parcel request completed.',
+      data: result,
+    });
+  },
+);
+
+const createSteadfastReturnRequest = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await OrderService.createSteadfastReturnRequestInDB(
+      id,
+      req.body,
+    );
+
+    sendResponse<TOrder>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast return request created successfully!',
+      data: result,
+    });
+  },
+);
 
 const syncSteadfastParcelStatus = catchAsync(
   async (req: Request, res: Response) => {
@@ -117,6 +150,89 @@ const syncSteadfastParcelStatus = catchAsync(
     });
   },
 );
+
+const getSteadfastReturnRequests = catchAsync(
+  async (_req: Request, res: Response) => {
+    const result = await OrderService.getSteadfastReturnRequestsFromAPI();
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast return requests retrieved successfully!',
+      data: result,
+    });
+  },
+);
+
+const getSteadfastReturnRequest = catchAsync(
+  async (req: Request, res: Response) => {
+    const { returnId } = req.params;
+    const result =
+      await OrderService.getSteadfastReturnRequestByIdFromAPI(returnId);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast return request retrieved successfully!',
+      data: result,
+    });
+  },
+);
+
+const getSteadfastBalance = catchAsync(async (_req: Request, res: Response) => {
+  const result = await OrderService.getSteadfastBalanceFromAPI();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Steadfast balance retrieved successfully!',
+    data: result,
+  });
+});
+
+const getSteadfastStatusByConsignmentId = catchAsync(
+  async (req: Request, res: Response) => {
+    const consignmentId = Number(req.params.consignmentId);
+    const result =
+      await OrderService.getSteadfastStatusByConsignmentIdFromAPI(
+        consignmentId,
+      );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast status retrieved successfully!',
+      data: result,
+    });
+  },
+);
+
+const getSteadfastTrackingsByInvoice = catchAsync(
+  async (req: Request, res: Response) => {
+    const { invoice } = req.params;
+    const result =
+      await OrderService.getSteadfastTrackingsByInvoiceFromAPI(invoice);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Steadfast trackings retrieved successfully!',
+      data: result,
+    });
+  },
+);
+
+const checkSteadfastFraud = catchAsync(async (req: Request, res: Response) => {
+  const { phone } = req.body;
+  const result = await OrderService.checkSteadfastFraudFromAPI(phone);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Steadfast fraud check completed successfully!',
+    data: result,
+  });
+});
 
 const trackOrder = catchAsync(async (req: Request, res: Response) => {
   const { trackingNumber, mobile } = req.body;
@@ -154,8 +270,16 @@ export const OrderController = {
   createOrder,
   createManualOrder,
   createSteadfastParcel,
+  createSteadfastBulkParcels,
+  createSteadfastReturnRequest,
   getAllOrders,
   getSingleOrder,
+  getSteadfastReturnRequests,
+  getSteadfastReturnRequest,
+  getSteadfastBalance,
+  getSteadfastStatusByConsignmentId,
+  getSteadfastTrackingsByInvoice,
+  checkSteadfastFraud,
   updateOrder,
   updateOrderStatus,
   syncSteadfastParcelStatus,

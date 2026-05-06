@@ -1,6 +1,6 @@
-import httpStatus from "http-status";
-import config from "../../../config";
-import ApiError from "../../../errors/ApiError";
+import httpStatus from 'http-status';
+import config from '../../../config';
+import ApiError from '../../../errors/ApiError';
 
 export type TSteadfastCreateParcelPayload = {
   invoice: string;
@@ -64,8 +64,15 @@ export type TSteadfastTrackingSnapshot = {
   returnsRaw: unknown;
 };
 
+export type TSteadfastReturnRequestPayload = {
+  consignment_id?: string;
+  invoice?: string;
+  tracking_code?: string;
+  reason: string;
+};
+
 function getConfiguredBaseUrl(): string {
-  return config.steadfast.baseUrl.replace(/\/$/, "");
+  return config.steadfast.baseUrl.replace(/\/$/, '');
 }
 
 function getHeaders(): HeadersInit {
@@ -74,14 +81,14 @@ function getHeaders(): HeadersInit {
   if (!apiKey || !secretKey) {
     throw new ApiError(
       httpStatus.INTERNAL_SERVER_ERROR,
-      "Steadfast credentials are not configured.",
+      'Steadfast credentials are not configured.',
     );
   }
 
   return {
-    "Content-Type": "application/json",
-    "Api-Key": apiKey,
-    "Secret-Key": secretKey,
+    'Content-Type': 'application/json',
+    'Api-Key': apiKey,
+    'Secret-Key': secretKey,
   };
 }
 
@@ -96,20 +103,23 @@ async function parseResponse(response: Response): Promise<unknown> {
 }
 
 function getResponseMessage(payload: unknown): string | undefined {
-  if (typeof payload === "string") {
+  if (typeof payload === 'string') {
     const trimmed = payload.trim();
     return trimmed || undefined;
   }
 
-  if (!payload || typeof payload !== "object") return undefined;
+  if (!payload || typeof payload !== 'object') return undefined;
 
   const maybePayload = payload as Record<string, unknown>;
-  return [maybePayload.message, maybePayload.error, maybePayload.statusMessage]
-    .find((value) => typeof value === "string") as string | undefined;
+  return [
+    maybePayload.message,
+    maybePayload.error,
+    maybePayload.statusMessage,
+  ].find(value => typeof value === 'string') as string | undefined;
 }
 
 function asRecord(payload: unknown): Record<string, unknown> | null {
-  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     return null;
   }
 
@@ -117,12 +127,12 @@ function asRecord(payload: unknown): Record<string, unknown> | null {
 }
 
 function toCleanString(value: unknown): string | undefined {
-  if (typeof value === "string") {
+  if (typeof value === 'string') {
     const trimmed = value.trim();
     return trimmed || undefined;
   }
 
-  if (typeof value === "number" && Number.isFinite(value)) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
     return String(value);
   }
 
@@ -130,9 +140,9 @@ function toCleanString(value: unknown): string | undefined {
 }
 
 function toOptionalNumber(value: unknown): number | undefined {
-  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
 
-  if (typeof value === "string" && value.trim()) {
+  if (typeof value === 'string' && value.trim()) {
     const numeric = Number(value);
     if (Number.isFinite(numeric)) return numeric;
   }
@@ -169,7 +179,8 @@ async function requestSteadfast(
   if (!response.ok) {
     throw new ApiError(
       httpStatus.BAD_GATEWAY,
-      getResponseMessage(data) || `Steadfast request failed (${response.status}).`,
+      getResponseMessage(data) ||
+        `Steadfast request failed (${response.status}).`,
     );
   }
 
@@ -187,10 +198,10 @@ function recordContainsIdentifiers(
   if (!payload) return false;
 
   if (Array.isArray(payload)) {
-    return payload.some((item) => recordContainsIdentifiers(item, identifiers));
+    return payload.some(item => recordContainsIdentifiers(item, identifiers));
   }
 
-  if (typeof payload !== "object") return false;
+  if (typeof payload !== 'object') return false;
 
   const record = payload as Record<string, unknown>;
   const directValues = [
@@ -202,14 +213,16 @@ function recordContainsIdentifiers(
   ];
 
   if (
-    (identifiers.consignmentId && directValues.includes(identifiers.consignmentId)) ||
-    (identifiers.trackingCode && directValues.includes(identifiers.trackingCode)) ||
+    (identifiers.consignmentId &&
+      directValues.includes(identifiers.consignmentId)) ||
+    (identifiers.trackingCode &&
+      directValues.includes(identifiers.trackingCode)) ||
     (identifiers.invoice && directValues.includes(identifiers.invoice))
   ) {
     return true;
   }
 
-  return Object.values(record).some((value) =>
+  return Object.values(record).some(value =>
     recordContainsIdentifiers(value, identifiers),
   );
 }
@@ -219,9 +232,7 @@ function normalizePaymentEntry(payload: unknown): TSteadfastPaymentEntry {
 
   return {
     paymentId:
-      toCleanString(record.payment_id) ||
-      toCleanString(record.id) ||
-      undefined,
+      toCleanString(record.payment_id) || toCleanString(record.id) || undefined,
     amount:
       toOptionalNumber(record.amount) ||
       toOptionalNumber(record.payable_amount) ||
@@ -266,7 +277,7 @@ function dedupePayments(
 ): TSteadfastPaymentEntry[] {
   const seen = new Set<string>();
 
-  return entries.filter((entry) => {
+  return entries.filter(entry => {
     const key = entry.paymentId || JSON.stringify(entry.rawResponse);
 
     if (seen.has(key)) return false;
@@ -276,15 +287,15 @@ function dedupePayments(
 }
 
 function getParcelPayload(data: unknown): Record<string, unknown> {
-  if (!data || typeof data !== "object") {
+  if (!data || typeof data !== 'object') {
     throw new ApiError(
       httpStatus.BAD_GATEWAY,
-      "Invalid response from Steadfast.",
+      'Invalid response from Steadfast.',
     );
   }
 
   const payload = data as Record<string, unknown>;
-  if (payload.consignment && typeof payload.consignment === "object") {
+  if (payload.consignment && typeof payload.consignment === 'object') {
     return payload.consignment as Record<string, unknown>;
   }
 
@@ -294,23 +305,23 @@ function getParcelPayload(data: unknown): Record<string, unknown> {
 const createParcel = async (
   payload: TSteadfastCreateParcelPayload,
 ): Promise<TSteadfastParcel> => {
-  const data = await requestSteadfast("/create_order", {
-    method: "POST",
+  const data = await requestSteadfast('/create_order', {
+    method: 'POST',
     body: JSON.stringify(payload),
   });
 
   const parcelData = getParcelPayload(data);
   const consignmentId = Number(parcelData.consignment_id);
-  const trackingCode = String(parcelData.tracking_code || "").trim();
+  const trackingCode = String(parcelData.tracking_code || '').trim();
   const status = String(
-    parcelData.status || parcelData.delivery_status || "pending",
+    parcelData.status || parcelData.delivery_status || 'pending',
   ).trim();
   const invoice = String(parcelData.invoice || payload.invoice).trim();
 
   if (!Number.isFinite(consignmentId) || !trackingCode) {
     throw new ApiError(
       httpStatus.BAD_GATEWAY,
-      "Steadfast response did not include consignment details.",
+      'Steadfast response did not include consignment details.',
     );
   }
 
@@ -330,7 +341,7 @@ const getParcelStatusByConsignmentId = async (
 
   const payload = getParcelPayload(data);
   const status = String(
-    payload.delivery_status || payload.status || "unknown",
+    payload.delivery_status || payload.status || 'unknown',
   ).trim();
 
   return {
@@ -348,7 +359,9 @@ const getParcelStatusByInvoice = async (
   const payload = getParcelPayload(data);
 
   return {
-    status: String(payload.delivery_status || payload.status || "unknown").trim(),
+    status: String(
+      payload.delivery_status || payload.status || 'unknown',
+    ).trim(),
     rawResponse: data,
   };
 };
@@ -362,7 +375,9 @@ const getParcelStatusByTrackingCode = async (
   const payload = getParcelPayload(data);
 
   return {
-    status: String(payload.delivery_status || payload.status || "unknown").trim(),
+    status: String(
+      payload.delivery_status || payload.status || 'unknown',
+    ).trim(),
     rawResponse: data,
   };
 };
@@ -371,10 +386,10 @@ const getPayments = async (): Promise<{
   payments: unknown[];
   rawResponse: unknown;
 }> => {
-  const data = await requestSteadfast("/payments");
+  const data = await requestSteadfast('/payments');
 
   return {
-    payments: extractArray(data, ["payments", "data"]),
+    payments: extractArray(data, ['payments', 'data']),
     rawResponse: data,
   };
 };
@@ -383,27 +398,71 @@ const getPaymentById = async (paymentId: string): Promise<unknown> => {
   return requestSteadfast(`/payments/${encodeURIComponent(paymentId)}`);
 };
 
+const getBalance = async (): Promise<unknown> => {
+  return requestSteadfast('/get_balance');
+};
+
+const getTrackingsByInvoice = async (invoice: string): Promise<unknown> => {
+  return requestSteadfast(`/status_by_invoice/${encodeURIComponent(invoice)}`);
+};
+
+const fraudCheck = async (phone: string): Promise<unknown> => {
+  return requestSteadfast(`/fraud_check/${encodeURIComponent(phone)}`);
+};
+
 const getReturnRequests = async (): Promise<{
   items: unknown[];
   rawResponse: unknown[];
 }> => {
-  const firstPage = await requestSteadfast("/get_return_requests?page=1");
+  const firstPage = await requestSteadfast('/get_return_requests?page=1');
   const firstPageRecord = asRecord(firstPage);
   const firstPageMeta = asRecord(firstPageRecord?.meta);
-  const lastPage = Math.min(toOptionalNumber(firstPageMeta?.last_page) || 1, 10);
+  const lastPage = Math.min(
+    toOptionalNumber(firstPageMeta?.last_page) || 1,
+    10,
+  );
 
   const rawResponse = [firstPage];
-  const items = [...extractArray(firstPage, ["data"])];
+  const items = [...extractArray(firstPage, ['data'])];
 
   for (let page = 2; page <= lastPage; page += 1) {
     const pageResponse = await requestSteadfast(
       `/get_return_requests?page=${page}`,
     );
     rawResponse.push(pageResponse);
-    items.push(...extractArray(pageResponse, ["data"]));
+    items.push(...extractArray(pageResponse, ['data']));
   }
 
   return { items, rawResponse };
+};
+
+const getReturnRequestById = async (returnId: string): Promise<unknown> => {
+  return requestSteadfast(
+    `/get_return_request/${encodeURIComponent(returnId)}`,
+  );
+};
+
+const createReturnRequest = async (
+  payload: TSteadfastReturnRequestPayload,
+): Promise<unknown> => {
+  return requestSteadfast('/create_return_request', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+};
+
+const createBulkParcels = async (
+  payload: TSteadfastCreateParcelPayload[],
+): Promise<{ items: unknown[]; rawResponse: unknown }> => {
+  const data = await requestSteadfast('/create_order/bulk-order', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+
+  return {
+    items: extractArray(data, ['data', 'items']),
+    rawResponse: data,
+  };
 };
 
 const getTrackingSnapshot = async (params: {
@@ -421,7 +480,9 @@ const getTrackingSnapshot = async (params: {
         ? getParcelStatusByInvoice(params.invoice).catch(() => undefined)
         : Promise.resolve(undefined),
       params.trackingCode
-        ? getParcelStatusByTrackingCode(params.trackingCode).catch(() => undefined)
+        ? getParcelStatusByTrackingCode(params.trackingCode).catch(
+            () => undefined,
+          )
         : Promise.resolve(undefined),
       getPayments().catch(() => ({ payments: [], rawResponse: null })),
       getReturnRequests().catch(() => ({ items: [], rawResponse: [] })),
@@ -433,12 +494,12 @@ const getTrackingSnapshot = async (params: {
     invoice: params.invoice?.trim(),
   };
 
-  const directlyMatchedPayments = paymentsResult.payments.filter((payment) =>
+  const directlyMatchedPayments = paymentsResult.payments.filter(payment =>
     recordContainsIdentifiers(payment, identifiers),
   );
 
   const paymentIds = paymentsResult.payments
-    .map((payment) => {
+    .map(payment => {
       const record = asRecord(payment);
       return toCleanString(record?.payment_id) || toCleanString(record?.id);
     })
@@ -446,7 +507,9 @@ const getTrackingSnapshot = async (params: {
     .slice(0, 25);
 
   const paymentDetails = await Promise.all(
-    paymentIds.map((paymentId) => getPaymentById(paymentId).catch(() => undefined)),
+    paymentIds.map(paymentId =>
+      getPaymentById(paymentId).catch(() => undefined),
+    ),
   );
 
   const detailedMatchedPayments = paymentDetails.filter(
@@ -461,7 +524,7 @@ const getTrackingSnapshot = async (params: {
   );
 
   const returnRequests = returnsResult.items
-    .filter((item) => recordContainsIdentifiers(item, identifiers))
+    .filter(item => recordContainsIdentifiers(item, identifiers))
     .map(normalizeReturnRequest);
 
   return {
@@ -482,8 +545,15 @@ const getTrackingSnapshot = async (params: {
 
 export const SteadfastService = {
   createParcel,
+  createBulkParcels,
+  createReturnRequest,
+  getBalance,
   getParcelStatusByConsignmentId,
   getParcelStatusByInvoice,
   getParcelStatusByTrackingCode,
+  getReturnRequestById,
+  getReturnRequests,
+  getTrackingsByInvoice,
+  fraudCheck,
   getTrackingSnapshot,
 };
