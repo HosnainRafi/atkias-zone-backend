@@ -207,9 +207,10 @@ const resolveDeliveryChargeByZone = async (
     (sum, item) => sum + Math.max(0, item.lineTotal),
     0,
   );
-  const normalizedOrderAmount = Number.isFinite(orderAmount)
-    ? Math.max(0, orderAmount)
-    : computedOrderAmount;
+  const normalizedOrderAmount =
+    orderAmount !== undefined && Number.isFinite(orderAmount)
+      ? Math.max(0, orderAmount)
+      : computedOrderAmount;
 
   const rules = await prisma.deliveryChargeRule.findMany({
     where: { zone, isActive: true },
@@ -276,7 +277,7 @@ const resolveDeliveryChargeByZone = async (
         if (!meta) return;
         if (
           categoryIds.has(meta.categoryId) ||
-          categoryIds.has(meta.parentId)
+          (meta.parentId && categoryIds.has(meta.parentId))
         ) {
           total += lineTotal;
         }
